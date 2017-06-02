@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\HMS",
+    "\\HMS\\HMS"
   ],
-  "SelectedNode": "\\README.md",
+  "SelectedNode": "\\HMS\\HMS.sln",
   "PreviewInSolutionExplorer": false
 }
