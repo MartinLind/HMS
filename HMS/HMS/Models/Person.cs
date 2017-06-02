@@ -7,6 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
 namespace HMS.Models
 {
     using System;
@@ -63,7 +70,7 @@ namespace HMS.Models
 
             if (!Regex.IsMatch(zip, @"[0-9]{5}")) throw checkZipException;
 
-            if (!Regex.IsMatch(telefon, @"^\d{4,5}-\d{4,}$")) throw checkPhoneException;
+            if (!Regex.IsMatch(phone, @"^\d{4,5}-\d{4,}$")) throw checkPhoneException;
 
             if (!Regex.IsMatch(street, @"^(.+)\s(\S+)$")) throw checkStreetException;
 
