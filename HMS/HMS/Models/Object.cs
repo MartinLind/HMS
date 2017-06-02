@@ -16,7 +16,7 @@ namespace HMS.Models
     {
         public int Id { get; set; }
         public System.DateTime timecreate { get; set; }
-        public System.DateTime timemodify { get; set; }
+        public System.DateTime timemodify { get; set; }   
         public bool isactive { get; set; }
     }
 }

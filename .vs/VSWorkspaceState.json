@@ -2,7 +2,16 @@
   "ExpandedNodes": [
     "",
     "\\HMS",
-    "\\HMS\\HMS"
+    "\\HMS\\HMS",
+    "\\HMS\\HMS\\App_Data",
+    "\\HMS\\HMS\\App_Start",
+    "\\HMS\\HMS\\Content",
+    "\\HMS\\HMS\\Controllers",
+    "\\HMS\\HMS\\fonts",
+    "\\HMS\\HMS\\Models",
+    "\\HMS\\HMS\\Properties",
+    "\\HMS\\HMS\\Scripts",
+    "\\HMS\\packages"
   ],
   "SelectedNode": "\\HMS\\HMS.sln",
   "PreviewInSolutionExplorer": false
