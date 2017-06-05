@@ -30,15 +30,21 @@ namespace HMS.Models
         public string city { get; set; }
         public string zip { get; set; }
         public System.DateTime dateofbirth { get; set; }
-    
 
-      /// <summary>		
-        /// Konstruktor für Person inkl. Validierung der Attribute		
+        /// <summary>
+        /// Leerer Konstruktor
+        /// Für den Fall das eine Person ohne Attribute angelegt wird
+        /// Nur theoretisch, werden wir vermutlich nie brauchen, aber ohne den Kontruktor startet die GUI nicht
+        /// </summary>
+        public Person() { }
+
+         /// <summary>		
+         /// Konstruktor für Person inkl. Validierung der Attribute		
          /// @Author: Yunus		
          /// </summary>		
          /// <param name="prename"></param>		
-        /// <param name="surname"></param>		
-        /// <param name="phone"></param>		
+         /// <param name="surname"></param>		
+         /// <param name="phone"></param>		
          /// <param name="email"></param>		
          /// <param name="gender"></param>		
          /// <param name="street"></param>		
