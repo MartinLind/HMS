@@ -40,6 +40,12 @@ TestResult.xml
 [Rr]eleasePS/
 dlldata.c
 
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
 # DNX
 project.lock.json
 project.fragment.lock.json
