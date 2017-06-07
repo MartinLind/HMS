@@ -1,0 +1,42 @@
+﻿@model HMS.Models.Object
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Object</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.timecreate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.timecreate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.timemodify)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.timemodify)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isactive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isactive)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
