@@ -27,7 +27,7 @@ namespace HMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Object @object = db.ObjectSet.Find(id);
+            Models.Object @object = db.ObjectSet.Find(id);
             if (@object == null)
             {
                 return HttpNotFound();
@@ -46,7 +46,7 @@ namespace HMS.Controllers
         // finden Sie unter https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,timecreate,timemodify,isactive")] Object @object)
+        public ActionResult Create([Bind(Include = "Id,timecreate,timemodify,isactive")] Models.Object @object)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace HMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Object @object = db.ObjectSet.Find(id);
+            Models.Object @object = db.ObjectSet.Find(id);
             if (@object == null)
             {
                 return HttpNotFound();
@@ -78,7 +78,7 @@ namespace HMS.Controllers
         // finden Sie unter https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,timecreate,timemodify,isactive")] Object @object)
+        public ActionResult Edit([Bind(Include = "Id,timecreate,timemodify,isactive")] Models.Object @object)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace HMS.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Object @object = db.ObjectSet.Find(id);
+            Models.Object @object = db.ObjectSet.Find(id);
             if (@object == null)
             {
                 return HttpNotFound();
@@ -109,7 +109,7 @@ namespace HMS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Object @object = db.ObjectSet.Find(id);
+            Models.Object @object = db.ObjectSet.Find(id);
             db.ObjectSet.Remove(@object);
             db.SaveChanges();
             return RedirectToAction("Index");
