@@ -5,6 +5,13 @@ VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMS", "HMS\HMS.csproj", "{F6C43B45-38D7-4676-9CE0-49158C926A23}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pics", "Pics", "{A1C754A4-CC95-40CF-9076-EC3BB5E55690}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Desktop\hospital.jpg = ..\..\..\..\Desktop\hospital.jpg
+	EndProjectSection
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database1", "..\..\..\..\Documents\Visual Studio 2017\Projects\Database1\Database1.sqlproj", "{F4167C29-7756-4361-807A-6F77A25F4295}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,12 @@ Global
 		{F6C43B45-38D7-4676-9CE0-49158C926A23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6C43B45-38D7-4676-9CE0-49158C926A23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6C43B45-38D7-4676-9CE0-49158C926A23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4167C29-7756-4361-807A-6F77A25F4295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4167C29-7756-4361-807A-6F77A25F4295}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4167C29-7756-4361-807A-6F77A25F4295}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F4167C29-7756-4361-807A-6F77A25F4295}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4167C29-7756-4361-807A-6F77A25F4295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4167C29-7756-4361-807A-6F77A25F4295}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

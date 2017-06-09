@@ -1,0 +1,120 @@
+﻿@model HMS.Models.LocalCase
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LocalCase</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.timeopen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.timeopen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.timeclosed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.timeclosed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.casenr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.casenr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personincharge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personincharge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diagnosis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diagnosis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.medication)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.medication)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.therapy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.therapy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.expectedtime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expectedtime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Property1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Property1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.timecreate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.timecreate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.timemodify)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.timemodify)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isactive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isactive)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
