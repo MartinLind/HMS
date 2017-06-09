@@ -12,14 +12,20 @@ namespace HMS.Controllers
 {
     public class PersonController : Controller
     {
+        //TEST: Martin Wichary
+        //static List<Person> people = new List<Person>();
         private DBContainer db = new DBContainer();
 
-        // GET: Person
-        public ActionResult Index()
+    
+       
+      
+            
+    // GET: Person
+    public ActionResult Index()
         {
             return View(db.People.ToList());
         }
-
+        
         // GET: Person/Details/5
         public ActionResult Details(int? id)
         {
@@ -51,6 +57,7 @@ namespace HMS.Controllers
             if (ModelState.IsValid)
             {
                 db.People.Add(person);
+                //Zu Testzwecken auskommentiert
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
