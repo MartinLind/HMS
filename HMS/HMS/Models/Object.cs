@@ -19,4 +19,6 @@ namespace HMS.Models
         public System.DateTime timemodify { get; set; }
         public bool isactive { get; set; }
     }
+
+
 }
