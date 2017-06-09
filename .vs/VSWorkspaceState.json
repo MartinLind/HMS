@@ -6,8 +6,11 @@
     "\\HMS\\HMS\\Controllers",
     "\\HMS\\HMS\\Models",
     "\\HMS\\HMS\\Views",
-    "\\HMS\\HMS\\Views\\Home",
-    "\\HMS\\HMS\\Views\\Shared"
+    "\\HMS\\HMS\\Views\\LocalCase",
+    "\\HMS\\HMS\\Views\\Object",
+    "\\HMS\\HMS\\Views\\Patient",
+    "\\HMS\\HMS\\Views\\Person",
+    "\\HMS\\HMS\\Views\\Room"
   ],
   "SelectedNode": "\\HMS\\HMS.sln",
   "PreviewInSolutionExplorer": false

@@ -27,6 +27,12 @@ namespace HMS.Controllers
             return View();
         }
 
+        public ActionResult Test1()
+        {
+           
+                ViewBag.Message = "This is a TestPage, we try to display this Page!";
 
+            return View();
+        }
     }
 }
