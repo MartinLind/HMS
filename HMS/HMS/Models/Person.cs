@@ -24,7 +24,7 @@ namespace HMS.Models
         public System.DateTime dateofbirth { get; set; }
     }
 
-}
+
     /// <summary>		
     /// Leerer Konstruktor		
     /// Für den Fall das eine Person ohne Attribute angelegt wird		
@@ -45,9 +45,9 @@ namespace HMS.Models
     /// <param name="city"></param>				
     /// <param name="zip"></param>				
     /// <param name="dateofbirth"></param>		
-  
-    /**
-    public Person(string prename, string surname, string phone, string email, string gender, string street, string city, string zip, DateTime dateofbirth)
+}
+ /**  
+    public Person(string prename, string surname, string phone, string email, string gender, string street, string city, string zip, DateTime dateofbirth) : base ()
     {
 
         Exception checkNameException = new Exception("ungültiger Name");
