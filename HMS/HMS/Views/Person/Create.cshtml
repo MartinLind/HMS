@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Create";
 }
-
+<body style="background-color: #44aec9">
 <h2>Create</h2>
 
 
@@ -116,13 +116,15 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
+                <input id="BackToIndex" type="button" value="Cancel" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new {style = "color: Black" })
 </div>
 
 @section Scripts {

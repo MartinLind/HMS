@@ -4,7 +4,6 @@
     "\\HMS",
     "\\HMS\\HMS",
     "\\HMS\\HMS\\Controllers",
-    "\\HMS\\HMS\\Models",
     "\\HMS\\HMS\\Views",
     "\\HMS\\HMS\\Views\\Home",
     "\\HMS\\HMS\\Views\\Shared"

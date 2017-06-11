@@ -2,11 +2,10 @@
     ViewBag.Title = "Test1";
 }
 
-
+<body style="background-color: #44aec9">
 
 <h3>@ViewBag.Message</h3>
 
-<input id="Button1" type="button" value="Create Person" />
 
     <input id="NewPerson" type="button" value="Create Person" 
         onclick="@("window.location.href='" + @Url.Action("Create", "Person") + "'");" />
