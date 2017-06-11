@@ -30,7 +30,7 @@ namespace HMS.Models
     /// Für den Fall das eine Person ohne Attribute angelegt wird		
     /// Nur theoretisch, werden wir vermutlich nie brauchen, aber ohne den Kontruktor startet die GUI nicht		
     /// </summary>		
-    // public Person() { }
+  //  public void Person() { }
 
     /// <summary>				
     /// Konstruktor für Person inkl. Validierung der Attribute				
