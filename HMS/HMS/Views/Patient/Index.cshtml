@@ -1,13 +1,25 @@
 ﻿@model IEnumerable<HMS.Models.Patient>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Patienten";
 }
 
-<h2>Index</h2>
+<h2>Unsere aktuellen Patienten:</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+  <!--  @Html.ActionLink("Create New", "Create") 
+      <input id="ShowDetails" type="button" value="Details" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Details", "Patient") + "'");" />
+
+     <input id="EditPatient" type="button" value="Edit" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Edit", "Patient") + "'");" />
+
+     <input id="DeletePatient" type="button" value="Delete" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Delete", "Patient") + "'");" />-->
+   <input id="GoCreatePatient" type="button" value="Create" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Create", "Patient") + "'");" />
+
+
 </p>
 <table class="table">
     <tr>

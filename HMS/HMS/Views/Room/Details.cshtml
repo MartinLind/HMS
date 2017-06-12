@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Room</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -69,6 +69,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+  <!--     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index") -->
+              <input id="EditThis" type="button" value="Edit" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Edit", "Room", new {id = Model.Id}) + "'");" />
+              <input id="BackToList" type="button" value="Back to List" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Index", "Room") + "'");" />
 </p>

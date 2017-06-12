@@ -12,35 +12,37 @@ namespace HMS.Controllers
         {
             return View();
         }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        public ActionResult Test1()
-        {
-           
-                ViewBag.Message = "This is a TestPage, for Staff!";
-
-            return View();
-        }
         public ActionResult LoginPage()
         {
-      
+
             return View();
         }
 
-        public ActionResult Test2()
+
+        /**  public ActionResult About()
+          {
+              ViewBag.Message = "Your application description page.";
+
+              return View();
+          }
+
+          public ActionResult Contact()
+          {
+              ViewBag.Message = "Your contact page.";
+
+              return View();
+          }
+
+          public ActionResult Test1()
+         {
+             
+                  ViewBag.Message = "This is a TestPage, for Staff!";
+
+              return View();
+          } **/
+
+
+        /**public ActionResult Test2()
         {
             ViewBag.Message = "Another TestPage, for Rooms!";
             return View();
@@ -50,6 +52,6 @@ namespace HMS.Controllers
         {
             ViewBag.Message = "Another TestPage, for Patients!";
             return View();
-        }
+        } **/
     }
 }

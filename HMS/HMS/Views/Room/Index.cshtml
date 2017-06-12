@@ -1,14 +1,27 @@
 ﻿@model IEnumerable<HMS.Models.Room>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Räume";
 }
 
-<h2>Index</h2>
+<h2>Unsere Räume:</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+  <!--  @Html.ActionLink("Create New", "Create") 
+      
+     <input id="ShowDetails" type="button" value="Details" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Details", "Room") + "'");" />
+
+     <input id="EditRoom" type="button" value="Edit" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Edit", "Room") + "'");" />
+
+     <input id="DeleteRoom" type="button" value="Delete" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Delete", "Room") + "'");" />
 </p>
+      -->
+   <input id="CreateRoom" type="button" value="Create" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Create", "Room") + "'");" />
+
 <table class="table">
     <tr>
         <th>
