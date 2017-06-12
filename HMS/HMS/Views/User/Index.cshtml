@@ -1,13 +1,17 @@
 ﻿@model IEnumerable<HMS.Models.User>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Mitarbeiter";
 }
 
-<h2>Index</h2>
+<h2>Unsere Mitarbeiter:</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+  <!--  @Html.ActionLink("Create New", "Create") -->
+
+
+     <input id="CreateUser" type="button" value="Create" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Create", "User") + "'");" />
 </p>
 <table class="table">
     <tr>
