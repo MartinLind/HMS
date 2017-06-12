@@ -30,8 +30,25 @@ namespace HMS.Controllers
         public ActionResult Test1()
         {
            
-                ViewBag.Message = "This is a TestPage, we try to display this Page!";
+                ViewBag.Message = "This is a TestPage, for Staff!";
 
+            return View();
+        }
+        public ActionResult LoginPage()
+        {
+      
+            return View();
+        }
+
+        public ActionResult Test2()
+        {
+            ViewBag.Message = "Another TestPage, for Rooms!";
+            return View();
+        }
+
+        public ActionResult Test3()
+        {
+            ViewBag.Message = "Another TestPage, for Patients!";
             return View();
         }
     }

@@ -18,6 +18,14 @@ namespace HMS.Models
         public string space { get; set; }
         public string vacancy { get; set; }
         public string type { get; set; }
+
+        public Room(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string number, string space, string vacancy, string type) : base(id, timecreate, timemodify, isactive)
+        {
+            this.number = number;
+            this.space = space;
+            this.vacancy = vacancy;
+            this.type = type;
+        }
     
         public virtual LocalCase LocalCase { get; set; }
     }

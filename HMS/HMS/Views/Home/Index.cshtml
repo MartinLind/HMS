@@ -6,13 +6,78 @@
         }
     </style>
 </head>
-<body style="background-color: #99CCFF">
+<body style="background-color: #44aec9">
     @{
-    ViewBag.Title = "Hospital Management System v0.1";
+    ViewBag.Title = "Hospital Management System";
 }
 
 <div >
     
     <h1>Welcome to our HMS</h1>
-
+    <hr />
+    <h2>This is our Team:</h2>
+    <br />
+    <table border="2" bordercolor="#FFFFFF" >
+           <tr>
+               <td width="130">
+                   <b>Name:</b>
+               </td>
+               <td width="160">
+                  <b>Description:</b>
+               </td>
+           </tr>
+            <tr>
+               <td>
+                   Martin Lindner
+               </td>
+               <td>
+                   Der Mann für alles
+               </td>
+           </tr>
+            <tr>
+               <td>
+                   Yunus Koc
+               </td>
+               <td>
+                   Hardcoder
+               </td>
+           </tr>
+            <tr>
+               <td>
+                   Martin Wichary
+               </td>
+               <td>
+                   Der Koordinator
+               </td>
+           </tr>
+            <tr>
+               <td>
+                   Mateusz Plonka
+               </td>
+               <td>
+                   Schreibstylist
+               </td>
+           </tr>
+            <tr>
+               <td>
+                   Ming Guang
+               </td>
+               <td>
+                   Einfach Ming
+               </td>
+           </tr>
+            <tr>
+               <td>
+                   David Bismor
+               </td>
+               <td>
+                   Ruhepuls
+               </td>
+           </tr>
+    </table>
+    <br />
+    <hr />
+    <h4>You want more access?</h4>
+    <input id="LinkToLogin" type="button" value="Get it here" 
+        onclick="@("window.location.href='" + @Url.Action("LoginPage", "Home") + "'");" />
 </div>

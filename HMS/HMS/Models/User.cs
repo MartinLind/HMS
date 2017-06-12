@@ -15,9 +15,16 @@ namespace HMS.Models
     public partial class User : Person
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public User(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone, 
+            string email, string gender, string street, string city, string zip, DateTime dateofbirth, string password, string rolename, bool accessright1, bool accessright2, bool accessright3) 
+            : base(id, timecreate, timemodify, isactive, prename, surname, phone, email, gender, street, city, zip, dateofbirth)
         {
             this.LocalCase = new HashSet<LocalCase>();
+            this.password = password;
+            this.rolename = rolename;
+            this.accessright1 = accessright1;
+            this.accessright2 = accessright2;
+            this.accessright3 = accessright3;
         }
     
         public string password { get; set; }
