@@ -19,6 +19,11 @@ namespace HMS.Models
         public string vacancy { get; set; }
         public string type { get; set; }
 
+        //Leerer Konstruktor
+        //MW
+        public Room() { }
+
+
         public Room(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string number, string space, string vacancy, string type) : base(id, timecreate, timemodify, isactive)
         {
             this.number = number;
