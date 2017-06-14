@@ -2,8 +2,10 @@
   using System.Collections.Generic;			
   using System.Linq;				
   using System.Text;				
-  using System.Threading.Tasks;		 		
-  using System.Text.RegularExpressions;
+  using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
 
 
 
@@ -13,15 +15,50 @@ namespace HMS.Models
 
     public partial class Person : Object
     {
+        [Required(ErrorMessage = "Bitte den Vornamen eintragen")]
+        [Display(Name = "Vorname")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage ="Bitte den Vornamen auf Fehler überprüfen")]
         public string prename { get; set; }
+
+        [Required(ErrorMessage = "Bitte den Nachnamen eintragen")]
+        [Display(Name = "Nachname")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Bitte den Nachnamen auf Fehler überprüfen")]
         public string surname { get; set; }
+
+        [Required(ErrorMessage = "Bitte Haustelefon eingeben")]
+        [Display(Name = "Haustelefon")]
+        [RegularExpression(@"^\d{4,5}-\d{4,}$", ErrorMessage = "Bitte überprüfen Sie die Nummer auf folgendes Format: Vorwahl-Telefonnummer")]
         public string phone { get; set; }
+
+        [Required(ErrorMessage = "Bitte die E-Mail-Adresse eingeben")]
+        [Display(Name = "E-Mail")]
+        [RegularExpression(@"^([0-9a-zA-Z]"+ @"([\+\-_\.][0-9a-zA-Z]+)*"+ @")+" + @"@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,17})$", ErrorMessage = "Überprüfen Sie die E-Mail auf ihre Richtigkeit!")]
         public string email { get; set; }
+
+        [Required(ErrorMessage = "Bitte das Geschlecht eintragen")]
+        [Display(Name = "Geschlecht")]
+        [RegularExpression(@"\bweiblich\b|\bmännlich\b", ErrorMessage = "weiblich oder männlich auf Korrektheit überprüfen")]
         public string gender { get; set; }
+
+        [Required(ErrorMessage = "Bitte die Straße und die Hausnummer eintragen")]
+        [RegularExpression(@"^(.+)\s(\S+)$", ErrorMessage = "Bitte überprüfen Sie die Straße und die Hausnummer auf ihre Richtigkeit!")]
+        [Display(Name = "Straße")]        
         public string street { get; set; }
+
+        [Required(ErrorMessage = "Bitte die Stadt eintragen")]
+        [Display(Name = "Stadt")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Überprüfen Sie die Stadt auf ihre Richtigkeit")]
         public string city { get; set; }
+
+        [Required(ErrorMessage = "Bitte geben Sie eine Postleitzahl ein")]
+        [Display(Name = "Postleitzahl")]
+        [RegularExpression(@"[0-9]{5}", ErrorMessage = "Ungültige Postleitzahl! Bitte überprüfen Sie ihre Eingabe!")]
         public string zip { get; set; }
-        public System.DateTime dateofbirth { get; set; }
+
+        [Required(ErrorMessage = "Bitte tragen Sie das Geburtsdatum ein")]
+        [Display(Name = "Geburtstag")]
+        [RegularExpression(@"^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$", ErrorMessage = "Bitte überprüfen Sie das Geburstdatum!")]
+        public string dateofbirth { get; set; }
 
 
 
@@ -51,7 +88,7 @@ namespace HMS.Models
         /// <param name="dateofbirth"></param>		
 
 
-        public Person(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone, string email, string gender, string street, string city, string zip, DateTime dateofbirth) : base(id, timecreate, timemodify, isactive)
+        public Person(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone, string email, string gender, string street, string city, string zip, string dateofbirth) : base(id, timecreate, timemodify, isactive)
         {
 
             Exception checkNameException = new Exception("ungültiger Name");
@@ -76,7 +113,7 @@ namespace HMS.Models
 
             if (!Regex.IsMatch(zip, @"[0 9]{5}")) throw checkZipException;
 
-            if (!Regex.IsMatch(phone, @"^\d{4,5} \d{4,}$")) throw checkPhoneException;
+            if (!Regex.IsMatch(phone, @"^\d{4,5}-\d{4,}$")) throw checkPhoneException;
 
             if (!Regex.IsMatch(street, @"^(.+)\s(\S+)$")) throw checkStreetException;
 
@@ -114,7 +151,7 @@ namespace HMS.Models
     /// <param name="zip"></param>				
     /// <param name="dateofbirth"></param>				
     /// <returns></returns>				
-    public static Person addPerson(String prename, String surname, String phone, String email, String gender, String street, String city, String zip, DateTime dateofbirth)				
+    public static Person addPerson(String prename, String surname, String phone, String email, String gender, String street, String city, String zip, string dateofbirth)				
     {				
         return new Person(prename, surname, phone, email, gender, street, city, zip, dateofbirth);				
    }				

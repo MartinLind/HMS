@@ -10,6 +10,8 @@
 namespace HMS.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Collections.Generic;
     
     public partial class Patient : Person
@@ -19,11 +21,13 @@ namespace HMS.Models
         public Patient() { }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Patient(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone, string email, string gender, string street, string city, string zip, DateTime dateofbirth) : base(id, timecreate, timemodify, isactive, prename, surname, phone, email, gender, street, city, zip, dateofbirth)
+        public Patient(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone, string email, string gender, string street, string city, string zip, string dateofbirth) : base(id, timecreate, timemodify, isactive, prename, surname, phone, email, gender, street, city, zip, dateofbirth)
         {
             this.LocalCase = new HashSet<LocalCase>();
         }
-    
+
+        [Required]
+        [Display(Name = "ID")]
         public string hcID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

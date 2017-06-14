@@ -11,12 +11,14 @@ namespace HMS.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class Object
     {
         public int Id { get; set; }
-        public System.DateTime timecreate { get; set; }
-        public System.DateTime timemodify { get; set; }
+        public DateTime timecreate { get; set; }
+        public DateTime timemodify { get; set; }
         public bool isactive { get; set; }
 
         public Object()

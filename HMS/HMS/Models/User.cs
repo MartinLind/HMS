@@ -11,7 +11,9 @@ namespace HMS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class User : Person
     {
         //Leerer Konstruktor wie immer
@@ -20,7 +22,7 @@ namespace HMS.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone, 
-            string email, string gender, string street, string city, string zip, DateTime dateofbirth, string password, string rolename, bool accessright1, bool accessright2, bool accessright3) 
+            string email, string gender, string street, string city, string zip, string dateofbirth, string password, string rolename, bool accessright1, bool accessright2, bool accessright3) 
             : base(id, timecreate, timemodify, isactive, prename, surname, phone, email, gender, street, city, zip, dateofbirth)
         {
             this.LocalCase = new HashSet<LocalCase>();
