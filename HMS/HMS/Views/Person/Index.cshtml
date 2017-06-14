@@ -1,13 +1,26 @@
 ﻿@model IEnumerable<HMS.Models.Person>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "AllIn";
 }
 
-<h2>Index</h2>
+<h2>Alle beteiligten Personen:</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+ <!--   @Html.ActionLink("Create New", "Create")
+          <input id="ShowDetails" type="button" value="Details" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Details", "Person") + "'");" />
+
+     <input id="EditPerson" type="button" value="Edit" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Edit", "Person") + "'");" />
+
+     <input id="DeletePerson" type="button" value="Delete" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Delete", "Person") + "'");" />
+     -->
+   <input id="CreatePerson" type="button" value="Create" class="btn btn-default"
+        onclick="@("window.location.href='" + @Url.Action("Create", "Person") + "'");" />
+
+
 </p>
 <table class="table">
     <tr>

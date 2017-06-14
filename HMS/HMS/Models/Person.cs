@@ -30,6 +30,7 @@ namespace HMS.Models
         /// Für den Fall das eine Person ohne Attribute angelegt wird		
         /// Nur theoretisch, werden wir vermutlich nie brauchen, aber ohne den Kontruktor startet die GUI nicht		
         /// </summary>		
+        public Person() { }
          public Person(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive) : base(id, timecreate, timemodify, isactive)
         {
 

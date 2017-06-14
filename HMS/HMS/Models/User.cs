@@ -14,6 +14,10 @@ namespace HMS.Models
     
     public partial class User : Person
     {
+        //Leerer Konstruktor wie immer
+        //MW
+        public User() { }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone, 
             string email, string gender, string street, string city, string zip, DateTime dateofbirth, string password, string rolename, bool accessright1, bool accessright2, bool accessright3) 
