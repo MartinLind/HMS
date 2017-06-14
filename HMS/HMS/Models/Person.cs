@@ -58,7 +58,7 @@ namespace HMS.Models
         [Required(ErrorMessage = "Bitte tragen Sie das Geburtsdatum ein")]
         [Display(Name = "Geburtstag")]
         [RegularExpression(@"^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$", ErrorMessage = "Bitte überprüfen Sie das Geburstdatum!")]
-        public string dateofbirth { get; set; }
+        public System.DateTime dateofbirth { get; set; }
 
 
 
@@ -88,7 +88,7 @@ namespace HMS.Models
         /// <param name="dateofbirth"></param>		
 
 
-        public Person(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone, string email, string gender, string street, string city, string zip, string dateofbirth) : base(id, timecreate, timemodify, isactive)
+        public Person(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone, string email, string gender, string street, string city, string zip, DateTime dateofbirth) : base(id, timecreate, timemodify, isactive)
         {
 
             Exception checkNameException = new Exception("ungültiger Name");
