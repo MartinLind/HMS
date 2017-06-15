@@ -30,8 +30,8 @@ namespace HMS.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime timemodify { get; set; }
-     
-        [Display(Name = "Aktivitätsstatus")]
+        
+        [Display(Name = "Status")]
         public bool isactive { get; set; }
 
         public Object()
