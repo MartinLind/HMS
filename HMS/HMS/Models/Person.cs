@@ -6,6 +6,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
+using System.Web.Mvc;
 
 
 
@@ -54,11 +55,13 @@ namespace HMS.Models
         [Display(Name = "Postleitzahl")]
         [RegularExpression(@"[0-9]{5}", ErrorMessage = "Ungültige Postleitzahl! Bitte überprüfen Sie ihre Eingabe!")]
         public string zip { get; set; }
-
+     
         [Required(ErrorMessage = "Bitte tragen Sie das Geburtsdatum ein")]
         [Display(Name = "Geburtstag")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        
+       // [HiddenInput(DisplayValue = false)]
         public DateTime dateofbirth { get; set; }
 
 

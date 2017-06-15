@@ -82,6 +82,7 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
