@@ -37,7 +37,7 @@ namespace HMS.Models
 
         [Required(ErrorMessage = "Bitte das Geschlecht eintragen")]
         [Display(Name = "Geschlecht")]
-        [RegularExpression(@"\bweiblich\b|\bmännlich\b", ErrorMessage = "weiblich oder männlich auf Korrektheit überprüfen")]
+        [RegularExpression(@"\bweiblich\b|\bmännlich\b", ErrorMessage = "weiblich oder männlich! Bitte auf Korrektheit überprüfen.")]
         public string gender { get; set; }
 
         [Required(ErrorMessage = "Bitte die Straße und die Hausnummer eintragen")]

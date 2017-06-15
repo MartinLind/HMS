@@ -17,8 +17,17 @@ namespace HMS.Models
     public partial class Object
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Bitte geben Sie ein gültiges Datum ein.")]
+        [Display(Name = "Erstellungsdatum")]
+        // [RegularExpression(@"[0-9]{5}", ErrorMessage = "Ungültiges Datum! Bitte überprüfen Sie ihre Eingabe!")]
         public DateTime timecreate { get; set; }
+        [Required(ErrorMessage = "Bitte geben Sie ein gültiges Datum ein.")]
+        [Display(Name = "Veränderungsdatum")]
+      //  [RegularExpression(@"[0-9]{5}", ErrorMessage = "Ungültiges Datum! Bitte überprüfen Sie ihre Eingabe!")]
         public DateTime timemodify { get; set; }
+     
+        [Display(Name = "Aktivitätsstatus")]
         public bool isactive { get; set; }
 
         public Object()

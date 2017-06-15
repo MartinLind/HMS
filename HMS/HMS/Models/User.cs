@@ -31,12 +31,27 @@ namespace HMS.Models
             this.accessright1 = accessright1;
             this.accessright2 = accessright2;
             this.accessright3 = accessright3;
+
+            Exception rolenameException = new Exception("Ungültige Funktion");
+
+            if (!((gender == "Arzt") || (gender == "Oberarzt") || (gender == "Schwester") || (gender == "Pfleger") || (gender == "Admin") || (gender == "Reinigungspersonal")))
+            {
+                throw rolenameException;
+            }
         }
-    
+
+        [Required(ErrorMessage = "Bitte geben Sie ein Passwort ein.")]
+        [Display(Name = "Passwort")]
         public string password { get; set; }
+        [Required(ErrorMessage = "Bitte tätigen Sie eine Eingabe.")]
+        [Display(Name = "Funktion")]
+        [RegularExpression(@"\bArzt\b|\bOberarzt\b|\bSchwester\b|\bPfleger\b|\bAdmin\b|\bReinigungspersonal\b", ErrorMessage = "Bitte geben Sie eins der foglenden Attribute ein: Oberarzt, Arzt, Admin, Schwester, Pfleger, Reinigungspersonal.")]
         public string rolename { get; set; }
+        [Display(Name = "Rechte1")]
         public bool accessright1 { get; set; }
+        [Display(Name = "Rechte2")]
         public bool accessright2 { get; set; }
+        [Display(Name = "Rechte3")]
         public bool accessright3 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
