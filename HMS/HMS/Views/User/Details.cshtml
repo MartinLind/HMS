@@ -149,8 +149,8 @@
     </dl>
 </div>
 <p>
-   <input id="EditThis" type="button" value="Edit" class="btn btn-default"
+   <input id="EditThis" type="button" value="Bearbeiten" class="btn btn-default" style="width:90px"
         onclick="@("window.location.href='" + @Url.Action("Edit", "User", new {id = Model.Id}) + "'");" />
-              <input id="BackToList" type="button" value="Back to List" class="btn btn-default"
+              <input id="BackToList" type="button" value="Zurück" class="btn btn-default" style="width:90px"
         onclick="@("window.location.href='" + @Url.Action("Index", "User") + "'");" />
 </p>

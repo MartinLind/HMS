@@ -3,24 +3,17 @@
 @{
     ViewBag.Title = "Patienten";
 }
+  <table>
+      <tr>
+           <td style="position:fixed; left:auto"><h2>Unsere aktuellen Patienten:</h2></td>
 
-<h2>Unsere aktuellen Patienten:</h2>
-
-<p>
-  <!--  @Html.ActionLink("Create New", "Create") 
-      <input id="ShowDetails" type="button" value="Details" class="btn btn-default"
-        onclick="@("window.location.href='" + @Url.Action("Details", "Patient") + "'");" />
-
-     <input id="EditPatient" type="button" value="Edit" class="btn btn-default"
-        onclick="@("window.location.href='" + @Url.Action("Edit", "Patient") + "'");" />
-
-     <input id="DeletePatient" type="button" value="Delete" class="btn btn-default"
-        onclick="@("window.location.href='" + @Url.Action("Delete", "Patient") + "'");" />-->
-   <input id="GoCreatePatient" type="button" value="Create" class="btn btn-default" style="width:75px"
+        <td style="position:fixed; right:5%; top:10%">
+   <input id="GoCreatePatient" type="button" value="Patienten anlegen" class="btn btn-default" style="width:140px"  
         onclick="@("window.location.href='" + @Url.Action("Create", "Patient") + "'");" />
-
-
-</p>
+            </td>
+</tr>
+ </table>
+<br /><br /> <br /> <br />
 <table class="table">
     <tr>
         <th>
@@ -107,13 +100,13 @@
             @Html.DisplayFor(modelItem => item.isactive)
         </td>
         <td>
-             <input id="GoCreatePatient" type="button" value="Edit" class="btn btn-default"   style="width:75px"
+             <input id="GoCreatePatient" type="button" value="Bearbeiten" class="btn btn-default"   style="width:90px"
         onclick="@("window.location.href='" + @Url.Action("Edit", "Patient",  new {id=item.Id} )+ "'");" />
             <br />
-             <input id="GoCreatePatient" type="button" value="Details" class="btn btn-default"  style="width:75px"
+             <input id="GoCreatePatient" type="button" value="Details" class="btn btn-default"  style="width:90px"
         onclick="@("window.location.href='" + @Url.Action("Details", "Patient",  new {id=item.Id} ) + "'");" />
             <br />
-             <input id="GoCreatePatient" type="button" value="Delete" class="btn btn-default" style="width:75px"
+             <input id="GoCreatePatient" type="button" value="Entlassen" class="btn btn-default" style="width:90px"
         onclick="@("window.location.href='" + @Url.Action("Delete", "Patient",  new {id=item.Id} )+ "'" );" />
             <!--
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

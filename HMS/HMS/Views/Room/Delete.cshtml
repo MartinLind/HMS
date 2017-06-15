@@ -4,7 +4,7 @@
     ViewBag.Title = "Löschen";
 }
 
-<h2>Raum löschen</h2>
+<h2>Raum löschen..</h2>
 
 <h3>Wollen Sie wirklich fortfahren?</h3>
 <div>
@@ -73,8 +73,9 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Löschen" class="btn btn-default" style="width:90px" /> 
+             <input id="BackToList" type="button" value="Abbrechen" class="btn btn-default" style="width:90px"
+        onclick="@("window.location.href='" + @Url.Action("Index", "Room") + "'");" />
         </div>
     }
 </div>
