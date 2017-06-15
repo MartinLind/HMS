@@ -10,7 +10,7 @@
   <!--  @Html.ActionLink("Create New", "Create") -->
 
 
-     <input id="CreateUser" type="button" value="Create" class="btn btn-default"
+     <input id="CreateUser" type="button" value="Create" class="btn btn-default" style="width:75px"
         onclick="@("window.location.href='" + @Url.Action("Create", "User") + "'");" />
 </p>
 <table class="table">
@@ -123,9 +123,17 @@
             @Html.DisplayFor(modelItem => item.isactive)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            <input id="GoCreatePatient" type="button" value="Edit" class="btn btn-default"   style="width:75px"
+        onclick="@("window.location.href='" + @Url.Action("Edit", "User",  new {id=item.Id} )+ "'");" />
+            <br />
+             <input id="GoCreatePatient" type="button" value="Details" class="btn btn-default"  style="width:75px"
+        onclick="@("window.location.href='" + @Url.Action("Details", "User",  new {id=item.Id} ) + "'");" />
+            <br />
+             <input id="GoCreatePatient" type="button" value="Delete" class="btn btn-default" style="width:75px"
+        onclick="@("window.location.href='" + @Url.Action("Delete", "User",  new {id=item.Id} )+ "'" );" />
+          <!--  @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })-->
         </td>
     </tr>
 }
