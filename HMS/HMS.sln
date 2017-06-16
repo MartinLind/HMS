@@ -1,13 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HMS", "HMS\HMS.csproj", "{F6C43B45-38D7-4676-9CE0-49158C926A23}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pics", "Pics", "{A1C754A4-CC95-40CF-9076-EC3BB5E55690}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\..\Desktop\hospital.jpg = ..\..\..\..\Desktop\hospital.jpg
+		..\..\..\..\Downloads\Slider_Wilkommen.jpg = ..\..\..\..\Downloads\Slider_Wilkommen.jpg
 	EndProjectSection
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database1", "..\..\..\..\Documents\Visual Studio 2017\Projects\Database1\Database1.sqlproj", "{F4167C29-7756-4361-807A-6F77A25F4295}"
