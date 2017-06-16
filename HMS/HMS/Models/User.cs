@@ -37,7 +37,7 @@ namespace HMS.Models
             if (!((gender == "Arzt") || (gender == "Oberarzt") || (gender == "Schwester") || (gender == "Pfleger") || (gender == "Admin") || (gender == "Reinigungspersonal")))
             {
                 throw rolenameException;
-            }
+            } 
         }
 
         [Required(ErrorMessage = "Bitte geben Sie ein Passwort ein.")]
@@ -45,7 +45,7 @@ namespace HMS.Models
         public string password { get; set; }
         [Required(ErrorMessage = "Bitte tätigen Sie eine Eingabe.")]
         [Display(Name = "Funktion")]
-        [RegularExpression(@"\bArzt\b|\bOberarzt\b|\bSchwester\b|\bPfleger\b|\bAdmin\b|\bReinigungspersonal\b", ErrorMessage = "Bitte geben Sie eins der foglenden Attribute ein: Oberarzt, Arzt, Admin, Schwester, Pfleger, Reinigungspersonal.")]
+        [RegularExpression(@"\bArzt\b|\bOberarzt\b|\bSchwester\b|\bPfleger\b|\bAdmin\b|\bReinigungspersonal\b", ErrorMessage = "Bitte tätigen Sie eine Eingabe! ")]
         public string rolename { get; set; }
         [Display(Name = "Rechte1")]
         public bool accessright1 { get; set; }
