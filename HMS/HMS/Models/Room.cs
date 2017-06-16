@@ -29,7 +29,7 @@ namespace HMS.Models
         public string vacancy { get; set; }
         [Required(ErrorMessage = "Bitte Raumtypen angeben.")]
         [Display(Name = "Raumtyp")]
-        [RegularExpression(@"\bOP\b|\bUntersuchungsraum\b|\bWartezimmer\b|\bBehandlungszimmer\b|\bPatientenzimmer\b", ErrorMessage = "Bitte geben Sie eins der foglenden Typen ein: OP, Untersuchungszimmer, Behandlungszimmer, Wartezimmer, Patientenzimmer")]
+        [RegularExpression(@"\bOP\b|\bUntersuchungsraum\b|\bWarteraum\b|\bBehandlungsraum\b|\bPatientenzimmer\b", ErrorMessage = "Bitte tätigen Sie eine Eingabe!")]
         public string type { get; set; }
 
         //Leerer Konstruktor
@@ -46,7 +46,7 @@ namespace HMS.Models
 
             Exception roomTypeException = new Exception("Ungültiger Raumtyp!");
 
-            if (!((type == "OP") || (type == "Wartezimmer") || (type == "Behandlungszimmer") || (type == "Patientenzimmer") || (type == "Untersuchungszimmer")))
+            if (!((type == "OP") || (type == "Warteraum") || (type == "Behandlungsraum") || (type == "Patientenzimmer") || (type == "Untersuchungsraum")))
             {
                 throw roomTypeException;
             }

@@ -26,7 +26,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.rolename, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.rolename, new { htmlAttributes = new { @class = "form-control" } })
+              <!--  @Html.EditorFor(model => model.rolename, new { htmlAttributes = new { @class = "form-control" } })-->
+                @Html.DropDownListFor(model => model.rolename, new List<SelectListItem>
+    {                   new SelectListItem() {Text = "", Value="empty", Selected = true},
+                        new SelectListItem() {Text = "Arzt", Value="Arzt"},
+                        new SelectListItem() {Text = "Oberarzt", Value="Oberarzt"},
+                        new SelectListItem() {Text = "Schwester", Value="Schwester"},
+                        new SelectListItem() {Text = "Pfleger", Value="Pfleger"},
+                        new SelectListItem() {Text = "Admin", Value="Admin"},
+                        new SelectListItem() {Text = "Reinigungspersonal", Value="Reinigungspersonal"}
+                        
+    }, new {@class="form-control"}) 
                 @Html.ValidationMessageFor(model => model.rolename, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -96,7 +106,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.gender, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.gender, new List<SelectListItem>
+    {                   new SelectListItem() {Text = "", Value="empty", Selected = true},
+                        new SelectListItem() {Text = "männlich", Value="männlich"},
+                        new SelectListItem() {Text = "weiblich", Value="weiblich"}
+    }, new {@class="form-control"}) 
                 @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
             </div>
         </div>
