@@ -82,6 +82,7 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                room.timemodify = DateTime.Now;
                 db.Entry(room).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

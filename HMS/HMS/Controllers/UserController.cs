@@ -50,6 +50,7 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,7 +83,7 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                user.timemodify = DateTime.Now;
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
