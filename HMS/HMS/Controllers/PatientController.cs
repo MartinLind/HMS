@@ -82,6 +82,8 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                //patient.dateofbirth = DateTime.Now;
+                //patient.timecreate = DateTime.Now;
                 db.Entry(patient).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
