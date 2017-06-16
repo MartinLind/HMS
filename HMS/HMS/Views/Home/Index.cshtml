@@ -15,11 +15,17 @@
     
     <h1>Willkommen zu ihrer Krankenhaus Management Software!</h1>
     <hr />
-    <br />
- 
+  <img id="img_logo" alt="Logo" title="Hier geht´s zum Login!" src="@Url.Content("../../Content/Slider_Wilkommen.jpg")" 
+      onclick="@("window.location.href='" + @Url.Action("LoginPage", "Home") + "'");" />
+
+
+
+                  <!--  <th style="align-items:center; width:auto">    
+                        <input id="LinkToLogin" type="button" value="Get it here" 
+        onclick="@("window.location.href='" + @Url.Action("LoginPage", "Home") + "'");" /> </th>
+        </tr>-->
+
     <br />
     <hr />
-    <h4>You want more access?</h4>
-    <input id="LinkToLogin" type="button" value="Get it here" 
-        onclick="@("window.location.href='" + @Url.Action("LoginPage", "Home") + "'");" />
+    
 </div>
