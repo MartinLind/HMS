@@ -4,11 +4,11 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Bahandlung abschließen..</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Wollen Sie wirklich fortfahren?</h3>
 <div>
-    <h4>LocalCase</h4>
+   
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -114,7 +114,9 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+           <input type="submit" value="Bestätigen" class="btn btn-default" style="width:90px"/> 
+            <input id="BackToList" type="button" value="Abbrechen" class="btn btn-default" style="width:90px"
+        onclick="@("window.location.href='" + @Url.Action("Index", "LocalCase") + "'");" />
         </div>
     }
 </div>

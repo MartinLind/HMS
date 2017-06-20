@@ -4,11 +4,17 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<table>
+      <tr>
+           <td style="position: absolute; left:auto"><h2>Aktuelle Behandlungspläne..</h2></td>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+        <td style="position:absolute; right:5%; top:10%">
+   <input id="GoCreatePatient" type="button" value="Behandlung hinzufügen" class="btn btn-default" style="width:175px"  
+        onclick="@("window.location.href='" + @Url.Action("Create", "LocalCase") + "'");" />
+            </td>
+</tr>
+ </table>
+    <br /><br /> <br /> <br />
 <table class="table">
     <tr>
         <th>

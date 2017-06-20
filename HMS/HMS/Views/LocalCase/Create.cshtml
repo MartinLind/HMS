@@ -1,10 +1,10 @@
 ﻿@model HMS.Models.LocalCase
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Behandlung";
 }
 
-<h2>Create</h2>
+<h2>Eine neue Behandlung anlegen..</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>LocalCase</h4>
+       
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -50,7 +50,28 @@
         <div class="form-group">
             @Html.LabelFor(model => model.diagnosis, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.diagnosis, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.diagnosis, new List<SelectListItem>
+    {                   new SelectListItem() {Text = "", Value="empty", Selected = true},
+                        new SelectListItem() {Text = "C16 - Magenkrebs", Value="C16 - Magenkrebs"},
+                        new SelectListItem() {Text = "C34 - Lungenkrebs", Value="C34 - Lungenkrebs"},
+                        new SelectListItem() {Text = "C18 - Dickdarmkrebs", Value="C18 - Dickdarmkrebs"},
+                        new SelectListItem() {Text = "E02 - Schilddrüsenunterfunktion", Value="E02 - Schilddrüsenunterfunktion"},
+                        new SelectListItem() {Text = "E15 - Hyperinsulinismus", Value="E15 - Hyperinsulinismus"},
+                        new SelectListItem() {Text = "E60 - Zinkmangel", Value="E60 - Zinkmangel"},
+                        new SelectListItem() {Text = "F00 - Alzheimer-Krankheit", Value="F00 - Alzheimer-Krankheit"},
+                        new SelectListItem() {Text = "F06 - Halluzination", Value="F06 - Halluzination"},
+                        new SelectListItem() {Text = "F32 - Depression", Value="F32 - Depression"},
+                        new SelectListItem() {Text = "I10.9 - Essentielle Hypertonie", Value="I110.9 - Essenzielle Hypertonie"},
+                        new SelectListItem() {Text = "I12.9 - Hypertensive Nierenkrankheit", Value="I12.9 - Hypertensive Nierenkrankheit"},
+                        new SelectListItem() {Text = "J02 - Akute Rachenentzündung", Value="J02 - Akute Rachenentzündung"},
+                        new SelectListItem() {Text = "J09 - Vogelgrippe", Value="J09 - Vogelgrippe"},
+                        new SelectListItem() {Text = "J33 - Polyp der Nasenhöhle", Value="J33 - Polyp der Nasenhöhle"},
+                        new SelectListItem() {Text = "J40 - Bronchitis", Value="J40 - Bronchitis"},
+                        new SelectListItem() {Text = "M23 - Meniskusriss", Value="M23 - Meniskusriss"},
+                        new SelectListItem() {Text = "M50 - Zervikale Bandscheibenschäden", Value="Zervikale Bandscheibenschäden"},
+                        new SelectListItem() {Text = "M87 - Knochennekrose", Value="M87 - Knochennekrose"}
+                        
+    }, new {@class="form-control"}) 
                 @Html.ValidationMessageFor(model => model.diagnosis, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -115,15 +136,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Anlegen" class="btn btn-default" style="width:90px"/> 
+                 <input id="BackToIndex" type="button" value="Abbrechen" class="btn btn-default" style="width:90px"
+        onclick="@("window.location.href='" + @Url.Action("Index", "LocalCase") + "'");" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
