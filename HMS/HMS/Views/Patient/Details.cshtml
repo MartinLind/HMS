@@ -123,4 +123,6 @@
         onclick="@("window.location.href='" + @Url.Action("Edit", "Patient", new {id = Model.Id}) + "'");" />
               <input id="BackToList" type="button" value="Zurück" class="btn btn-default" style="width: 100px"
         onclick="@("window.location.href='" + @Url.Action("Index", "Patient") + "'");" />
+    <input id="BackToList" type="button" value="Behandlung anlegen" class="btn btn-default" style="width: 160px"
+        onclick="@("window.location.href='" + @Url.Action("Create", "LocalCase", new {id = Model.Id}) + "'");" />
 </p>
