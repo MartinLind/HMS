@@ -12,19 +12,19 @@ namespace HMS.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class DBContainer : DbContext
     {
         public DBContainer()
             : base("name=DBContainer")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Object> ObjectSet { get; set; }
 
         public System.Data.Entity.DbSet<HMS.Models.Person> People { get; set; }

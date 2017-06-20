@@ -13,7 +13,7 @@ namespace HMS.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Collections.Generic;
-    
+
     public partial class Patient : Person
     {
         //Leerer Konstruktor
@@ -29,7 +29,7 @@ namespace HMS.Models
         [Required]
         [Display(Name = "ICD-10 Schlüssel")]
         public string hcID { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LocalCase> LocalCase { get; set; }
     }

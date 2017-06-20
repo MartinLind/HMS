@@ -14,7 +14,7 @@ namespace HMS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Room : Object
     {
 
@@ -34,11 +34,15 @@ namespace HMS.Models
 
         //Leerer Konstruktor
         //MW
-        public Room() { }
+        public Room() {
+            this.LocalCase = new HashSet<LocalCase>();
+
+        }
 
 
         public Room(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string number, string space, string vacancy, string type) : base(id, timecreate, timemodify, isactive)
         {
+            this.LocalCase = new HashSet<LocalCase>();
             this.number = number;
             this.space = space;
             this.vacancy = vacancy;
@@ -51,7 +55,8 @@ namespace HMS.Models
                 throw roomTypeException;
             }
         }
-    
-        public virtual LocalCase LocalCase { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LocalCase> LocalCase { get; set; }
     }
 }

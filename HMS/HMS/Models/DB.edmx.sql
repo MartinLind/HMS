@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/07/2017 17:39:01
+-- Date Created: 06/20/2017 12:10:27
 -- Generated from EDMX file: C:\Users\Marten\Source\Repos\HMS\HMS\HMS\Models\DB.edmx
 -- --------------------------------------------------
 
@@ -139,8 +139,7 @@ CREATE TABLE [dbo].[ObjectSet_Room] (
     [space] nvarchar(max)  NOT NULL,
     [vacancy] nvarchar(max)  NOT NULL,
     [type] nvarchar(max)  NOT NULL,
-    [Id] int  NOT NULL,
-    [LocalCase_Id] int  NOT NULL
+    [Id] int  NOT NULL
 );
 GO
 
@@ -148,6 +147,13 @@ GO
 CREATE TABLE [dbo].[LocalCaseUser] (
     [LocalCase_Id] int  NOT NULL,
     [User_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'LocalCaseRoom'
+CREATE TABLE [dbo].[LocalCaseRoom] (
+    [LocalCase_Id] int  NOT NULL,
+    [Room_Id] int  NOT NULL
 );
 GO
 
@@ -197,6 +203,12 @@ ADD CONSTRAINT [PK_LocalCaseUser]
     PRIMARY KEY CLUSTERED ([LocalCase_Id], [User_Id] ASC);
 GO
 
+-- Creating primary key on [LocalCase_Id], [Room_Id] in table 'LocalCaseRoom'
+ALTER TABLE [dbo].[LocalCaseRoom]
+ADD CONSTRAINT [PK_LocalCaseRoom]
+    PRIMARY KEY CLUSTERED ([LocalCase_Id], [Room_Id] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
@@ -240,19 +252,28 @@ ON [dbo].[LocalCaseUser]
     ([User_Id]);
 GO
 
--- Creating foreign key on [LocalCase_Id] in table 'ObjectSet_Room'
-ALTER TABLE [dbo].[ObjectSet_Room]
-ADD CONSTRAINT [FK_LocalCaseRoom]
+-- Creating foreign key on [LocalCase_Id] in table 'LocalCaseRoom'
+ALTER TABLE [dbo].[LocalCaseRoom]
+ADD CONSTRAINT [FK_LocalCaseRoom_LocalCase]
     FOREIGN KEY ([LocalCase_Id])
     REFERENCES [dbo].[ObjectSet_LocalCase]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_LocalCaseRoom'
-CREATE INDEX [IX_FK_LocalCaseRoom]
-ON [dbo].[ObjectSet_Room]
-    ([LocalCase_Id]);
+-- Creating foreign key on [Room_Id] in table 'LocalCaseRoom'
+ALTER TABLE [dbo].[LocalCaseRoom]
+ADD CONSTRAINT [FK_LocalCaseRoom_Room]
+    FOREIGN KEY ([Room_Id])
+    REFERENCES [dbo].[ObjectSet_Room]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_LocalCaseRoom_Room'
+CREATE INDEX [IX_FK_LocalCaseRoom_Room]
+ON [dbo].[LocalCaseRoom]
+    ([Room_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'ObjectSet_Person'

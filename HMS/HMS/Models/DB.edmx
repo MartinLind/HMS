@@ -13,6 +13,7 @@
     <EntitySet Name="ObjectSet_User" EntityType="DB.Store.ObjectSet_User" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ObjectSet_Room" EntityType="DB.Store.ObjectSet_Room" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="LocalCaseUser" EntityType="DB.Store.LocalCaseUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LocalCaseRoom" EntityType="DB.Store.LocalCaseRoom" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="PatientLocalCase" Association="DB.Store.PatientLocalCase">
       <End Role="Patient" EntitySet="ObjectSet_Patient" />
       <End Role="LocalCase" EntitySet="ObjectSet_LocalCase" />
@@ -25,9 +26,13 @@
       <End Role="User" EntitySet="ObjectSet_User" />
       <End Role="LocalCaseUser" EntitySet="LocalCaseUser" />
     </AssociationSet>
-    <AssociationSet Name="LocalCaseRoom" Association="DB.Store.LocalCaseRoom">
+    <AssociationSet Name="FK_LocalCaseRoom_LocalCase" Association="DB.Store.FK_LocalCaseRoom_LocalCase">
       <End Role="LocalCase" EntitySet="ObjectSet_LocalCase" />
+      <End Role="LocalCaseRoom" EntitySet="LocalCaseRoom" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocalCaseRoom_Room" Association="DB.Store.FK_LocalCaseRoom_Room">
       <End Role="Room" EntitySet="ObjectSet_Room" />
+      <End Role="LocalCaseRoom" EntitySet="LocalCaseRoom" />
     </AssociationSet>
     <AssociationSet Name="FK_Person_inherits_Object" Association="DB.Store.FK_Person_inherits_Object">
       <End Role="Object" EntitySet="ObjectSet" />
@@ -117,7 +122,6 @@
     <Property Name="vacancy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="type" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="LocalCase_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="LocalCaseUser">
     <Key>
@@ -126,6 +130,14 @@
     </Key>
     <Property Name="LocalCase_Id" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocalCaseRoom">
+    <Key>
+      <PropertyRef Name="LocalCase_Id" />
+      <PropertyRef Name="Room_Id" />
+    </Key>
+    <Property Name="LocalCase_Id" Type="int" Nullable="false" />
+    <Property Name="Room_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="PatientLocalCase">
     <End Role="Patient" Type="DB.Store.ObjectSet_Patient" Multiplicity="1" />
@@ -136,18 +148,6 @@
       </Principal>
       <Dependent Role="LocalCase">
         <PropertyRef Name="Patient_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="LocalCaseRoom">
-    <End Role="LocalCase" Type="DB.Store.ObjectSet_LocalCase" Multiplicity="1" />
-    <End Role="Room" Type="DB.Store.ObjectSet_Room" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LocalCase">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Room">
-        <PropertyRef Name="LocalCase_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -172,6 +172,30 @@
       </Principal>
       <Dependent Role="LocalCaseUser">
         <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocalCaseRoom_LocalCase">
+    <End Role="LocalCase" Type="DB.Store.ObjectSet_LocalCase" Multiplicity="1" />
+    <End Role="LocalCaseRoom" Type="DB.Store.LocalCaseRoom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocalCase">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocalCaseRoom">
+        <PropertyRef Name="LocalCase_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocalCaseRoom_Room">
+    <End Role="LocalCaseRoom" Type="DB.Store.LocalCaseRoom" Multiplicity="*" />
+    <End Role="Room" Type="DB.Store.ObjectSet_Room" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LocalCaseRoom">
+        <PropertyRef Name="Room_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -326,7 +350,7 @@
           <End Type="DB.User" Role="User" Multiplicity="*" />
         </Association>
         <Association Name="LocalCaseRoom">
-          <End Type="DB.LocalCase" Role="LocalCase" Multiplicity="1" />
+          <End Type="DB.LocalCase" Role="LocalCase" Multiplicity="*" />
           <End Type="DB.Room" Role="Room" Multiplicity="*" />
         </Association>
       </Schema>
@@ -414,12 +438,12 @@
         <ScalarProperty Name="Id" ColumnName="User_Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="LocalCaseRoom" TypeName="DB.LocalCaseRoom" StoreEntitySet="ObjectSet_Room">
+    <AssociationSetMapping Name="LocalCaseRoom" TypeName="DB.LocalCaseRoom" StoreEntitySet="LocalCaseRoom">
       <EndProperty Name="LocalCase">
         <ScalarProperty Name="Id" ColumnName="LocalCase_Id" />
       </EndProperty>
       <EndProperty Name="Room">
-        <ScalarProperty Name="Id" ColumnName="Id" />
+        <ScalarProperty Name="Id" ColumnName="Room_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

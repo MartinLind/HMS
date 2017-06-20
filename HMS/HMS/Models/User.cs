@@ -21,8 +21,8 @@ namespace HMS.Models
         public User() { }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone, 
-            string email, string gender, string street, string city, string zip, System.DateTime dateofbirth, string password, string rolename, bool accessright1, bool accessright2, bool accessright3) 
+        public User(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone,
+            string email, string gender, string street, string city, string zip, System.DateTime dateofbirth, string password, string rolename, bool accessright1, bool accessright2, bool accessright3)
             : base(id, timecreate, timemodify, isactive, prename, surname, phone, email, gender, street, city, zip, dateofbirth)
         {
             this.LocalCase = new HashSet<LocalCase>();
@@ -37,7 +37,7 @@ namespace HMS.Models
             if (!((gender == "Arzt") || (gender == "Oberarzt") || (gender == "Schwester") || (gender == "Pfleger") || (gender == "Admin") || (gender == "Reinigungspersonal")))
             {
                 throw rolenameException;
-            } 
+            }
         }
 
         [Required(ErrorMessage = "Bitte geben Sie ein Passwort ein.")]
@@ -53,7 +53,7 @@ namespace HMS.Models
         public bool accessright2 { get; set; }
         [Display(Name = "Rechte3")]
         public bool accessright3 { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LocalCase> LocalCase { get; set; }
     }

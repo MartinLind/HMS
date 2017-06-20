@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="DB.Object" Width="1.5" PointX="4.125" PointY="0.5" />
         <EntityTypeShape EntityType="DB.Person" Width="1.5" PointX="1.5" PointY="2.375" IsExpanded="true" />
         <InheritanceConnector EntityType="DB.Person" />
-        <EntityTypeShape EntityType="DB.User" Width="1.5" PointX="0.5" PointY="5.5" />
+        <EntityTypeShape EntityType="DB.User" Width="1.5" PointX="0.5" PointY="5.625" />
         <EntityTypeShape EntityType="DB.Patient" Width="1.5" PointX="2.625" PointY="5.625" />
         <InheritanceConnector EntityType="DB.User" />
         <InheritanceConnector EntityType="DB.Patient" />

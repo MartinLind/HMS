@@ -15,12 +15,10 @@ namespace HMS.Models
     public partial class LocalCase : Object
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        //public LocalCase() { }
-
         public LocalCase()
         {
-           this.User = new HashSet<User>();
-           this.Room = new HashSet<Room>();
+            this.User = new HashSet<User>();
+            this.Room = new HashSet<Room>();
         }
     
         public System.DateTime timeopen { get; set; }
