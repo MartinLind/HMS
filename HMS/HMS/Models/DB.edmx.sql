@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/20/2017 12:10:27
+-- Date Created: 06/21/2017 17:29:17
 -- Generated from EDMX file: C:\Users\Marten\Source\Repos\HMS\HMS\HMS\Models\DB.edmx
 -- --------------------------------------------------
 
@@ -17,8 +17,14 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_PatientLocalCase]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ObjectSet_LocalCase] DROP CONSTRAINT [FK_PatientLocalCase];
+IF OBJECT_ID(N'[dbo].[FK_LocalCase_inherits_Object]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ObjectSet_LocalCase] DROP CONSTRAINT [FK_LocalCase_inherits_Object];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LocalCaseRoom_LocalCase]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LocalCaseRoom] DROP CONSTRAINT [FK_LocalCaseRoom_LocalCase];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LocalCaseRoom_Room]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LocalCaseRoom] DROP CONSTRAINT [FK_LocalCaseRoom_Room];
 GO
 IF OBJECT_ID(N'[dbo].[FK_LocalCaseUser_LocalCase]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[LocalCaseUser] DROP CONSTRAINT [FK_LocalCaseUser_LocalCase];
@@ -26,49 +32,49 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_LocalCaseUser_User]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[LocalCaseUser] DROP CONSTRAINT [FK_LocalCaseUser_User];
 GO
-IF OBJECT_ID(N'[dbo].[FK_LocalCaseRoom]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ObjectSet_Room] DROP CONSTRAINT [FK_LocalCaseRoom];
+IF OBJECT_ID(N'[dbo].[FK_Patient_inherits_Person]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ObjectSet_Patient] DROP CONSTRAINT [FK_Patient_inherits_Person];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PatientLocalCase]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ObjectSet_LocalCase] DROP CONSTRAINT [FK_PatientLocalCase];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Person_inherits_Object]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ObjectSet_Person] DROP CONSTRAINT [FK_Person_inherits_Object];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Patient_inherits_Person]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ObjectSet_Patient] DROP CONSTRAINT [FK_Patient_inherits_Person];
-GO
-IF OBJECT_ID(N'[dbo].[FK_LocalCase_inherits_Object]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ObjectSet_LocalCase] DROP CONSTRAINT [FK_LocalCase_inherits_Object];
+IF OBJECT_ID(N'[dbo].[FK_Room_inherits_Object]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ObjectSet_Room] DROP CONSTRAINT [FK_Room_inherits_Object];
 GO
 IF OBJECT_ID(N'[dbo].[FK_User_inherits_Person]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ObjectSet_User] DROP CONSTRAINT [FK_User_inherits_Person];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Room_inherits_Object]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ObjectSet_Room] DROP CONSTRAINT [FK_Room_inherits_Object];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[LocalCaseRoom]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LocalCaseRoom];
+GO
+IF OBJECT_ID(N'[dbo].[LocalCaseUser]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LocalCaseUser];
+GO
 IF OBJECT_ID(N'[dbo].[ObjectSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ObjectSet];
-GO
-IF OBJECT_ID(N'[dbo].[ObjectSet_Person]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ObjectSet_Person];
-GO
-IF OBJECT_ID(N'[dbo].[ObjectSet_Patient]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ObjectSet_Patient];
 GO
 IF OBJECT_ID(N'[dbo].[ObjectSet_LocalCase]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ObjectSet_LocalCase];
 GO
-IF OBJECT_ID(N'[dbo].[ObjectSet_User]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ObjectSet_User];
+IF OBJECT_ID(N'[dbo].[ObjectSet_Patient]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ObjectSet_Patient];
+GO
+IF OBJECT_ID(N'[dbo].[ObjectSet_Person]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ObjectSet_Person];
 GO
 IF OBJECT_ID(N'[dbo].[ObjectSet_Room]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ObjectSet_Room];
 GO
-IF OBJECT_ID(N'[dbo].[LocalCaseUser]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[LocalCaseUser];
+IF OBJECT_ID(N'[dbo].[ObjectSet_User]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ObjectSet_User];
 GO
 
 -- --------------------------------------------------
@@ -101,7 +107,8 @@ GO
 
 -- Creating table 'ObjectSet_Patient'
 CREATE TABLE [dbo].[ObjectSet_Patient] (
-    [hcID] nvarchar(max)  NOT NULL,
+    [insuranceID] nvarchar(max)  NOT NULL,
+    [insurance] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
@@ -111,12 +118,10 @@ CREATE TABLE [dbo].[ObjectSet_LocalCase] (
     [timeopen] datetime  NOT NULL,
     [timeclosed] datetime  NOT NULL,
     [casenr] nvarchar(max)  NOT NULL,
-    [personincharge] nvarchar(max)  NOT NULL,
     [diagnosis] nvarchar(max)  NOT NULL,
     [medication] nvarchar(max)  NOT NULL,
     [therapy] nvarchar(max)  NOT NULL,
     [expectedtime] nvarchar(max)  NOT NULL,
-    [Property1] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL,
     [Patient_Id] int  NOT NULL
 );
@@ -129,6 +134,7 @@ CREATE TABLE [dbo].[ObjectSet_User] (
     [accessright1] bit  NOT NULL,
     [accessright2] bit  NOT NULL,
     [accessright3] bit  NOT NULL,
+    [username] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO

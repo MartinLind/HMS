@@ -54,6 +54,8 @@ namespace HMS.Models
         [Display(Name = "Rechte3")]
         public bool accessright3 { get; set; }
 
+        public string username { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LocalCase> LocalCase { get; set; }
     }

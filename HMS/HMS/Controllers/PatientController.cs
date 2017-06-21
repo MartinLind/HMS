@@ -46,7 +46,7 @@ namespace HMS.Controllers
         // finden Sie unter https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,hcID,prename,surname,phone,email,gender,street,city,zip,dateofbirth,timecreate,timemodify,isactive")] Patient patient)
+        public ActionResult Create([Bind(Include = "Id,insuranceID,prename,surname,phone,email,gender,street,city,zip,dateofbirth,timecreate,timemodify,isactive")] Patient patient)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace HMS.Controllers
         // finden Sie unter https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,hcID,prename,surname,phone,email,gender,street,city,zip,dateofbirth,,timecreate, timemodify,isactive")] Patient patient)
+        public ActionResult Edit([Bind(Include = "Id,insuranceID,prename,surname,phone,email,gender,street,city,zip,dateofbirth,,timecreate, timemodify,isactive")] Patient patient)
         {
             //
             if (ModelState.IsValid)

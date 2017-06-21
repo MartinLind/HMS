@@ -26,9 +26,9 @@ namespace HMS.Models
             this.LocalCase = new HashSet<LocalCase>();
         }
 
-        [Required]
-        [Display(Name = "ICD-10 Schlüssel")]
-        public string hcID { get; set; }
+        public string insuranceID { get; set; }
+
+        public string insurance { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LocalCase> LocalCase { get; set; }

@@ -13,7 +13,7 @@ namespace HMS.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class LocalCase : Object
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,35 +27,40 @@ namespace HMS.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime timeopen { get; set; }
+
         [Required(ErrorMessage = "Bitte wählen Sie ein Datum")]
         [Display(Name = "Behandlungsende")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime timeclosed { get; set; }
+
         [Required(ErrorMessage = "Bitte tätigen Sie eine Eingabe")]
         [Display(Name = "Behandlungsnummer")]
         public string casenr { get; set; }
-        [Required(ErrorMessage = "Bitte ordnen Sie Personen hinzu")]
-        [Display(Name = "Zugeordnete Personen")]
-        public string personincharge { get; set; }
+
         [Required(ErrorMessage = "Bitte tätigen Sie eine Eingabe")]
         [Display(Name = "Diagnose")]
         public string diagnosis { get; set; }
+
         [Required(ErrorMessage = "Bitte tätigen Sie eine Eingabe")]
         [Display(Name = "Medikation")]
         public string medication { get; set; }
+
         [Required(ErrorMessage = "Bitte tätigen Sie eine Eingabe")]
         [Display(Name = "Therapy")]
         public string therapy { get; set; }
+
         [Required(ErrorMessage = "Bitte tätigen Sie eine Eingabe")]
         [Display(Name = "Behandlungsdauer")]
         public string expectedtime { get; set; }
-        public string Property1 { get; set; }
-    
+
         public virtual Patient Patient { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> User { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Room> Room { get; set; }
+
     }
 }

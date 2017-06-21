@@ -34,7 +34,8 @@ namespace HMS.Models
 
         //Leerer Konstruktor
         //MW
-        public Room() {
+        public Room()
+        {
             this.LocalCase = new HashSet<LocalCase>();
 
         }
