@@ -46,7 +46,7 @@ namespace HMS.Controllers
         // finden Sie unter https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,timeopen,timeclosed,casenr,personincharge,diagnosis,medication,therapy,expectedtime,Property1,timecreate,timemodify,isactive")] LocalCase localCase)
+        public ActionResult Create([Bind(Include = "Id,timeopen,timeclosed,casenr,diagnosis,medication,therapy,expectedtime,timecreate,timemodify,isactive")] LocalCase localCase)
         {
             if (ModelState.IsValid)
             {
