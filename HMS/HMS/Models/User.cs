@@ -43,7 +43,7 @@ namespace HMS.Models
         /// <param name="accessright2"></param>
         /// <param name="accessright3"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone,
+        public User(int id, string username, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone,
             string email, string gender, string street, string city, string zip, System.DateTime dateofbirth, string password, string rolename, bool accessright1, bool accessright2, bool accessright3)
             : base(id, timecreate, timemodify, isactive, prename, surname, phone, email, gender, street, city, zip, dateofbirth)
         {
@@ -53,6 +53,7 @@ namespace HMS.Models
             this.accessright1 = accessright1;
             this.accessright2 = accessright2;
             this.accessright3 = accessright3;
+            this.username = username;
 
             Exception rolenameException = new Exception("Ungültige Funktion");
 
@@ -76,6 +77,8 @@ namespace HMS.Models
         [Display(Name = "Rechte3")]
         public bool accessright3 { get; set; }
 
+        [Required]
+        [Display(Name = "Benutzername")]
         public string username { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
