@@ -25,11 +25,12 @@ namespace HMS.Models
         }
 
         //Autor Yunus Koc, David Bismor
-        [Required(ErrorMessage = "Bitte wählen Sie ein Datum")]
-        [Display(Name = "Behandlungsstart")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public System.DateTime timecreate { get; set; }
+        //Ausgeklammert, weil alt. MW
+        //[Required(ErrorMessage = "Bitte wählen Sie ein Datum")]
+        //[Display(Name = "Behandlungsstart")]
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        //public System.DateTime timecreate { get; set; }
 
         [Required(ErrorMessage = "Bitte wählen Sie ein Datum")]
         [Display(Name = "Behandlungsende")]
