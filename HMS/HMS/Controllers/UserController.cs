@@ -38,7 +38,12 @@ namespace HMS.Controllers
         // GET: User/Create
         public ActionResult Create()
         {
-            return View();
+            //Autor: David Bismor
+            User model = new User();
+            model.timecreate = DateTime.Now;
+            model.timemodify = DateTime.Now;
+
+            return View(model);
         }
 
         // POST: User/Create
@@ -50,7 +55,6 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
