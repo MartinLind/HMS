@@ -22,6 +22,8 @@ namespace HMS.Models
             this.User = new HashSet<User>();
             this.Room = new HashSet<Room>();
         }
+
+        //Autor Yunus Koc, David Bismor
         [Required(ErrorMessage = "Bitte wählen Sie ein Datum")]
         [Display(Name = "Behandlungsstart")]
         [DataType(DataType.Date)]
