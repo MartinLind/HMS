@@ -16,9 +16,9 @@
         <InheritanceConnector EntityType="DB.Room" />
         <EntityTypeShape EntityType="DB.LocalCase" Width="1.5" PointX="7.375" PointY="3.875" />
         <InheritanceConnector EntityType="DB.LocalCase" />
-        <AssociationConnector Association="DB.PatientLocalCase" />
         <AssociationConnector Association="DB.LocalCaseUser" />
         <AssociationConnector Association="DB.LocalCaseRoom" />
+        <AssociationConnector Association="DB.LocalCasePatient" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

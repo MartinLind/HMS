@@ -7,17 +7,14 @@
     <Schema Namespace="DB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="DBStoreContainer">
     <EntitySet Name="ObjectSet" EntityType="DB.Store.ObjectSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ObjectSet_Person" EntityType="DB.Store.ObjectSet_Person" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ObjectSet_Patient" EntityType="DB.Store.ObjectSet_Patient" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ObjectSet_LocalCase" EntityType="DB.Store.ObjectSet_LocalCase" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ObjectSet_Person" EntityType="DB.Store.ObjectSet_Person" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ObjectSet_User" EntityType="DB.Store.ObjectSet_User" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ObjectSet_Room" EntityType="DB.Store.ObjectSet_Room" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ObjectSet_Patient" EntityType="DB.Store.ObjectSet_Patient" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="LocalCaseUser" EntityType="DB.Store.LocalCaseUser" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="LocalCaseRoom" EntityType="DB.Store.LocalCaseRoom" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="PatientLocalCase" Association="DB.Store.PatientLocalCase">
-      <End Role="Patient" EntitySet="ObjectSet_Patient" />
-      <End Role="LocalCase" EntitySet="ObjectSet_LocalCase" />
-    </AssociationSet>
+    <EntitySet Name="LocalCasePatient" EntityType="DB.Store.LocalCasePatient" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_LocalCaseUser_LocalCase" Association="DB.Store.FK_LocalCaseUser_LocalCase">
       <End Role="LocalCase" EntitySet="ObjectSet_LocalCase" />
       <End Role="LocalCaseUser" EntitySet="LocalCaseUser" />
@@ -34,17 +31,21 @@
       <End Role="Room" EntitySet="ObjectSet_Room" />
       <End Role="LocalCaseRoom" EntitySet="LocalCaseRoom" />
     </AssociationSet>
-    <AssociationSet Name="FK_Person_inherits_Object" Association="DB.Store.FK_Person_inherits_Object">
-      <End Role="Object" EntitySet="ObjectSet" />
-      <End Role="Person" EntitySet="ObjectSet_Person" />
+    <AssociationSet Name="FK_LocalCasePatient_LocalCase" Association="DB.Store.FK_LocalCasePatient_LocalCase">
+      <End Role="LocalCase" EntitySet="ObjectSet_LocalCase" />
+      <End Role="LocalCasePatient" EntitySet="LocalCasePatient" />
     </AssociationSet>
-    <AssociationSet Name="FK_Patient_inherits_Person" Association="DB.Store.FK_Patient_inherits_Person">
-      <End Role="Person" EntitySet="ObjectSet_Person" />
+    <AssociationSet Name="FK_LocalCasePatient_Patient" Association="DB.Store.FK_LocalCasePatient_Patient">
       <End Role="Patient" EntitySet="ObjectSet_Patient" />
+      <End Role="LocalCasePatient" EntitySet="LocalCasePatient" />
     </AssociationSet>
     <AssociationSet Name="FK_LocalCase_inherits_Object" Association="DB.Store.FK_LocalCase_inherits_Object">
       <End Role="Object" EntitySet="ObjectSet" />
       <End Role="LocalCase" EntitySet="ObjectSet_LocalCase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_inherits_Object" Association="DB.Store.FK_Person_inherits_Object">
+      <End Role="Object" EntitySet="ObjectSet" />
+      <End Role="Person" EntitySet="ObjectSet_Person" />
     </AssociationSet>
     <AssociationSet Name="FK_User_inherits_Person" Association="DB.Store.FK_User_inherits_Person">
       <End Role="Person" EntitySet="ObjectSet_Person" />
@@ -53,6 +54,10 @@
     <AssociationSet Name="FK_Room_inherits_Object" Association="DB.Store.FK_Room_inherits_Object">
       <End Role="Object" EntitySet="ObjectSet" />
       <End Role="Room" EntitySet="ObjectSet_Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patient_inherits_Person" Association="DB.Store.FK_Patient_inherits_Person">
+      <End Role="Person" EntitySet="ObjectSet_Person" />
+      <End Role="Patient" EntitySet="ObjectSet_Patient" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="ObjectSet">
@@ -63,6 +68,18 @@
     <Property Name="timecreate" Type="datetime" Nullable="false" />
     <Property Name="timemodify" Type="datetime" Nullable="false" />
     <Property Name="isactive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ObjectSet_LocalCase">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="timeclosed" Type="datetime" Nullable="false" />
+    <Property Name="casenr" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="diagnosis" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="medication" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="therapy" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="expectedtime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ObjectSet_Person">
     <Key>
@@ -79,28 +96,6 @@
     <Property Name="dateofbirth" Type="datetime" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="ObjectSet_Patient">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="insuranceID" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="insurance" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ObjectSet_LocalCase">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="timeopen" Type="datetime" Nullable="false" />
-    <Property Name="timeclosed" Type="datetime" Nullable="false" />
-    <Property Name="casenr" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="diagnosis" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="medication" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="therapy" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="expectedtime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Patient_Id" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="ObjectSet_User">
     <Key>
       <PropertyRef Name="Id" />
@@ -111,6 +106,8 @@
     <Property Name="accessright2" Type="bit" Nullable="false" />
     <Property Name="accessright3" Type="bit" Nullable="false" />
     <Property Name="username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="accessright4" Type="bit" Nullable="false" />
+    <Property Name="accessright5" Type="bit" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ObjectSet_Room">
@@ -121,6 +118,14 @@
     <Property Name="space" Type="nvarchar(max)" Nullable="false" />
     <Property Name="vacancy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ObjectSet_Patient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="insuranceID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="insurance" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="LocalCaseUser">
@@ -139,18 +144,14 @@
     <Property Name="LocalCase_Id" Type="int" Nullable="false" />
     <Property Name="Room_Id" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="PatientLocalCase">
-    <End Role="Patient" Type="DB.Store.ObjectSet_Patient" Multiplicity="1" />
-    <End Role="LocalCase" Type="DB.Store.ObjectSet_LocalCase" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Patient">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="LocalCase">
-        <PropertyRef Name="Patient_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="LocalCasePatient">
+    <Key>
+      <PropertyRef Name="LocalCase_Id" />
+      <PropertyRef Name="Patient_Id" />
+    </Key>
+    <Property Name="LocalCase_Id" Type="int" Nullable="false" />
+    <Property Name="Patient_Id" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="FK_LocalCaseUser_LocalCase">
     <End Role="LocalCase" Type="DB.Store.ObjectSet_LocalCase" Multiplicity="1" />
     <End Role="LocalCaseUser" Type="DB.Store.LocalCaseUser" Multiplicity="*" />
@@ -199,31 +200,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Person_inherits_Object">
-    <End Role="Object" Type="DB.Store.ObjectSet" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Person" Type="DB.Store.ObjectSet_Person" Multiplicity="0..1" />
+  <Association Name="FK_LocalCasePatient_LocalCase">
+    <End Role="LocalCase" Type="DB.Store.ObjectSet_LocalCase" Multiplicity="1" />
+    <End Role="LocalCasePatient" Type="DB.Store.LocalCasePatient" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Object">
+      <Principal Role="LocalCase">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Person">
-        <PropertyRef Name="Id" />
+      <Dependent Role="LocalCasePatient">
+        <PropertyRef Name="LocalCase_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Patient_inherits_Person">
-    <End Role="Person" Type="DB.Store.ObjectSet_Person" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Patient" Type="DB.Store.ObjectSet_Patient" Multiplicity="0..1" />
+  <Association Name="FK_LocalCasePatient_Patient">
+    <End Role="LocalCasePatient" Type="DB.Store.LocalCasePatient" Multiplicity="*" />
+    <End Role="Patient" Type="DB.Store.ObjectSet_Patient" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="Person">
+      <Principal Role="Patient">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Patient">
-        <PropertyRef Name="Id" />
+      <Dependent Role="LocalCasePatient">
+        <PropertyRef Name="Patient_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -237,6 +234,20 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="LocalCase">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_inherits_Object">
+    <End Role="Object" Type="DB.Store.ObjectSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Person" Type="DB.Store.ObjectSet_Person" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Object">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Person">
         <PropertyRef Name="Id" />
       </Dependent>
     </ReferentialConstraint>
@@ -269,16 +280,26 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Patient_inherits_Person">
+    <End Role="Person" Type="DB.Store.ObjectSet_Person" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Patient" Type="DB.Store.ObjectSet_Patient" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Patient">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="DBContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ObjectSet" EntityType="DB.Object" />
-          <AssociationSet Name="PatientLocalCase" Association="DB.PatientLocalCase">
-            <End Role="Patient" EntitySet="ObjectSet" />
-            <End Role="LocalCase" EntitySet="ObjectSet" />
-          </AssociationSet>
           <AssociationSet Name="LocalCaseUser" Association="DB.LocalCaseUser">
             <End Role="LocalCase" EntitySet="ObjectSet" />
             <End Role="User" EntitySet="ObjectSet" />
@@ -286,6 +307,10 @@
           <AssociationSet Name="LocalCaseRoom" Association="DB.LocalCaseRoom">
             <End Role="LocalCase" EntitySet="ObjectSet" />
             <End Role="Room" EntitySet="ObjectSet" />
+          </AssociationSet>
+          <AssociationSet Name="LocalCasePatient" Association="DB.LocalCasePatient">
+            <End Role="LocalCase" EntitySet="ObjectSet" />
+            <End Role="Patient" EntitySet="ObjectSet" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Object">
@@ -315,12 +340,14 @@
           <Property Name="accessright2" Type="Boolean" Nullable="false" />
           <Property Name="accessright3" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="LocalCase" Relationship="DB.LocalCaseUser" FromRole="User" ToRole="LocalCase" />
-          <Property Name="username" Type="String" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="accessright4" Type="Boolean" Nullable="false" />
+          <Property Name="accessright5" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Patient" BaseType="DB.Person">
-          <Property Name="insuranceID" Type="String" Nullable="false" />
-          <NavigationProperty Name="LocalCase" Relationship="DB.PatientLocalCase" FromRole="Patient" ToRole="LocalCase" />
-          <Property Name="insurance" Type="String" Nullable="false" />
+          <Property Name="insuranceID" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="insurance" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="LocalCase" Relationship="DB.LocalCasePatient" FromRole="Patient" ToRole="LocalCase" />
         </EntityType>
         <EntityType Name="Room" BaseType="DB.Object">
           <Property Name="number" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
@@ -330,21 +357,16 @@
           <NavigationProperty Name="LocalCase" Relationship="DB.LocalCaseRoom" FromRole="Room" ToRole="LocalCase" />
         </EntityType>
         <EntityType Name="LocalCase" BaseType="DB.Object" >
-          <Property Name="timeopen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="timeclosed" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="casenr" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="diagnosis" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="medication" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="therapy" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="expectedtime" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Patient" Relationship="DB.PatientLocalCase" FromRole="LocalCase" ToRole="Patient" />
           <NavigationProperty Name="User" Relationship="DB.LocalCaseUser" FromRole="LocalCase" ToRole="User" />
           <NavigationProperty Name="Room" Relationship="DB.LocalCaseRoom" FromRole="LocalCase" ToRole="Room" />
+          <NavigationProperty Name="Patient" Relationship="DB.LocalCasePatient" FromRole="LocalCase" ToRole="Patient" />
         </EntityType>
-        <Association Name="PatientLocalCase">
-          <End Type="DB.Patient" Role="Patient" Multiplicity="1" />
-          <End Type="DB.LocalCase" Role="LocalCase" Multiplicity="*" />
-        </Association>
         <Association Name="LocalCaseUser">
           <End Type="DB.LocalCase" Role="LocalCase" Multiplicity="*" />
           <End Type="DB.User" Role="User" Multiplicity="*" />
@@ -352,6 +374,10 @@
         <Association Name="LocalCaseRoom">
           <End Type="DB.LocalCase" Role="LocalCase" Multiplicity="*" />
           <End Type="DB.Room" Role="Room" Multiplicity="*" />
+        </Association>
+        <Association Name="LocalCasePatient">
+          <End Type="DB.LocalCase" Role="LocalCase" Multiplicity="*" />
+          <End Type="DB.Patient" Role="Patient" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -368,6 +394,17 @@
           <ScalarProperty Name="isactive" ColumnName="isactive" />
         </MappingFragment>
       </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DB.LocalCase)">
+        <MappingFragment StoreEntitySet="ObjectSet_LocalCase">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="timeclosed" ColumnName="timeclosed" />
+          <ScalarProperty Name="casenr" ColumnName="casenr" />
+          <ScalarProperty Name="diagnosis" ColumnName="diagnosis" />
+          <ScalarProperty Name="medication" ColumnName="medication" />
+          <ScalarProperty Name="therapy" ColumnName="therapy" />
+          <ScalarProperty Name="expectedtime" ColumnName="expectedtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(DB.Person)">
         <MappingFragment StoreEntitySet="ObjectSet_Person">
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -382,25 +419,6 @@
           <ScalarProperty Name="dateofbirth" ColumnName="dateofbirth" />
         </MappingFragment>
       </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(DB.Patient)">
-        <MappingFragment StoreEntitySet="ObjectSet_Patient">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="insuranceID" ColumnName="insuranceID" />
-          <ScalarProperty Name="insurance" ColumnName="insurance" />
-        </MappingFragment>
-      </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(DB.LocalCase)">
-        <MappingFragment StoreEntitySet="ObjectSet_LocalCase">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="timeopen" ColumnName="timeopen" />
-          <ScalarProperty Name="timeclosed" ColumnName="timeclosed" />
-          <ScalarProperty Name="casenr" ColumnName="casenr" />
-          <ScalarProperty Name="diagnosis" ColumnName="diagnosis" />
-          <ScalarProperty Name="medication" ColumnName="medication" />
-          <ScalarProperty Name="therapy" ColumnName="therapy" />
-          <ScalarProperty Name="expectedtime" ColumnName="expectedtime" />
-        </MappingFragment>
-      </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(DB.User)">
         <MappingFragment StoreEntitySet="ObjectSet_User">
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -410,6 +428,8 @@
           <ScalarProperty Name="accessright2" ColumnName="accessright2" />
           <ScalarProperty Name="accessright3" ColumnName="accessright3" />
           <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="accessright4" ColumnName="accessright4" />
+          <ScalarProperty Name="accessright5" ColumnName="accessright5" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(DB.Room)">
@@ -421,15 +441,14 @@
           <ScalarProperty Name="type" ColumnName="type" />
         </MappingFragment>
       </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DB.Patient)">
+        <MappingFragment StoreEntitySet="ObjectSet_Patient">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="insuranceID" ColumnName="insuranceID" />
+          <ScalarProperty Name="insurance" ColumnName="insurance" />
+        </MappingFragment>
+      </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="PatientLocalCase" TypeName="DB.PatientLocalCase" StoreEntitySet="ObjectSet_LocalCase">
-      <EndProperty Name="Patient">
-        <ScalarProperty Name="Id" ColumnName="Patient_Id" />
-      </EndProperty>
-      <EndProperty Name="LocalCase">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="LocalCaseUser" TypeName="DB.LocalCaseUser" StoreEntitySet="LocalCaseUser">
       <EndProperty Name="LocalCase">
         <ScalarProperty Name="Id" ColumnName="LocalCase_Id" />
@@ -444,6 +463,14 @@
       </EndProperty>
       <EndProperty Name="Room">
         <ScalarProperty Name="Id" ColumnName="Room_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="LocalCasePatient" TypeName="DB.LocalCasePatient" StoreEntitySet="LocalCasePatient">
+      <EndProperty Name="LocalCase">
+        <ScalarProperty Name="Id" ColumnName="LocalCase_Id" />
+      </EndProperty>
+      <EndProperty Name="Patient">
+        <ScalarProperty Name="Id" ColumnName="Patient_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

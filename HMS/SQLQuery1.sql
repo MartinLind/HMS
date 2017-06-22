@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/21/2017 17:29:17
+-- Date Created: 06/22/2017 16:36:08
 -- Generated from EDMX file: C:\Users\Marten\Source\Repos\HMS\HMS\HMS\Models\DB.edmx
 -- --------------------------------------------------
 
@@ -17,14 +17,8 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_LocalCase_inherits_Object]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ObjectSet_LocalCase] DROP CONSTRAINT [FK_LocalCase_inherits_Object];
-GO
-IF OBJECT_ID(N'[dbo].[FK_LocalCaseRoom_LocalCase]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LocalCaseRoom] DROP CONSTRAINT [FK_LocalCaseRoom_LocalCase];
-GO
-IF OBJECT_ID(N'[dbo].[FK_LocalCaseRoom_Room]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[LocalCaseRoom] DROP CONSTRAINT [FK_LocalCaseRoom_Room];
+IF OBJECT_ID(N'[dbo].[FK_PatientLocalCase]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ObjectSet_LocalCase] DROP CONSTRAINT [FK_PatientLocalCase];
 GO
 IF OBJECT_ID(N'[dbo].[FK_LocalCaseUser_LocalCase]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[LocalCaseUser] DROP CONSTRAINT [FK_LocalCaseUser_LocalCase];
@@ -32,49 +26,55 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_LocalCaseUser_User]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[LocalCaseUser] DROP CONSTRAINT [FK_LocalCaseUser_User];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Patient_inherits_Person]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ObjectSet_Patient] DROP CONSTRAINT [FK_Patient_inherits_Person];
+IF OBJECT_ID(N'[dbo].[FK_LocalCaseRoom_LocalCase]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LocalCaseRoom] DROP CONSTRAINT [FK_LocalCaseRoom_LocalCase];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PatientLocalCase]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ObjectSet_LocalCase] DROP CONSTRAINT [FK_PatientLocalCase];
+IF OBJECT_ID(N'[dbo].[FK_LocalCaseRoom_Room]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[LocalCaseRoom] DROP CONSTRAINT [FK_LocalCaseRoom_Room];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Person_inherits_Object]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ObjectSet_Person] DROP CONSTRAINT [FK_Person_inherits_Object];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Room_inherits_Object]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ObjectSet_Room] DROP CONSTRAINT [FK_Room_inherits_Object];
+IF OBJECT_ID(N'[dbo].[FK_Patient_inherits_Person]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ObjectSet_Patient] DROP CONSTRAINT [FK_Patient_inherits_Person];
+GO
+IF OBJECT_ID(N'[dbo].[FK_LocalCase_inherits_Object]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ObjectSet_LocalCase] DROP CONSTRAINT [FK_LocalCase_inherits_Object];
 GO
 IF OBJECT_ID(N'[dbo].[FK_User_inherits_Person]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ObjectSet_User] DROP CONSTRAINT [FK_User_inherits_Person];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Room_inherits_Object]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ObjectSet_Room] DROP CONSTRAINT [FK_Room_inherits_Object];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[LocalCaseRoom]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[LocalCaseRoom];
-GO
-IF OBJECT_ID(N'[dbo].[LocalCaseUser]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[LocalCaseUser];
-GO
 IF OBJECT_ID(N'[dbo].[ObjectSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ObjectSet];
-GO
-IF OBJECT_ID(N'[dbo].[ObjectSet_LocalCase]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ObjectSet_LocalCase];
-GO
-IF OBJECT_ID(N'[dbo].[ObjectSet_Patient]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ObjectSet_Patient];
 GO
 IF OBJECT_ID(N'[dbo].[ObjectSet_Person]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ObjectSet_Person];
 GO
-IF OBJECT_ID(N'[dbo].[ObjectSet_Room]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ObjectSet_Room];
+IF OBJECT_ID(N'[dbo].[ObjectSet_Patient]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ObjectSet_Patient];
+GO
+IF OBJECT_ID(N'[dbo].[ObjectSet_LocalCase]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ObjectSet_LocalCase];
 GO
 IF OBJECT_ID(N'[dbo].[ObjectSet_User]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ObjectSet_User];
+GO
+IF OBJECT_ID(N'[dbo].[ObjectSet_Room]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ObjectSet_Room];
+GO
+IF OBJECT_ID(N'[dbo].[LocalCaseUser]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LocalCaseUser];
+GO
+IF OBJECT_ID(N'[dbo].[LocalCaseRoom]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[LocalCaseRoom];
 GO
 
 -- --------------------------------------------------
@@ -87,6 +87,18 @@ CREATE TABLE [dbo].[ObjectSet] (
     [timecreate] datetime  NOT NULL,
     [timemodify] datetime  NOT NULL,
     [isactive] bit  NOT NULL
+);
+GO
+
+-- Creating table 'ObjectSet_LocalCase'
+CREATE TABLE [dbo].[ObjectSet_LocalCase] (
+    [timeclosed] datetime  NOT NULL,
+    [casenr] nvarchar(max)  NOT NULL,
+    [diagnosis] nvarchar(max)  NOT NULL,
+    [medication] nvarchar(max)  NOT NULL,
+    [therapy] nvarchar(max)  NOT NULL,
+    [expectedtime] nvarchar(max)  NOT NULL,
+    [Id] int  NOT NULL
 );
 GO
 
@@ -105,28 +117,6 @@ CREATE TABLE [dbo].[ObjectSet_Person] (
 );
 GO
 
--- Creating table 'ObjectSet_Patient'
-CREATE TABLE [dbo].[ObjectSet_Patient] (
-    [insuranceID] nvarchar(max)  NOT NULL,
-    [insurance] nvarchar(max)  NOT NULL,
-    [Id] int  NOT NULL
-);
-GO
-
--- Creating table 'ObjectSet_LocalCase'
-CREATE TABLE [dbo].[ObjectSet_LocalCase] (
-    [timeopen] datetime  NOT NULL,
-    [timeclosed] datetime  NOT NULL,
-    [casenr] nvarchar(max)  NOT NULL,
-    [diagnosis] nvarchar(max)  NOT NULL,
-    [medication] nvarchar(max)  NOT NULL,
-    [therapy] nvarchar(max)  NOT NULL,
-    [expectedtime] nvarchar(max)  NOT NULL,
-    [Id] int  NOT NULL,
-    [Patient_Id] int  NOT NULL
-);
-GO
-
 -- Creating table 'ObjectSet_User'
 CREATE TABLE [dbo].[ObjectSet_User] (
     [password] nvarchar(max)  NOT NULL,
@@ -135,6 +125,8 @@ CREATE TABLE [dbo].[ObjectSet_User] (
     [accessright2] bit  NOT NULL,
     [accessright3] bit  NOT NULL,
     [username] nvarchar(max)  NOT NULL,
+    [accessright4] bit  NOT NULL,
+    [accessright5] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
@@ -145,6 +137,14 @@ CREATE TABLE [dbo].[ObjectSet_Room] (
     [space] nvarchar(max)  NOT NULL,
     [vacancy] nvarchar(max)  NOT NULL,
     [type] nvarchar(max)  NOT NULL,
+    [Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'ObjectSet_Patient'
+CREATE TABLE [dbo].[ObjectSet_Patient] (
+    [insuranceID] nvarchar(max)  NOT NULL,
+    [insurance] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
@@ -163,6 +163,13 @@ CREATE TABLE [dbo].[LocalCaseRoom] (
 );
 GO
 
+-- Creating table 'LocalCasePatient'
+CREATE TABLE [dbo].[LocalCasePatient] (
+    [LocalCase_Id] int  NOT NULL,
+    [Patient_Id] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -173,21 +180,15 @@ ADD CONSTRAINT [PK_ObjectSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'ObjectSet_Person'
-ALTER TABLE [dbo].[ObjectSet_Person]
-ADD CONSTRAINT [PK_ObjectSet_Person]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'ObjectSet_Patient'
-ALTER TABLE [dbo].[ObjectSet_Patient]
-ADD CONSTRAINT [PK_ObjectSet_Patient]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
 -- Creating primary key on [Id] in table 'ObjectSet_LocalCase'
 ALTER TABLE [dbo].[ObjectSet_LocalCase]
 ADD CONSTRAINT [PK_ObjectSet_LocalCase]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'ObjectSet_Person'
+ALTER TABLE [dbo].[ObjectSet_Person]
+ADD CONSTRAINT [PK_ObjectSet_Person]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -203,6 +204,12 @@ ADD CONSTRAINT [PK_ObjectSet_Room]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'ObjectSet_Patient'
+ALTER TABLE [dbo].[ObjectSet_Patient]
+ADD CONSTRAINT [PK_ObjectSet_Patient]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- Creating primary key on [LocalCase_Id], [User_Id] in table 'LocalCaseUser'
 ALTER TABLE [dbo].[LocalCaseUser]
 ADD CONSTRAINT [PK_LocalCaseUser]
@@ -215,24 +222,15 @@ ADD CONSTRAINT [PK_LocalCaseRoom]
     PRIMARY KEY CLUSTERED ([LocalCase_Id], [Room_Id] ASC);
 GO
 
+-- Creating primary key on [LocalCase_Id], [Patient_Id] in table 'LocalCasePatient'
+ALTER TABLE [dbo].[LocalCasePatient]
+ADD CONSTRAINT [PK_LocalCasePatient]
+    PRIMARY KEY CLUSTERED ([LocalCase_Id], [Patient_Id] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
-
--- Creating foreign key on [Patient_Id] in table 'ObjectSet_LocalCase'
-ALTER TABLE [dbo].[ObjectSet_LocalCase]
-ADD CONSTRAINT [FK_PatientLocalCase]
-    FOREIGN KEY ([Patient_Id])
-    REFERENCES [dbo].[ObjectSet_Patient]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PatientLocalCase'
-CREATE INDEX [IX_FK_PatientLocalCase]
-ON [dbo].[ObjectSet_LocalCase]
-    ([Patient_Id]);
-GO
 
 -- Creating foreign key on [LocalCase_Id] in table 'LocalCaseUser'
 ALTER TABLE [dbo].[LocalCaseUser]
@@ -282,27 +280,42 @@ ON [dbo].[LocalCaseRoom]
     ([Room_Id]);
 GO
 
--- Creating foreign key on [Id] in table 'ObjectSet_Person'
-ALTER TABLE [dbo].[ObjectSet_Person]
-ADD CONSTRAINT [FK_Person_inherits_Object]
+-- Creating foreign key on [LocalCase_Id] in table 'LocalCasePatient'
+ALTER TABLE [dbo].[LocalCasePatient]
+ADD CONSTRAINT [FK_LocalCasePatient_LocalCase]
+    FOREIGN KEY ([LocalCase_Id])
+    REFERENCES [dbo].[ObjectSet_LocalCase]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Patient_Id] in table 'LocalCasePatient'
+ALTER TABLE [dbo].[LocalCasePatient]
+ADD CONSTRAINT [FK_LocalCasePatient_Patient]
+    FOREIGN KEY ([Patient_Id])
+    REFERENCES [dbo].[ObjectSet_Patient]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_LocalCasePatient_Patient'
+CREATE INDEX [IX_FK_LocalCasePatient_Patient]
+ON [dbo].[LocalCasePatient]
+    ([Patient_Id]);
+GO
+
+-- Creating foreign key on [Id] in table 'ObjectSet_LocalCase'
+ALTER TABLE [dbo].[ObjectSet_LocalCase]
+ADD CONSTRAINT [FK_LocalCase_inherits_Object]
     FOREIGN KEY ([Id])
     REFERENCES [dbo].[ObjectSet]
         ([Id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [Id] in table 'ObjectSet_Patient'
-ALTER TABLE [dbo].[ObjectSet_Patient]
-ADD CONSTRAINT [FK_Patient_inherits_Person]
-    FOREIGN KEY ([Id])
-    REFERENCES [dbo].[ObjectSet_Person]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Id] in table 'ObjectSet_LocalCase'
-ALTER TABLE [dbo].[ObjectSet_LocalCase]
-ADD CONSTRAINT [FK_LocalCase_inherits_Object]
+-- Creating foreign key on [Id] in table 'ObjectSet_Person'
+ALTER TABLE [dbo].[ObjectSet_Person]
+ADD CONSTRAINT [FK_Person_inherits_Object]
     FOREIGN KEY ([Id])
     REFERENCES [dbo].[ObjectSet]
         ([Id])
@@ -323,6 +336,15 @@ ALTER TABLE [dbo].[ObjectSet_Room]
 ADD CONSTRAINT [FK_Room_inherits_Object]
     FOREIGN KEY ([Id])
     REFERENCES [dbo].[ObjectSet]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Id] in table 'ObjectSet_Patient'
+ALTER TABLE [dbo].[ObjectSet_Patient]
+ADD CONSTRAINT [FK_Patient_inherits_Person]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[ObjectSet_Person]
         ([Id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO

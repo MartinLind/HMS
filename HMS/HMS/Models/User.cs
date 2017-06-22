@@ -53,6 +53,8 @@ namespace HMS.Models
             this.accessright1 = accessright1;
             this.accessright2 = accessright2;
             this.accessright3 = accessright3;
+            this.accessright4 = accessright4;
+            this.accessright5 = accessright5;
             this.username = username;
 
             Exception rolenameException = new Exception("Ungültige Funktion");
@@ -76,6 +78,10 @@ namespace HMS.Models
         public bool accessright2 { get; set; }
         [Display(Name = "Rechte3")]
         public bool accessright3 { get; set; }
+        [Display(Name = "Rechte4")]
+        public bool accessright4 { get; set; }
+        [Display(Name = "Rechte5")]
+        public bool accessright5 { get; set; }
 
         [Required]
         [Display(Name = "Benutzername")]

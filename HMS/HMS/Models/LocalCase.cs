@@ -19,6 +19,7 @@ namespace HMS.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public LocalCase()
         {
+            this.Patient = new HashSet<Patient>();
             this.User = new HashSet<User>();
             this.Room = new HashSet<Room>();
         }
@@ -28,7 +29,7 @@ namespace HMS.Models
         [Display(Name = "Behandlungsstart")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public System.DateTime timeopen { get; set; }
+        public System.DateTime timecreate { get; set; }
 
         [Required(ErrorMessage = "Bitte wählen Sie ein Datum")]
         [Display(Name = "Behandlungsende")]
@@ -56,7 +57,8 @@ namespace HMS.Models
         [Display(Name = "Behandlungsdauer")]
         public string expectedtime { get; set; }
 
-        public virtual Patient Patient { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Patient> Patient { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> User { get; set; }

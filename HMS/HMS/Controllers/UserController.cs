@@ -46,7 +46,7 @@ namespace HMS.Controllers
         // finden Sie unter https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,username,password,rolename,accessright1,accessright2,accessright3,prename,surname,phone,email,gender,street,city,zip,dateofbirth,timecreate,timemodify,isactive")] User user)
+        public ActionResult Create([Bind(Include = "Id,username,password,rolename,accessright1,accessright2,accessright3,accessright4,accessright5,prename,surname,phone,email,gender,street,city,zip,dateofbirth,timecreate,timemodify,isactive")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace HMS.Controllers
         // finden Sie unter https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,username, password,rolename,accessright1,accessright2,accessright3,prename,surname,phone,email,gender,street,city,zip,dateofbirth,timecreate,timemodify,isactive")] User user)
+        public ActionResult Edit([Bind(Include = "Id,username, password,rolename,accessright1,accessright2,accessright3,accessright4,accessright5,prename,surname,phone,email,gender,street,city,zip,dateofbirth,timecreate,timemodify,isactive")] User user)
         {
             if (ModelState.IsValid)
             {

@@ -37,11 +37,6 @@ namespace HMS.Models
         [Display(Name = "Status")]
         public bool isactive { get; set; }
 
-        public Object()
-        {
-
-        }
-
         public Object(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive)
         {
             this.Id = id;
@@ -49,6 +44,13 @@ namespace HMS.Models
             this.timemodify = timemodify;
             this.isactive = isactive;
         }
+
+        public Object()
+        {
+
+        }
+
+        
     }
 
 
