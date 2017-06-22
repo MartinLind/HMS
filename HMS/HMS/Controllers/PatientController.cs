@@ -50,6 +50,8 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                patient.timecreate = DateTime.Now;
+                patient.timemodify = DateTime.Now;
                 db.Patients.Add(patient);
                 db.SaveChanges();
                 return RedirectToAction("Index");
