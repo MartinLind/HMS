@@ -20,14 +20,40 @@ namespace HMS.Models
         //MW
         public Patient() { }
 
+        /// <summary>
+        /// @Author Yunus Koc
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="timecreate"></param>
+        /// <param name="timemodify"></param>
+        /// <param name="isactive"></param>
+        /// <param name="prename"></param>
+        /// <param name="surname"></param>
+        /// <param name="phone"></param>
+        /// <param name="email"></param>
+        /// <param name="gender"></param>
+        /// <param name="street"></param>
+        /// <param name="city"></param>
+        /// <param name="zip"></param>
+        /// <param name="dateofbirth"></param>
+        /// <param name="insuranceID"></param>
+        /// <param name="insurance"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Patient(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone, string email, string gender, string street, string city, string zip, DateTime dateofbirth) : base(id, timecreate, timemodify, isactive, prename, surname, phone, email, gender, street, city, zip, dateofbirth)
+        public Patient(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone, string email, string gender, string street, string city, string zip, DateTime dateofbirth, string insuranceID, string insurance) : base(id, timecreate, timemodify, isactive, prename, surname, phone, email, gender, street, city, zip, dateofbirth)
         {
+            this.insuranceID = insuranceID;
+            this.insurance = insurance;
             this.LocalCase = new HashSet<LocalCase>();
         }
 
+        [Required(ErrorMessage = "Bitte tragen Sie die Krankenversicherungsnummer ein")]
+        [Display(Name = "Krankenversicherungsnummer")]
+        [RegularExpression(@"^[A-Z]{1}[0-9]{9}$", ErrorMessage = "Ungültige Versicherungsnummer - Beispiel: A123456789")]
         public string insuranceID { get; set; }
 
+        [Required(ErrorMessage = "Bitte tragen Sie die Krankenversicherung ein")]
+        [Display(Name = "Krankenversicherung")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Bitte tragen Sie die Krankenversicherung ein")]
         public string insurance { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

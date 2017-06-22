@@ -16,6 +16,9 @@ namespace HMS.Models
 
     public partial class Object
     {
+        /// <summary>
+        /// @Author Yunus Koc, David Bismor
+        /// </summary>
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Bitte geben Sie ein gültiges Datum ein.")]

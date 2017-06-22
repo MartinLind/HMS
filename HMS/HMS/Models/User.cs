@@ -20,6 +20,28 @@ namespace HMS.Models
         //MW
         public User() { }
 
+
+        /// <summary>
+        /// @Author Yunus Koc, David Bismor
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="timecreate"></param>
+        /// <param name="timemodify"></param>
+        /// <param name="isactive"></param>
+        /// <param name="prename"></param>
+        /// <param name="surname"></param>
+        /// <param name="phone"></param>
+        /// <param name="email"></param>
+        /// <param name="gender"></param>
+        /// <param name="street"></param>
+        /// <param name="city"></param>
+        /// <param name="zip"></param>
+        /// <param name="dateofbirth"></param>
+        /// <param name="password"></param>
+        /// <param name="rolename"></param>
+        /// <param name="accessright1"></param>
+        /// <param name="accessright2"></param>
+        /// <param name="accessright3"></param>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User(int id, System.DateTime timecreate, System.DateTime timemodify, bool isactive, string prename, string surname, string phone,
             string email, string gender, string street, string city, string zip, System.DateTime dateofbirth, string password, string rolename, bool accessright1, bool accessright2, bool accessright3)

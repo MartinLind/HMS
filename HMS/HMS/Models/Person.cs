@@ -13,7 +13,9 @@ using System.Web.Mvc;
 namespace HMS.Models
 {
 
-
+    /// <summary>
+    /// @Author Yunus Koc, David Bismor
+    /// </summary>
     public partial class Person : Object
     {
         [Required(ErrorMessage = "Bitte den Vornamen eintragen")]

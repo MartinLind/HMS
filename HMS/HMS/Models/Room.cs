@@ -17,7 +17,9 @@ namespace HMS.Models
 
     public partial class Room : Object
     {
-
+        /// <summary>
+        /// @Author Yunus Koc, David Bismor
+        /// </summary>
         [Required(ErrorMessage = "Bitte eine Raumnummer eintragen.")]
         [Display(Name = "Raumnummer")]
         public string number { get; set; }
