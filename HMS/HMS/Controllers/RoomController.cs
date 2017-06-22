@@ -38,7 +38,12 @@ namespace HMS.Controllers
         // GET: Room/Create
         public ActionResult Create()
         {
-            return View();
+            //Autor: David Bismor
+            Room model = new Room();
+            model.timecreate = DateTime.Now;
+            model.timemodify = DateTime.Now;
+
+            return View(model);
         }
 
         // POST: Room/Create
