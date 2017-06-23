@@ -28,11 +28,11 @@ namespace HMS.Controllers
                
             if (option == "Gender")
             {
-                return View(db.Patients.Where(x => x.gender == search || search == null).ToList());
+                return View(db.Patients.Where(x => x.gender.StartsWith(search) || search == null).ToList());
             }
             else if (option == "Name")
             {
-                return View(db.Patients.Where(x => x.surname == search || search == null).ToList());
+                return View(db.Patients.Where(x => x.surname.StartsWith(search) || search == null).ToList());
             }
             return View(db.Patients.ToList());
         }
