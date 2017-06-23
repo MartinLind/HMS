@@ -15,8 +15,25 @@ namespace HMS.Controllers
         private DBContainer db = new DBContainer();
 
         // GET: Patient
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+            //return View(db.Patients.ToList());
+        //}
+
+        //Option sagt uns wonach gesucht wird. Search ist das Suchwort
+        //Können noch beliebig viele weitere Suchparameter einbauen
+        //MW
+        public ActionResult Index(string option, string search)
         {
+               
+            if (option == "Gender")
+            {
+                return View(db.Patients.Where(x => x.gender == search || search == null).ToList());
+            }
+            else if (option == "Name")
+            {
+                return View(db.Patients.Where(x => x.surname == search || search == null).ToList());
+            }
             return View(db.Patients.ToList());
         }
 
