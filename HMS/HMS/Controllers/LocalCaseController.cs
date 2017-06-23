@@ -38,6 +38,7 @@ namespace HMS.Controllers
         // GET: LocalCase/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 
@@ -50,7 +51,7 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                //localCase.timecreate = DateTime.Now;
+                localCase.timecreate = DateTime.Now;
                 //localCase.timeclosed = DateTime.Now;
                 localCase.timemodify = DateTime.Now;
                 db.LocalCases.Add(localCase);

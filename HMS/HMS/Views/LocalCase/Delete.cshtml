@@ -93,8 +93,9 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-           <input type="submit" value="Bestätigen" class="btn btn-default" style="width:90px"/> 
+            <!--<input type="submit" value="Delete" class="btn btn-default" /> -->
+            <!-- Wollen wir abschließen oder löschen? -->
+           <input type="submit" value="Behandlung abschließen" class="btn btn-default" style="width:200px"/> 
             <input id="BackToList" type="button" value="Abbrechen" class="btn btn-default" style="width:90px"
         onclick="@("window.location.href='" + @Url.Action("Index", "LocalCase") + "'");" />
         </div>
