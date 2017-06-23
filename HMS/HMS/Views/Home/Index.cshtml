@@ -15,9 +15,18 @@
     
     <h1>Willkommen zu ihrer Krankenhaus Management Software!</h1>
     <hr />
-  <img id="img_logo" alt="Logo" title="Hier geht´s zum Login!" src="@Url.Content("../../Content/Slider_Wilkommen.jpg")" 
-      onclick="@("window.location.href='" + @Url.Action("LoginPage", "Home") + "'");" />
+    <table>
+           <th style="width:400px">
+               <input id="ID" type="text" class="form-control" placeholder="username"/>
+               <input id="SetPassword" type="password" class="form-control" placeholder="password"/> 
+           <input id="GetAccewss" type="button" value="Login" class="form-control" />
+           </th>
+        <th>
+  <img id="img_logo" alt="Logo" title="Hier geht´s zum Login!" src="@Url.Content("../../Content/Slider_Wilkommen.jpg")"/>
+        </th>
 
+</table>
+    <!-- onclick="@("window.location.href='" + @Url.Action("LoginPage", "Home") + "'");" -->
     <!-- Quelle: http://www.friedrich-ebert-krankenhaus.de/uploads/tx_lfmflexslider/Slider_Wilkommen.jpg --> 
 
                   <!--  <th style="align-items:center; width:auto">    
