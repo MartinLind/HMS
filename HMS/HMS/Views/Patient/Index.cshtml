@@ -4,14 +4,14 @@
     ViewBag.Title = "Patienten";
 }
     <!-- Versuch einer Suche, MW-->
-    @using(Html.BeginForm("Index", "Patient", FormMethod.Get)) {
+ <!--   @using(Html.BeginForm("Index", "Patient", FormMethod.Get)) {
     <br></br>
     <b> Suchoption: </b>
     @Html.RadioButton("option", "Name") <text> Name </text> 
     @Html.RadioButton("option", "Gender") <text> Geschlecht </text>  
     @Html.TextBox("search") <input type = "submit", name = "submit", value = "Suche", onclick="@("window.location.href='" + @Url.Action("Index", "Patient") + "'");" />
     }
-
+    -->
   <table>
       <tr>
            <td style="position: absolute; left:auto"><h2>Unsere aktuellen Patienten:</h2></td>
@@ -21,8 +21,17 @@
         onclick="@("window.location.href='" + @Url.Action("Create", "Patient") + "'");" />
             </td>
 </tr>
+     
  </table>
-<br /><br /> <br /> <br />
+<br /><br /><br />
+   <b class="form-group"><h4>Suchoption:</h4>  </b>
+       
+            @using(Html.BeginForm("Index", "Patient", FormMethod.Get)){
+    @Html.RadioButton("option", "Name") <text> Name </text> 
+    @Html.RadioButton("option", "Gender") <text> Geschlecht </text>  <br />
+    @Html.TextBox("search",null,  new {@class="form-control"})<input type = "submit", name = "submit", value = "Suche", class="form-control",style="width:auto" onclick="@("window.location.href='" + @Url.Action("Index", "Patient") + "'");" />
+   }
+<br /><br />
 <table class="table" style="width:auto">
     <tr>
         <th>

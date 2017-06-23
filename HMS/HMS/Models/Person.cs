@@ -20,12 +20,12 @@ namespace HMS.Models
     {
         [Required(ErrorMessage = "Bitte den Vornamen eintragen")]
         [Display(Name = "Vorname")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Bitte den Vornamen auf Fehler überprüfen")]
+        [RegularExpression(@"^[a-zA-ZäöüÄÖÜß]+$", ErrorMessage = "Bitte den Vornamen auf Fehler überprüfen")]
         public string prename { get; set; }
 
         [Required(ErrorMessage = "Bitte den Nachnamen eintragen")]
         [Display(Name = "Nachname")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Bitte den Nachnamen auf Fehler überprüfen")]
+        [RegularExpression(@"^[a-zA-ZäöüÄÖÜß]+$", ErrorMessage = "Bitte den Nachnamen auf Fehler überprüfen")]
         public string surname { get; set; }
 
         [Required(ErrorMessage = "Bitte Haustelefon eingeben")]
@@ -50,7 +50,7 @@ namespace HMS.Models
 
         [Required(ErrorMessage = "Bitte die Stadt eintragen")]
         [Display(Name = "Stadt")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Überprüfen Sie die Stadt auf ihre Richtigkeit")]
+        [RegularExpression(@"^[a-zA-ZäöüÄÖÜß]+$", ErrorMessage = "Überprüfen Sie die Stadt auf ihre Richtigkeit")]
         public string city { get; set; }
 
         [Required(ErrorMessage = "Bitte geben Sie eine Postleitzahl ein")]
