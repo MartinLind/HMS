@@ -34,6 +34,19 @@ namespace HMS.Controllers
             {
                 return View(db.Patients.Where(x => x.surname.StartsWith(search) || search == null).ToList());
             }
+            else if (option == "Geburtsdatum")
+            {
+                try
+                {
+                    DateTime searchDate = Convert.ToDateTime(search);
+                    return View(db.Patients.Where(x => x.dateofbirth.Equals(searchDate) || search == null).ToList());
+                }
+                catch(System.FormatException)
+                {
+                    return View(db.Patients.ToList());
+                }
+
+            }
             return View(db.Patients.ToList());
         }
 
@@ -146,5 +159,7 @@ namespace HMS.Controllers
             }
             base.Dispose(disposing);
         }
+        
+      
     }
 }
