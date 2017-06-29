@@ -25,29 +25,50 @@ namespace HMS.Controllers
         //MW
         public ActionResult Index(string option, string search)
         {
-               
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+            ViewResult myView = View(db.Patients.ToList());
+
             if (option == "Gender")
             {
-                return View(db.Patients.Where(x => x.gender.StartsWith(search) || search == null).ToList());
+                myView  = View(db.Patients.Where(x => x.gender.StartsWith(search) || search == null).ToList());
             }
             else if (option == "Name")
             {
-                return View(db.Patients.Where(x => x.surname.StartsWith(search) || search == null).ToList());
+                myView = View(db.Patients.Where(x => x.surname.StartsWith(search) || search == null).ToList());
             }
             else if (option == "Geburtsdatum")
             {
                 try
                 {
                     DateTime searchDate = Convert.ToDateTime(search);
-                    return View(db.Patients.Where(x => x.dateofbirth.Equals(searchDate) || search == null).ToList());
+                    myView = View(db.Patients.Where(x => x.dateofbirth.Equals(searchDate) || search == null).ToList());
                 }
                 catch(System.FormatException)
                 {
-                    return View(db.Patients.ToList());
+                    myView = View(db.Patients.ToList());
                 }
 
             }
-            return View(db.Patients.ToList());
+
+            myView.MasterName = myLayoutName;
+
+            return myView;
         }
 
         // GET: Patient/Details/5

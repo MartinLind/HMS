@@ -12,6 +12,8 @@ namespace HMS.Controllers
 {
     public class HomeController : Controller
     {
+        
+
         public ActionResult Index()
         {
             return View();
@@ -27,7 +29,7 @@ namespace HMS.Controllers
         {
            if(username == "Admin" && password == "admin")
             {
-                return View("Home", "_Layout1");
+                return View("Home", "_Layout_Admin");
             }
             //if (FunctionLogin(username, password) == true)
             //{
@@ -45,17 +47,20 @@ namespace HMS.Controllers
 
             switch (FunctionLogin(username, password))
             {
-                case FunctionLoginStatus.SUCCESS1:
-                    result = View("Home", "_Layout1");
+                case FunctionLoginStatus.SUCCESS_Admin:
+                    result = View("Home", "_Layout_Admin");
+                    GlobalVariable.currentRole = GlobalVariable.Role.Admin;
                     break;
-                case FunctionLoginStatus.SUCCESS2:
-                    result = View("Home", "_Layout2");
+                case FunctionLoginStatus.SUCCESS_Arzt:
+                    result = View("Home", "_Layout_Arzt");
+                    GlobalVariable.currentRole = GlobalVariable.Role.Arzt;
                     break;
-                case FunctionLoginStatus.SUCCESS3:
-                    result = View("Home", "_Layout3");
+                case FunctionLoginStatus.SUCCESS_Schwester:
+                    result = View("Home", "_Layout_Schwester");
+                    GlobalVariable.currentRole = GlobalVariable.Role.Schwester;
                     break;
-                case FunctionLoginStatus.SUCCESS4:
-                    result = View("Home", "_Layout4");
+                case FunctionLoginStatus.SUCCESS_Reinigungspersonal:
+                    result = View("Home", "_Layout_Reinigungspersonal");
                     break;
                 case FunctionLoginStatus.FAIL:
                     ViewBag.LoginMessage = "Something wrong! Try Again!";
@@ -75,7 +80,10 @@ namespace HMS.Controllers
 
         public enum FunctionLoginStatus
         {
-            SUCCESS1, SUCCESS2, SUCCESS3, SUCCESS4,
+            SUCCESS_Admin,
+            SUCCESS_Arzt,
+            SUCCESS_Schwester,
+            SUCCESS_Reinigungspersonal,
             FAIL,
             FIRED,
             RETIRE
@@ -98,21 +106,21 @@ namespace HMS.Controllers
             SqlDataReader reader = cmd.ExecuteReader();
 
             String dbUsername = null;
-            Boolean dbright1 = false;
-            Boolean dbright2 = false;
-            Boolean dbright3 = false;
-            Boolean dbright4 = false;
-            Boolean dbstatus = false;
+            Boolean dbright_Admin = false;
+            Boolean dbright_Arzt = false;
+            Boolean dbright_Schwester = false;
+            Boolean dbright_Reinigungspersonal = false;
+            Boolean dbisactive = false;
 
             while (reader.Read() == true)
             {
                 dbUsername = Convert.ToString(reader["username"]);
                 /// ......
-                dbright1 = Convert.ToBoolean(reader["accessright1"]);
-                dbright2 = Convert.ToBoolean(reader["accessright2"]);
-                dbright3 = Convert.ToBoolean(reader["accessright3"]);
-                dbright4 = Convert.ToBoolean(reader["accessright4"]);
-                dbstatus = Convert.ToBoolean(reader["accessright5"]);
+                dbright_Admin = Convert.ToBoolean(reader["accessright1"]);
+                dbright_Arzt = Convert.ToBoolean(reader["accessright2"]);
+                dbright_Schwester = Convert.ToBoolean(reader["accessright3"]);
+                dbright_Reinigungspersonal = Convert.ToBoolean(reader["accessright4"]);
+                dbisactive = Convert.ToBoolean(reader["accessright5"]);
                 // so far use Recht5 instead status
             }
 
@@ -124,25 +132,25 @@ namespace HMS.Controllers
             else
             {
                 /// success
-                if (dbright1 == true && dbstatus == true ) 
+                if (dbright_Admin == true && dbisactive == true ) 
                 {
                     /// success , and status==true
-                    return FunctionLoginStatus.SUCCESS1;
+                    return FunctionLoginStatus.SUCCESS_Admin;
                 }
-                if (dbright2 == true && dbstatus == true)
+                if (dbright_Arzt == true && dbisactive == true)
                 {
                     /// success , and status==true
-                    return FunctionLoginStatus.SUCCESS2;
+                    return FunctionLoginStatus.SUCCESS_Arzt;
                 }
-                if (dbright3 == true && dbstatus == true)
+                if (dbright_Schwester == true && dbisactive == true)
                 {
                     /// success , and status==true
-                    return FunctionLoginStatus.SUCCESS3;
+                    return FunctionLoginStatus.SUCCESS_Schwester;
                 }
-                if (dbright4 == true && dbstatus == true)
+                if (dbright_Reinigungspersonal == true && dbisactive == true)
                 {
                     /// success , and status==true
-                    return FunctionLoginStatus.SUCCESS4;
+                    return FunctionLoginStatus.SUCCESS_Reinigungspersonal;
                 }
                
                 else
