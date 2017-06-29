@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using System.Data;
+using System.Data.SqlClient;
+
 namespace HMS.Controllers
 {
     public class HomeController : Controller
@@ -12,12 +15,107 @@ namespace HMS.Controllers
         {
             return View();
         }
-        public ActionResult LoginPage()
-        {
+        //public ActionResult LoginPage()
+        //{
 
-            return View();
+        //    return View();
+        //}
+
+        [HttpPost]
+        public ActionResult Index(String username, String password)
+        {
+            //if (FunctionLogin(username, password) == true)
+            //{
+            //    /// if success
+            //    return View("Home", "_Layout1");
+            //}
+            //else
+            //{
+            //    /// fail
+            //    ViewBag.LoginMessage = "Something wrong! Try Again!";
+            //    return View();
+            //}
+
+            ActionResult result = View();
+
+            switch (FunctionLogin(username, password))
+            {
+                case FunctionLoginStatus.SUCCESS:
+                    result = View("Home", "_Layout1");
+                    break;
+                case FunctionLoginStatus.FAIL:
+                    ViewBag.LoginMessage = "Something wrong! Try Again!";
+                    break;
+                case FunctionLoginStatus.FIRED:
+                    ViewBag.LoginMessage = "You are fired or retired! Contact your boss!";
+                    break;
+                //case FunctionLoginStatus.RETIRE:
+                //    ViewBag.LoginMessage = "You are retired! goodbye!";
+                //    break;
+                default:
+                    break;
+            }
+
+            return result;
         }
 
+        public enum FunctionLoginStatus
+        {
+            SUCCESS,
+            FAIL,
+            FIRED,
+            RETIRE
+        }
+
+        public FunctionLoginStatus FunctionLogin(String username, String password)
+        {
+            SqlConnection connection = null;
+
+            String ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=HMSDB;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+
+            connection = new SqlConnection(ConnectionString);
+
+            String SQLString = String.Format("SELECT username,rolename,accessright1,accessright2,accessright3,accessright4,accessright5 FROM dbo.ObjectSet_User WHERE username = '{0}' AND password = '{1}'", username, password);
+
+            SqlCommand cmd = new SqlCommand(SQLString, connection);
+
+            connection.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            String dbUsername = null;
+            Boolean dbstatus = false;
+
+            while (reader.Read() == true)
+            {
+                dbUsername = Convert.ToString(reader["username"]);
+                /// ......
+                dbstatus = Convert.ToBoolean(reader["accessright5"]);
+                /// .......
+                /// ......
+                /// ......
+            }
+
+            if (dbUsername == null)
+            {
+                /// fail
+                return FunctionLoginStatus.FAIL;
+            }
+            else
+            {
+                /// success
+                if (dbstatus == true) // so far use Recht5 instead status
+                {
+                    /// success , and status==true
+                    return FunctionLoginStatus.SUCCESS;
+                }
+                else
+                {
+                    /// success , and status==false
+                    return FunctionLoginStatus.FIRED;
+                }
+            }
+        }
 
         /**  public ActionResult About()
           {
