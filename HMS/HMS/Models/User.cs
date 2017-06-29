@@ -65,6 +65,12 @@ namespace HMS.Models
             }
         }
 
+        public User(String username, String password)
+        {
+            this.username = username;
+            this.password = password;
+        }
+
         [Required(ErrorMessage = "Bitte geben Sie ein Passwort ein.")]
         [Display(Name = "Passwort")]
         public string password { get; set; }
