@@ -287,6 +287,7 @@
     <Content Include="Views\Shared\_Layout_Reinigungspersonal.cshtml" />
     <Content Include="Views\Shared\_Layout_Arzt.cshtml" />
     <Content Include="Views\Shared\_Layout_Schwester.cshtml" />
+    <Content Include="Views\User\IndexReinigung.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
