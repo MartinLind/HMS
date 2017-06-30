@@ -17,7 +17,27 @@ namespace HMS.Controllers
         // GET: LocalCase
         public ActionResult Index()
         {
-            return View(db.LocalCases.ToList());
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+            ViewResult myView = View(db.LocalCases.ToList());
+            myView.MasterName = myLayoutName;
+            return myView;
+            //return View(db.LocalCases.ToList());
            
         }
 
@@ -33,14 +53,53 @@ namespace HMS.Controllers
             {
                 return HttpNotFound();
             }
-            return View(localCase);
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+            ViewResult myView = View(localCase);
+            myView.MasterName = myLayoutName;
+            return myView;
+            //return View(localCase);
         }
 
         // GET: LocalCase/Create
         public ActionResult Create()
         {
-            
-            return View();
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+            return myView;
+            //return View();
         }
 
         // POST: LocalCase/Create
@@ -75,7 +134,27 @@ namespace HMS.Controllers
             {
                 return HttpNotFound();
             }
-            return View(localCase);
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+            ViewResult myView = View(localCase);
+            myView.MasterName = myLayoutName;
+            return myView;
+            //return View(localCase);
         }
 
         // POST: LocalCase/Edit/5
@@ -106,7 +185,27 @@ namespace HMS.Controllers
             {
                 return HttpNotFound();
             }
-            return View(localCase);
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+            ViewResult myView = View(localCase);
+            myView.MasterName = myLayoutName;
+            return myView;
+            //return View(localCase);
         }
 
         // POST: LocalCase/Delete/5
