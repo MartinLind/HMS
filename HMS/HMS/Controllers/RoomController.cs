@@ -56,8 +56,6 @@ namespace HMS.Controllers
             myView.MasterName = myLayoutName;
             return myView;
 
-
-
             //return View(db.Rooms.ToList());
         }
 
