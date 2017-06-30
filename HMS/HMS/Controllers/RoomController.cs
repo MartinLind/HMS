@@ -52,9 +52,28 @@ namespace HMS.Controllers
                 myLayoutName = "_Layout_Reinigungspersonal";
             }
             ViewResult myView = View(db.Rooms.Where(x => x.space == x.vacancy ));
+
             //ViewResult myView = View(db.Rooms.ToList());
             myView.MasterName = myLayoutName;
             return myView;
+
+            //return View(db.Rooms.ToList());
+        }
+
+        public ActionResult IndexPfleger()
+        {
+            String myLayoutName = "";
+
+            if (GlobalVariable.currentRole.Equals("Pflegepersonal"))
+            {
+                myLayoutName = "_Layout_Schwester";
+            }
+
+            ViewResult myView = View(db.Rooms.ToList());
+            myView.MasterName = myLayoutName;
+            return myView;
+
+
 
             //return View(db.Rooms.ToList());
         }
