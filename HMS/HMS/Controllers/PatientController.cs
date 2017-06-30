@@ -83,13 +83,53 @@ namespace HMS.Controllers
             {
                 return HttpNotFound();
             }
-            return View(patient);
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+            ViewResult myView = View(patient);
+            myView.MasterName = myLayoutName;
+            return myView;
+            //return View(patient);
         }
 
         // GET: Patient/Create
         public ActionResult Create()
         {
-            return View();
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+            return myView;
+            //return View();
         }
 
         // POST: Patient/Create
@@ -123,7 +163,28 @@ namespace HMS.Controllers
             {
                 return HttpNotFound();
             }
-            return View(patient);
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+            ViewResult myView = View(patient);
+            myView.MasterName = myLayoutName;
+            return myView;
+
+            //return View(patient);
         }
 
         // POST: Patient/Edit/5
@@ -158,7 +219,27 @@ namespace HMS.Controllers
             {
                 return HttpNotFound();
             }
-            return View(patient);
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+            ViewResult myView = View(patient);
+            myView.MasterName = myLayoutName;
+            return myView;
+            //return View(patient);
         }
 
         // POST: Patient/Delete/5
