@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<HMS.Models.User>
 
 @{
-     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+    Layout = "~/Views/Shared/_Layout_Reinigungspersonal.cshtml";
     ViewBag.Title = "Mitarbeiter";
 }
 
@@ -11,10 +11,7 @@
       <tr>
            <td style="position:absolute; left:auto"><h2>Unsere Mitarbeiter:</h2></td>
 
-        <td style="position:fixed; right:5%; top:10%">
-  <input id="CreateUser" type="button" value="Personal anlegen" class="btn btn-default" style="width:140px"
-        onclick="@("window.location.href='" + @Url.Action("Create", "User") + "'");" />
-            </td>
+     
 </tr>
  </table>
 <br /><br /> <br /> <br />
@@ -75,7 +72,7 @@
         <th>
             @Html.DisplayNameFor(model => model.timemodify)
         </th>
-        <th style="display:none">
+        <th >
             @Html.DisplayNameFor(model => model.isactive)
         </th>
           <th>
@@ -141,25 +138,13 @@
         <td>
             @Html.DisplayFor(modelItem => item.timemodify)
         </td>
-        <td style="display:none">
+        <td>
             @Html.DisplayFor(modelItem => item.isactive)
         </td>
          <td>
             @Html.DisplayFor(modelItem => item.accessright5)
         </td>
-        <td>
-            <input id="GoCreatePatient" type="button" value="Bearbeiten" class="btn btn-default"   style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Edit", "User",  new {id=item.Id} )+ "'");" />
-            <br />
-             <input id="GoCreatePatient" type="button" value="Details" class="btn btn-default"  style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Details", "User",  new {id=item.Id} ) + "'");" />
-            <br />
-             <input id="GoCreatePatient" type="button" value="Löschen" class="btn btn-default" style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Delete", "User",  new {id=item.Id} )+ "'" );" />
-          <!--  @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })-->
-        </td>
+      
     </tr>
 }
 

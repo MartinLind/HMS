@@ -59,7 +59,7 @@ namespace HMS.Models
 
             Exception rolenameException = new Exception("Ungültige Funktion");
 
-            if (!((gender == "Arzt") || (gender == "Oberarzt") || (gender == "Schwester") || (gender == "Pfleger") || (gender == "Admin") || (gender == "Reinigungspersonal")))
+            if (!((gender == "Arzt") || (gender == "Oberarzt") || (gender == "Pflegepersonal") || (gender == "Admin") || (gender == "Reinigungspersonal") || (gender == "Therapeut")))
             {
                 throw rolenameException;
             }
@@ -76,7 +76,7 @@ namespace HMS.Models
         public string password { get; set; }
         [Required(ErrorMessage = "Bitte tätigen Sie eine Eingabe.")]
         [Display(Name = "Funktion")]
-        [RegularExpression(@"\bArzt\b|\bOberarzt\b|\bSchwester\b|\bPfleger\b|\bAdmin\b|\bReinigungspersonal\b", ErrorMessage = "Bitte tätigen Sie eine Eingabe! ")]
+        [RegularExpression(@"\bArzt\b|\bOberarzt\b|\bPflegepersonal\b|\bAdmin\b|\bReinigungspersonal\b|\bTherapeut\b", ErrorMessage = "Bitte tätigen Sie eine Eingabe! ")]
         public string rolename { get; set; }
         [Display(Name = "Adminrechte")]
         public bool accessright1 { get; set; }

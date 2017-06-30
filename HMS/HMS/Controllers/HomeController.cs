@@ -62,6 +62,9 @@ namespace HMS.Controllers
                 case FunctionLoginStatus.SUCCESS_Reinigungspersonal:
                     result = View("Home", "_Layout_Reinigungspersonal");
                     break;
+                //case FunctionLoginStatus.SUCCESS_Therapeut:
+                //  result = View("Home", "_Layout_Reinigungspersonal");
+                //   break;
                 case FunctionLoginStatus.FAIL:
                     ViewBag.LoginMessage = "Something wrong! Try Again!";
                     break;
@@ -84,6 +87,7 @@ namespace HMS.Controllers
             SUCCESS_Arzt,
             SUCCESS_Schwester,
             SUCCESS_Reinigungspersonal,
+         //   SUCCESS_Therapeut,
             FAIL,
             FIRED,
             RETIRE
@@ -110,6 +114,7 @@ namespace HMS.Controllers
             Boolean dbright_Arzt = false;
             Boolean dbright_Schwester = false;
             Boolean dbright_Reinigungspersonal = false;
+            //Boolean dbright_Therapeut = false;
             Boolean dbisactive = false;
 
             while (reader.Read() == true)
@@ -120,9 +125,13 @@ namespace HMS.Controllers
                 dbright_Arzt = Convert.ToBoolean(reader["accessright2"]);
                 dbright_Schwester = Convert.ToBoolean(reader["accessright3"]);
                 dbright_Reinigungspersonal = Convert.ToBoolean(reader["accessright4"]);
+             //  dbright_Therapeut = Convert.ToBoolean(reader["accessright5"]);
                 dbisactive = Convert.ToBoolean(reader["accessright5"]);
                 // so far use Recht5 instead status
                 //in views its now renamed to status and set at the end of the list
+                //we need to get this accessright5 for a new Layout_Therapeut, so we need to get the 
+                //isactive boolean from object
+               
             }
 
             if (dbUsername == null)
@@ -153,7 +162,12 @@ namespace HMS.Controllers
                     /// success , and status==true
                     return FunctionLoginStatus.SUCCESS_Reinigungspersonal;
                 }
-               
+                //if (dbright_Therapeut == true && dbisactive == true)
+                //{
+                //    /// success , and status==true
+                //    return FunctionLoginStatus.SUCCESS_Reinigungspersonal;
+                //}
+
                 else
                 {
                     /// success , and status==false

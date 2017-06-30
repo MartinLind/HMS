@@ -40,11 +40,10 @@ Layout = "~/Views/Shared/_Layout_Admin.cshtml";
                 @Html.DropDownListFor(model => model.rolename, new List<SelectListItem>
     {                   new SelectListItem() {Text = "", Value="empty", Selected = true},
                         new SelectListItem() {Text = "Arzt", Value="Arzt"},
-                        new SelectListItem() {Text = "Oberarzt", Value="Oberarzt"},
-                        new SelectListItem() {Text = "Schwester", Value="Schwester"},
-                        new SelectListItem() {Text = "Pfleger", Value="Pfleger"},
+                        new SelectListItem() {Text = "Pflegepersonal", Value="Pflegepersonal"},
                         new SelectListItem() {Text = "Admin", Value="Admin"},
-                        new SelectListItem() {Text = "Reinigungspersonal", Value="Reinigungspersonal"}
+                        new SelectListItem() {Text = "Reinigungspersonal", Value="Reinigungspersonal"},
+                        new SelectListItem() {Text = "Therapeut", Value="Therapeut"}
                         
     }, new {@class="form-control"}) 
                 @Html.ValidationMessageFor(model => model.rolename, "", new { @class = "text-danger" })
