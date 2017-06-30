@@ -51,8 +51,8 @@ namespace HMS.Controllers
             {
                 myLayoutName = "_Layout_Reinigungspersonal";
             }
-
-            ViewResult myView = View(db.Rooms.ToList());
+            ViewResult myView = View(db.Rooms.Where(x => x.space == x.vacancy ));
+            //ViewResult myView = View(db.Rooms.ToList());
             myView.MasterName = myLayoutName;
             return myView;
 
