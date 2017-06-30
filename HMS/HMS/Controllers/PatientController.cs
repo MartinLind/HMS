@@ -23,7 +23,7 @@ namespace HMS.Controllers
         //Option sagt uns wonach gesucht wird. Search ist das Suchwort
         //Können noch beliebig viele weitere Suchparameter einbauen
         //MW
-        [Authorize(Roles = "Admin, Arzt, Pfleger")]
+  
         public ActionResult Index(string option, string search)
         {
             String myLayoutName = "";

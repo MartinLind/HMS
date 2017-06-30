@@ -59,7 +59,7 @@ namespace HMS.Models
 
             Exception rolenameException = new Exception("Ungültige Funktion");
 
-            if (!((gender == "Arzt") || (gender == "Oberarzt") || (gender == "Pflegepersonal") || (gender == "Admin") || (gender == "Reinigungspersonal") || (gender == "Therapeut")))
+            if (!((gender == "Arzt") || (gender == "Pflegepersonal") || (gender == "Admin") || (gender == "Reinigungspersonal") || (gender == "Therapeut")))
             {
                 throw rolenameException;
             }
