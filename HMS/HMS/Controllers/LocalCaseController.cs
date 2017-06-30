@@ -18,6 +18,7 @@ namespace HMS.Controllers
         public ActionResult Index()
         {
             return View(db.LocalCases.ToList());
+           
         }
 
         // GET: LocalCase/Details/5
