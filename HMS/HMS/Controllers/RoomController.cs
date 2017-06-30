@@ -17,7 +17,30 @@ namespace HMS.Controllers
         // GET: Room
         public ActionResult Index()
         {
-            return View(db.Rooms.ToList());
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+            ViewResult myView = View(db.Rooms.ToList());
+            myView.MasterName = myLayoutName;
+            return myView;
+
+
+
+            //return View(db.Rooms.ToList());
         }
 
         // GET: Room/Details/5
@@ -32,7 +55,29 @@ namespace HMS.Controllers
             {
                 return HttpNotFound();
             }
-            return View(room);
+
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+            ViewResult myView = View(room);
+            myView.MasterName = myLayoutName;
+            return myView;
+
+            //return View(room);
         }
 
         // GET: Room/Create
@@ -43,7 +88,28 @@ namespace HMS.Controllers
             model.timecreate = DateTime.Now;
             model.timemodify = DateTime.Now;
 
-            return View(model);
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+            ViewResult myView = View(model);
+            myView.MasterName = myLayoutName;
+            return myView;
+
+            //return View(model);
         }
 
         // POST: Room/Create
@@ -75,7 +141,29 @@ namespace HMS.Controllers
             {
                 return HttpNotFound();
             }
-            return View(room);
+
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+            ViewResult myView = View(room);
+            myView.MasterName = myLayoutName;
+            return myView;
+
+            //return View(room);
         }
 
         // POST: Room/Edit/5
@@ -107,7 +195,28 @@ namespace HMS.Controllers
             {
                 return HttpNotFound();
             }
-            return View(room);
+
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+            ViewResult myView = View(room);
+            myView.MasterName = myLayoutName;
+            return myView;
+            //return View(room);
         }
 
         // POST: Room/Delete/5
