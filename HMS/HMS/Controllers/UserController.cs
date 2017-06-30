@@ -18,29 +18,13 @@ namespace HMS.Controllers
         public ActionResult Index()
         {
             String myLayoutName = "";
-            switch (GlobalVariable.currentRole)
+            if (GlobalVariable.currentRole.Equals("Admin"))
             {
-                case GlobalVariable.Role.Admin:
-                    myLayoutName = "_Layout_Admin";
-                    break;
-                case GlobalVariable.Role.Arzt:
-                    myLayoutName = "_Layout_Arzt";
-                    break;
-                case GlobalVariable.Role.Schwester:
-                    myLayoutName = "_Layout_Schwester";
-                    break;
-                default:
-                    myLayoutName = "_Layout_Reinigungspersonal";
-                    break;
+                myLayoutName = "_Layout_Admin";
             }
-
-           
-
-            ViewResult myView = View(db.Users.ToList());
-            myView.MasterName = myLayoutName;
-            return myView;
-
-            //return View(db.Users.ToList());
+            ViewResult NewView = View(db.Users.ToList());
+            NewView.MasterName = myLayoutName;
+            return NewView;
         }
 
         public ActionResult IndexReinigung()
@@ -50,21 +34,9 @@ namespace HMS.Controllers
             {
                 myLayoutName = "_Layout_Reinigungspersonal";
             }
-            //String myLayoutName = "";
-            //switch (GlobalVariable.currentRole)
-            //{
-            //    default:
-            //        myLayoutName = "_Layout_Reinigungspersonal";
-            //        break;
-            //}
-
-
-
             ViewResult NewView = View(db.Users.ToList());
             NewView.MasterName = myLayoutName;
             return NewView;
-
-            //return View(db.Users.ToList());
         }
 
         public ActionResult IndexPfleger()
