@@ -122,6 +122,7 @@ namespace HMS.Controllers
                 dbright_Reinigungspersonal = Convert.ToBoolean(reader["accessright4"]);
                 dbisactive = Convert.ToBoolean(reader["accessright5"]);
                 // so far use Recht5 instead status
+                //in views its now renamed to status and set at the end of the list
             }
 
             if (dbUsername == null)
