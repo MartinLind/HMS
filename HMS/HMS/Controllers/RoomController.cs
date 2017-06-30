@@ -57,8 +57,6 @@ namespace HMS.Controllers
             myView.MasterName = myLayoutName;
             return myView;
 
-
-
             //return View(db.Rooms.ToList());
         }
 
@@ -81,6 +79,7 @@ namespace HMS.Controllers
         }
 
         // GET: Room/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -118,6 +117,7 @@ namespace HMS.Controllers
         }
 
         // GET: Room/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             //Autor: David Bismor
@@ -154,6 +154,7 @@ namespace HMS.Controllers
         // finden Sie unter https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,number,space,vacancy,type,timecreate,timemodify,isactive")] Room room)
         {
             if (ModelState.IsValid)
@@ -167,6 +168,7 @@ namespace HMS.Controllers
         }
 
         // GET: Room/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -208,6 +210,7 @@ namespace HMS.Controllers
         // finden Sie unter https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,number,space,vacancy,type,timecreate,timemodify,isactive")] Room room)
         {
             if (ModelState.IsValid)
@@ -221,6 +224,7 @@ namespace HMS.Controllers
         }
 
         // GET: Room/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -259,6 +263,7 @@ namespace HMS.Controllers
         // POST: Room/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Room room = db.Rooms.Find(id);
