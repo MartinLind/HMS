@@ -17,7 +17,30 @@ namespace HMS.Controllers
         // GET: User
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            String myLayoutName = "";
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    myLayoutName = "_Layout_Admin";
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    myLayoutName = "_Layout_Arzt";
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    myLayoutName = "_Layout_Schwester";
+                    break;
+                default:
+                    myLayoutName = "_Layout_Reinigungspersonal";
+                    break;
+            }
+
+           
+
+            ViewResult myView = View(db.Users.ToList());
+            myView.MasterName = myLayoutName;
+            return myView;
+
+            //return View(db.Users.ToList());
         }
 
         // GET: User/Details/5
