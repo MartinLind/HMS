@@ -5,7 +5,8 @@
     "\\HMS\\HMS",
     "\\HMS\\HMS\\Controllers",
     "\\HMS\\HMS\\Models",
-    "\\HMS\\HMS\\Views"
+    "\\HMS\\HMS\\Views",
+    "\\HMS\\HMS\\Views\\Shared"
   ],
   "SelectedNode": "\\HMS\\HMS.sln",
   "PreviewInSolutionExplorer": false
