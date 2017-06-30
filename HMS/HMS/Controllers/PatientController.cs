@@ -23,6 +23,7 @@ namespace HMS.Controllers
         //Option sagt uns wonach gesucht wird. Search ist das Suchwort
         //Können noch beliebig viele weitere Suchparameter einbauen
         //MW
+        [Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult Index(string option, string search)
         {
             String myLayoutName = "";
@@ -72,6 +73,7 @@ namespace HMS.Controllers
         }
 
         // GET: Patient/Details/5
+        [Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -107,6 +109,7 @@ namespace HMS.Controllers
         }
 
         // GET: Patient/Create
+        [Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult Create()
         {
             String myLayoutName = "";
@@ -137,6 +140,7 @@ namespace HMS.Controllers
         // finden Sie unter https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult Create([Bind(Include = "Id,insuranceID,insurance,prename,surname,phone,email,gender,street,city,zip,dateofbirth,timecreate,timemodify,isactive")] Patient patient)
         {
             if (ModelState.IsValid)
@@ -152,6 +156,7 @@ namespace HMS.Controllers
         }
 
         // GET: Patient/Edit/5
+        [Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -192,6 +197,7 @@ namespace HMS.Controllers
         // finden Sie unter https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult Edit([Bind(Include = "Id,insuranceID, insurance,prename,surname,phone,email,gender,street,city,zip,dateofbirth,,timecreate, timemodify,isactive")] Patient patient)
         {
             //
@@ -208,6 +214,7 @@ namespace HMS.Controllers
         }
 
         // GET: Patient/Delete/5
+        [Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -245,6 +252,7 @@ namespace HMS.Controllers
         // POST: Patient/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult DeleteConfirmed(int id)
         {
             Patient patient = db.Patients.Find(id);
