@@ -67,6 +67,30 @@ namespace HMS.Controllers
             //return View(db.Users.ToList());
         }
 
+        public ActionResult IndexPfleger()
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Pflegepersonal"))
+            {
+                myLayoutName = "_Layout_Schwester";
+            }
+            //String myLayoutName = "";
+            //switch (GlobalVariable.currentRole)
+            //{
+            //    default:
+            //        myLayoutName = "_Layout_Reinigungspersonal";
+            //        break;
+            //}
+
+
+
+            ViewResult NewView = View(db.Users.ToList());
+            NewView.MasterName = myLayoutName;
+            return NewView;
+
+            //return View(db.Users.ToList());
+        }
+
         // GET: User/Details/5
         public ActionResult Details(int? id)
         {

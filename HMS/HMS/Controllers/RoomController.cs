@@ -61,6 +61,24 @@ namespace HMS.Controllers
             //return View(db.Rooms.ToList());
         }
 
+        public ActionResult IndexPfleger()
+        {
+            String myLayoutName = "";
+
+            if (GlobalVariable.currentRole.Equals("Pflegepersonal"))
+            {
+                myLayoutName = "_Layout_Schwester";
+            }
+
+            ViewResult myView = View(db.Rooms.ToList());
+            myView.MasterName = myLayoutName;
+            return myView;
+
+
+
+            //return View(db.Rooms.ToList());
+        }
+
         // GET: Room/Details/5
         public ActionResult Details(int? id)
         {

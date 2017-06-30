@@ -289,6 +289,8 @@
     <Content Include="Views\Shared\_Layout_Schwester.cshtml" />
     <Content Include="Views\User\IndexReinigung.cshtml" />
     <Content Include="Views\Room\IndexReinigung.cshtml" />
+    <Content Include="Views\User\IndexPfleger.cshtml" />
+    <Content Include="Views\Room\IndexPfleger.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

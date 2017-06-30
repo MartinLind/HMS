@@ -82,7 +82,7 @@ namespace HMS.Models
         public bool accessright1 { get; set; }
         [Display(Name = "Arztrechte")]
         public bool accessright2 { get; set; }
-        [Display(Name = "Personalrechte")]
+        [Display(Name = "Pflegerechte")]
         public bool accessright3 { get; set; }
         [Display(Name = "Putzkraft")]
         public bool accessright4 { get; set; }
