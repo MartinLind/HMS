@@ -91,15 +91,7 @@ Layout = "~/Views/Shared/_Layout_Admin.cshtml";
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.accessright5, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.accessright5)
-                    @Html.ValidationMessageFor(model => model.accessright5, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
+     
 
         <div class="form-group">
             @Html.LabelFor(model => model.prename, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -193,12 +185,21 @@ Layout = "~/Views/Shared/_Layout_Admin.cshtml";
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="display:none">
             @Html.LabelFor(model => model.isactive, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.isactive)
                     @Html.ValidationMessageFor(model => model.isactive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+          <div class="form-group">
+            @Html.LabelFor(model => model.accessright5, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.accessright5)
+                    @Html.ValidationMessageFor(model => model.accessright5, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -210,6 +211,7 @@ Layout = "~/Views/Shared/_Layout_Admin.cshtml";
         onclick="@("window.location.href='" + @Url.Action("Index", "User") + "'");" />
             </div>
         </div>
+         
     </div>
 }
 <!--

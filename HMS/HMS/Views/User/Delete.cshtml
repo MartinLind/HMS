@@ -60,13 +60,7 @@ Layout = "~/Views/Shared/_Layout_Admin.cshtml";
             @Html.DisplayFor(model => model.accessright4)
         </dd>
 
-           <dt>
-            @Html.DisplayNameFor(model => model.accessright5)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.accessright5)
-        </dd>
+      
 
         <dt>
             @Html.DisplayNameFor(model => model.prename)
@@ -156,12 +150,19 @@ Layout = "~/Views/Shared/_Layout_Admin.cshtml";
             @Html.DisplayFor(model => model.timemodify)
         </dd>
 
-        <dt>
+        <dt style="display:none">
             @Html.DisplayNameFor(model => model.isactive)
         </dt>
 
-        <dd>
+        <dd style="display:none">
             @Html.DisplayFor(model => model.isactive)
+        </dd>
+             <dt>
+            @Html.DisplayNameFor(model => model.accessright5)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.accessright5)
         </dd>
 
     </dl>

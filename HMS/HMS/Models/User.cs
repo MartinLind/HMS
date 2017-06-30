@@ -86,7 +86,7 @@ namespace HMS.Models
         public bool accessright3 { get; set; }
         [Display(Name = "Anlage Behandlungen")]
         public bool accessright4 { get; set; }
-        [Display(Name = "Anlage none")]
+        [Display(Name = "Status")]
         public bool accessright5 { get; set; }
 
         [Required]
