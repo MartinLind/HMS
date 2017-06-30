@@ -291,6 +291,8 @@
     <Content Include="Views\Room\IndexReinigung.cshtml" />
     <Content Include="Views\User\IndexPfleger.cshtml" />
     <Content Include="Views\Room\IndexPfleger.cshtml" />
+    <Content Include="Views\User\IndexArzt.cshtml" />
+    <Content Include="Views\Room\IndexArzt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
