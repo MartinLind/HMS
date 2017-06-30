@@ -78,15 +78,15 @@ namespace HMS.Models
         [Display(Name = "Funktion")]
         [RegularExpression(@"\bArzt\b|\bOberarzt\b|\bSchwester\b|\bPfleger\b|\bAdmin\b|\bReinigungspersonal\b", ErrorMessage = "Bitte tätigen Sie eine Eingabe! ")]
         public string rolename { get; set; }
-        [Display(Name = "Rechte1")]
+        [Display(Name = "Anlage Patient")]
         public bool accessright1 { get; set; }
-        [Display(Name = "Rechte2")]
+        [Display(Name = "Anlage Personal")]
         public bool accessright2 { get; set; }
-        [Display(Name = "Rechte3")]
+        [Display(Name = "Anlage Räume")]
         public bool accessright3 { get; set; }
-        [Display(Name = "Rechte4")]
+        [Display(Name = "Anlage Behandlungen")]
         public bool accessright4 { get; set; }
-        [Display(Name = "Rechte5")]
+        [Display(Name = "Status")]
         public bool accessright5 { get; set; }
 
         [Required]
