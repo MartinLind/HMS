@@ -15,6 +15,7 @@ namespace HMS.Controllers
         private DBContainer db = new DBContainer();
 
         // GET: User
+        //Autor: David & Yunus
         public ActionResult Index()
         {
             String myLayoutName = "";
@@ -79,6 +80,7 @@ namespace HMS.Controllers
         }
 
         // GET: User/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             //Autor: David Bismor
@@ -107,6 +109,7 @@ namespace HMS.Controllers
         }
 
         // GET: User/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -139,6 +142,7 @@ namespace HMS.Controllers
         }
 
         // GET: User/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
