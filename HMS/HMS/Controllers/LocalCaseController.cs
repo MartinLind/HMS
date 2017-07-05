@@ -111,6 +111,13 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                //localCase.Room.Add(db.Rooms.Find(idRoom));
+                //Mit dem Befehlt kann man einem Case einem Raum zuordnen.
+                //Wir müssen also irgendwie noch die id beim Create mitliefern (int? idRoom) und hier dann speichern
+                //Analog auch mit Patienten
+                //localCase.Patient.Add(db.Patient.Find(idPat));
+
                 localCase.timecreate = DateTime.Now;
                 //localCase.timeclosed = DateTime.Now;
                 localCase.timemodify = DateTime.Now;
