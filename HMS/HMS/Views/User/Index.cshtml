@@ -41,7 +41,9 @@
         <th>
             @Html.DisplayNameFor(model => model.accessright4)
         </th>
-      
+        <th>
+            @Html.DisplayNameFor(model => model.accessright5)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.prename)
         </th>
@@ -75,12 +77,10 @@
         <th>
             @Html.DisplayNameFor(model => model.timemodify)
         </th>
-        <th style="display:none">
+        <th>
             @Html.DisplayNameFor(model => model.isactive)
         </th>
-          <th>
-            @Html.DisplayNameFor(model => model.accessright5)
-        </th>
+          
         <th></th>
     </tr>
 
@@ -107,7 +107,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.accessright4)
         </td>
-       
+        <td>
+            @Html.DisplayFor(modelItem => item.accessright5)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.prename)
         </td>
@@ -141,12 +143,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.timemodify)
         </td>
-        <td style="display:none">
+        <td >
             @Html.DisplayFor(modelItem => item.isactive)
         </td>
-         <td>
-            @Html.DisplayFor(modelItem => item.accessright5)
-        </td>
+         
         <td>
             <input id="GoCreatePatient" type="button" value="Bearbeiten" class="btn btn-default"   style="width:90px"
         onclick="@("window.location.href='" + @Url.Action("Edit", "User",  new {id=item.Id} )+ "'");" />
