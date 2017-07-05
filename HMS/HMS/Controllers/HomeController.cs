@@ -101,7 +101,7 @@ namespace HMS.Controllers
 
             connection = new SqlConnection(ConnectionString);
 
-            String SQLString = String.Format("SELECT username,rolename,accessright1,accessright2,accessright3,accessright4,accessright5 FROM dbo.ObjectSet_User WHERE username = '{0}' AND password = '{1}'", username, password);
+            String SQLString = String.Format("SELECT dbo.ObjectSet_User.username,dbo.ObjectSet_User.rolename,dbo.ObjectSet_User.accessright1,dbo.ObjectSet_User.accessright2,dbo.ObjectSet_User.accessright3,dbo.ObjectSet_User.accessright4,dbo.ObjectSet_User.accessright4,dbo.ObjectSet.isactive FROM dbo.ObjectSet_User LEFT JOIN dbo.ObjectSet ON dbo.ObjectSet_User.Id = dbo.ObjectSet.Id WHERE  username = '{0}' AND password = '{1}' ", username, password);
 
             SqlCommand cmd = new SqlCommand(SQLString, connection);
 
@@ -126,7 +126,7 @@ namespace HMS.Controllers
                 dbright_Schwester = Convert.ToBoolean(reader["accessright3"]);
                 dbright_Reinigungspersonal = Convert.ToBoolean(reader["accessright4"]);
              //  dbright_Therapeut = Convert.ToBoolean(reader["accessright5"]);
-                dbisactive = Convert.ToBoolean(reader["accessright5"]);
+                dbisactive = Convert.ToBoolean(reader["isactive"]);
                 // so far use Recht5 instead status
                 //in views its now renamed to status and set at the end of the list
                 //we need to get this accessright5 for a new Layout_Therapeut, so we need to get the 
