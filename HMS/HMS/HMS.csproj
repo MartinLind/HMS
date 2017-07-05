@@ -293,6 +293,7 @@
     <Content Include="Views\Room\IndexPfleger.cshtml" />
     <Content Include="Views\User\IndexArzt.cshtml" />
     <Content Include="Views\Room\IndexArzt.cshtml" />
+    <Content Include="Views\Shared\_Layout_Therapeut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

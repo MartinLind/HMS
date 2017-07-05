@@ -12,8 +12,8 @@ namespace HMS.Controllers
             Admin,
             Arzt,
             Schwester,
-            Reinigungspersonal
-            //Therapeut
+            Reinigungspersonal,
+            Therapeut
         }
 
         public static Role currentRole = Role.Admin;
