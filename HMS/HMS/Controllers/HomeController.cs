@@ -116,7 +116,7 @@ namespace HMS.Controllers
             Boolean dbright_Arzt = false;
             Boolean dbright_Schwester = false;
             Boolean dbright_Reinigungspersonal = false;
-            Boolean dbright_Therapeut = false;
+            //Boolean dbright_Therapeut = false;
             Boolean dbisactive = false;
 
             while (reader.Read() == true)
@@ -127,7 +127,7 @@ namespace HMS.Controllers
                 dbright_Arzt = Convert.ToBoolean(reader["accessright2"]);
                 dbright_Schwester = Convert.ToBoolean(reader["accessright3"]);
                 dbright_Reinigungspersonal = Convert.ToBoolean(reader["accessright4"]);
-                dbright_Therapeut = Convert.ToBoolean(reader["accessright5"]);
+                //dbright_Therapeut = Convert.ToBoolean(reader["accessright5"]);
                 dbisactive = Convert.ToBoolean(reader["isactive"]);
                 // so far use Recht5 instead status
                 //in views its now renamed to status and set at the end of the list
@@ -164,11 +164,11 @@ namespace HMS.Controllers
                     /// success , and status==true
                     return FunctionLoginStatus.SUCCESS_Reinigungspersonal;
                 }
-                if (dbright_Therapeut == true && dbisactive == true)
-                {
-                    /// success , and status==true
-                    return FunctionLoginStatus.SUCCESS_Therapeut;
-                }
+                //if (dbright_Therapeut == true && dbisactive == true)
+                //{
+                //    /// success , and status==true
+                //    return FunctionLoginStatus.SUCCESS_Therapeut;
+                //}
 
                 else
                 {
