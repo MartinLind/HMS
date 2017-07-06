@@ -27,6 +27,35 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.diagnosis, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.diagnosis, new List<SelectListItem>
+    {                   new SelectListItem() {Text = "", Value="empty", Selected = true},
+                        new SelectListItem() {Text = "C16 - Magenkrebs", Value="C16 - Magenkrebs"},
+                        new SelectListItem() {Text = "C34 - Lungenkrebs", Value="C34 - Lungenkrebs"},
+                        new SelectListItem() {Text = "C18 - Dickdarmkrebs", Value="C18 - Dickdarmkrebs"},
+                        new SelectListItem() {Text = "E02 - Schilddrüsenunterfunktion", Value="E02 - Schilddrüsenunterfunktion"},
+                        new SelectListItem() {Text = "E15 - Hyperinsulinismus", Value="E15 - Hyperinsulinismus"},
+                        new SelectListItem() {Text = "E60 - Zinkmangel", Value="E60 - Zinkmangel"},
+                        new SelectListItem() {Text = "F00 - Alzheimer-Krankheit", Value="F00 - Alzheimer-Krankheit"},
+                        new SelectListItem() {Text = "F06 - Halluzination", Value="F06 - Halluzination"},
+                        new SelectListItem() {Text = "F32 - Depression", Value="F32 - Depression"},
+                        new SelectListItem() {Text = "I10.9 - Essentielle Hypertonie", Value="I110.9 - Essenzielle Hypertonie"},
+                        new SelectListItem() {Text = "I12.9 - Hypertensive Nierenkrankheit", Value="I12.9 - Hypertensive Nierenkrankheit"},
+                        new SelectListItem() {Text = "J02 - Akute Rachenentzündung", Value="J02 - Akute Rachenentzündung"},
+                        new SelectListItem() {Text = "J09 - Vogelgrippe", Value="J09 - Vogelgrippe"},
+                        new SelectListItem() {Text = "J33 - Polyp der Nasenhöhle", Value="J33 - Polyp der Nasenhöhle"},
+                        new SelectListItem() {Text = "J40 - Bronchitis", Value="J40 - Bronchitis"},
+                        new SelectListItem() {Text = "M23 - Meniskusriss", Value="M23 - Meniskusriss"},
+                        new SelectListItem() {Text = "M50 - Zervikale Bandscheibenschäden", Value="Zervikale Bandscheibenschäden"},
+                        new SelectListItem() {Text = "M87 - Knochennekrose", Value="M87 - Knochennekrose"}
+                        
+    }, new {@class="form-control"}) 
+                @Html.ValidationMessageFor(model => model.diagnosis, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.casenr, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.casenr, new { htmlAttributes = new { @class = "form-control" } })

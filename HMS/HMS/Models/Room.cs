@@ -23,12 +23,17 @@ namespace HMS.Models
         [Required(ErrorMessage = "Bitte eine Raumnummer eintragen.")]
         [Display(Name = "Raumnummer")]
         public string number { get; set; }
+
         [Required(ErrorMessage = "Bitte Bettenanzahl angeben.")]
         [Display(Name = "Platz")]
+        [RegularExpression(@"^\d+$" , ErrorMessage = "Überprüfen Sie Ihre Eingabe!")]
         public string space { get; set; }
+
         [Required(ErrorMessage = "Bitte verfügbare Betten angeben.")]
         [Display(Name = "Freie Betten")]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Überprüfen Sie Ihre Eingabe!")]
         public string vacancy { get; set; }
+
         [Required(ErrorMessage = "Bitte Raumtypen angeben.")]
         [Display(Name = "Raumtyp")]
         [RegularExpression(@"\bOP\b|\bUntersuchungsraum\b|\bWarteraum\b|\bBehandlungsraum\b|\bPatientenzimmer\b", ErrorMessage = "Bitte tätigen Sie eine Eingabe!")]
