@@ -29,6 +29,9 @@ namespace HMS.Controllers
                 case GlobalVariable.Role.Schwester:
                     myLayoutName = "_Layout_Schwester";
                     break;
+                case GlobalVariable.Role.Therapeut:
+                    myLayoutName = "_Layout_Therapeut";
+                    break;
                 default:
                     myLayoutName = "_Layout_Reinigungspersonal";
                     break;
@@ -140,6 +143,9 @@ namespace HMS.Controllers
                 case GlobalVariable.Role.Schwester:
                     myLayoutName = "_Layout_Schwester";
                     break;
+                case GlobalVariable.Role.Therapeut:
+                    myLayoutName = "_Layout_Therapeut";
+                    break;
                 default:
                     myLayoutName = "_Layout_Reinigungspersonal";
                     break;
@@ -172,6 +178,9 @@ namespace HMS.Controllers
                     break;
                 case GlobalVariable.Role.Schwester:
                     myLayoutName = "_Layout_Schwester";
+                    break;
+                case GlobalVariable.Role.Therapeut:
+                    myLayoutName = "_Layout_Therapeut";
                     break;
                 default:
                     myLayoutName = "_Layout_Reinigungspersonal";
@@ -238,6 +247,9 @@ namespace HMS.Controllers
                 case GlobalVariable.Role.Schwester:
                     myLayoutName = "_Layout_Schwester";
                     break;
+                case GlobalVariable.Role.Therapeut:
+                    myLayoutName = "_Layout_Therapeut";
+                    break;
                 default:
                     myLayoutName = "_Layout_Reinigungspersonal";
                     break;
@@ -298,6 +310,9 @@ namespace HMS.Controllers
                     break;
                 case GlobalVariable.Role.Schwester:
                     myLayoutName = "_Layout_Schwester";
+                    break;
+                case GlobalVariable.Role.Therapeut:
+                    myLayoutName = "_Layout_Therapeut";
                     break;
                 default:
                     myLayoutName = "_Layout_Reinigungspersonal";
