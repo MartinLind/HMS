@@ -177,6 +177,15 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                if(System.Convert.ToInt32(room.vacancy) > System.Convert.ToInt32(room.space))
+                {
+                    ModelState.AddModelError("", "Überprüfen Sie Ihre Eingabe auf Richtigkeit! Es können nicht mehr freie Betten angeboten werden als unser Platzangebot!");
+                    return View(room);
+                    //throw new Exception("Überprüfen Sie Ihre Eingabe!");
+                    //ViewBag.Message = "Überprüfen Sie Ihre Eingabe!";
+                    //return View(room);
+                }
+
                 db.Rooms.Add(room);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -233,6 +242,11 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (System.Convert.ToInt32(room.vacancy) > System.Convert.ToInt32(room.space))
+                {
+                    ModelState.AddModelError("", "Überprüfen Sie Ihre Eingabe auf Richtigkeit! Es können nicht mehr freie Betten angeboten werden als unser Platzangebot!");
+                    return View(room);
+                }
                 room.timemodify = DateTime.Now;
                 db.Entry(room).State = EntityState.Modified;
                 db.SaveChanges();

@@ -26,7 +26,7 @@ namespace HMS.Models
 
         [Required(ErrorMessage = "Bitte Bettenanzahl angeben.")]
         [Display(Name = "Platz")]
-        [RegularExpression(@"^\d+$" , ErrorMessage = "Überprüfen Sie Ihre Eingabe!")]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Überprüfen Sie Ihre Eingabe!")]
         public string space { get; set; }
 
         [Required(ErrorMessage = "Bitte verfügbare Betten angeben.")]
