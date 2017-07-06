@@ -70,6 +70,20 @@ namespace HMS.Controllers
             //return View(db.Users.ToList());
         }
 
+        public ActionResult IndexTherapeut()
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Therapeut"))
+            {
+                myLayoutName = "_Layout_Therapeut";
+            }
+
+            ViewResult NewView = View(db.Users.ToList());
+            NewView.MasterName = myLayoutName;
+            return NewView;
+
+            //return View(db.Users.ToList());
+        }
 
 
         // GET: User/Details/5

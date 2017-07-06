@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<HMS.Models.LocalCase>
 
 @{
-    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+    Layout = "~/Views/Shared/_Layout_Schwester.cshtml";
     ViewBag.Title = "Index";
 }
     <!--Autor: David Bismor -->
@@ -9,10 +9,7 @@
       <tr>
            <td style="position: absolute; left:auto"><h2>Aktuelle Behandlungspläne..</h2></td>
 
-        <td style="position:absolute; right:5%; top:10%">
-   <input id="GoCreatePatient" type="button" value="Behandlung hinzufügen" class="btn btn-default" style="width:175px"  
-        onclick="@("window.location.href='" + @Url.Action("Create", "LocalCase") + "'");" />
-            </td>
+        
 </tr>
  </table>
     <br /><br /> <br /> <br />
@@ -86,21 +83,7 @@
             }
 
         </td>
-        <td>
-                <input id="GoCreatePatient" type="button" value="Bearbeiten" class="btn btn-default"   style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Edit", "LocalCase",  new {id=item.Id} )+ "'");" />
-            <br />
-             <input id="GoCreatePatient" type="button" value="Details" class="btn btn-default"  style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Details", "LocalCase",  new {id=item.Id} ) + "'");" />
-            <br />
-             <input id="GoCreatePatient" type="button" value="Beenden" class="btn btn-default" style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Delete", "LocalCase",  new {id=item.Id} )+ "'" );" />
-<!--
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id }) 
-    -->
-        </td>
+       
     </tr>
 }
 

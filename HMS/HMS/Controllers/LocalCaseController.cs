@@ -18,27 +18,48 @@ namespace HMS.Controllers
         public ActionResult Index()
         {
             String myLayoutName = "";
-            switch (GlobalVariable.currentRole)
+            if (GlobalVariable.currentRole.Equals("Admin"))
             {
-                case GlobalVariable.Role.Admin:
-                    myLayoutName = "_Layout_Admin";
-                    break;
-                case GlobalVariable.Role.Arzt:
-                    myLayoutName = "_Layout_Arzt";
-                    break;
-                case GlobalVariable.Role.Schwester:
-                    myLayoutName = "_Layout_Schwester";
-                    break;
-                default:
-                    myLayoutName = "_Layout_Reinigungspersonal";
-                    break;
+                myLayoutName = "_Layout_Admin";
             }
+            ViewResult NewView = View(db.LocalCases.ToList());
+            NewView.MasterName = myLayoutName;
+            return NewView;
+        }
+        public ActionResult IndexPfleger()
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Schwester"))
+            {
+                myLayoutName = "_Layout_Schwester";
+            }
+            ViewResult NewView = View(db.LocalCases.ToList());
+            NewView.MasterName = myLayoutName;
+            return NewView;
+        }
 
-            ViewResult myView = View(db.LocalCases.ToList());
-            myView.MasterName = myLayoutName;
-            return myView;
-            //return View(db.LocalCases.ToList());
-           
+        public ActionResult IndexArzt()
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Arzt"))
+            {
+                myLayoutName = "_Layout_Arzt";
+            }
+            ViewResult NewView = View(db.LocalCases.ToList());
+            NewView.MasterName = myLayoutName;
+            return NewView;
+        }
+
+        public ActionResult IndexTherapeut()
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Therapeut"))
+            {
+                myLayoutName = "_Layout_Therapeut";
+            }
+            ViewResult NewView = View(db.LocalCases.ToList());
+            NewView.MasterName = myLayoutName;
+            return NewView;
         }
 
         // GET: LocalCase/Details/5

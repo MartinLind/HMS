@@ -96,6 +96,24 @@ namespace HMS.Controllers
             //return View(db.Rooms.ToList());
         }
 
+        public ActionResult IndexTherapeut()
+        {
+            String myLayoutName = "";
+
+            if (GlobalVariable.currentRole.Equals("Therapeut"))
+            {
+                myLayoutName = "_Layout_Therapeut";
+            }
+
+            ViewResult myView = View(db.Rooms.ToList());
+            myView.MasterName = myLayoutName;
+            return myView;
+
+
+
+            //return View(db.Rooms.ToList());
+        }
+
         // GET: Room/Details/5
         //[Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)

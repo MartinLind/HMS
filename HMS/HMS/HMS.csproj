@@ -294,6 +294,14 @@
     <Content Include="Views\User\IndexArzt.cshtml" />
     <Content Include="Views\Room\IndexArzt.cshtml" />
     <Content Include="Views\Shared\_Layout_Therapeut.cshtml" />
+    <Content Include="Views\LocalCase\IndexPfleger.cshtml" />
+    <Content Include="Views\LocalCase\IndexArzt.cshtml" />
+    <Content Include="Views\LocalCase\IndexTherapeut.cshtml" />
+    <Content Include="Views\User\IndexTherapeut.cshtml" />
+    <Content Include="Views\Patient\IndexTherapeut.cshtml" />
+    <Content Include="Views\Room\IndexTherapeut.cshtml" />
+    <Content Include="Views\Patient\IndexPfleger.cshtml" />
+    <Content Include="Views\Patient\IndexArzt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

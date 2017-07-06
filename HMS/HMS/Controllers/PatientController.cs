@@ -27,20 +27,9 @@ namespace HMS.Controllers
         public ActionResult Index(string option, string search)
         {
             String myLayoutName = "";
-            switch (GlobalVariable.currentRole)
+            if (GlobalVariable.currentRole.Equals("Admin"))
             {
-                case GlobalVariable.Role.Admin:
-                    myLayoutName = "_Layout_Admin";
-                    break;
-                case GlobalVariable.Role.Arzt:
-                    myLayoutName = "_Layout_Arzt";
-                    break;
-                case GlobalVariable.Role.Schwester:
-                    myLayoutName = "_Layout_Schwester";
-                    break;
-                default:
-                    myLayoutName = "_Layout_Reinigungspersonal";
-                    break;
+                myLayoutName = "_Layout_Admin";
             }
 
             ViewResult myView = View(db.Patients.ToList());
@@ -61,6 +50,118 @@ namespace HMS.Controllers
                     myView = View(db.Patients.Where(x => x.dateofbirth.Equals(searchDate) || search == null).ToList());
                 }
                 catch(System.FormatException)
+                {
+                    myView = View(db.Patients.ToList());
+                }
+
+            }
+
+            myView.MasterName = myLayoutName;
+
+            return myView;
+        }
+
+
+        public ActionResult IndexTherapeut(string option, string search)
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Therapeut"))
+            {
+                myLayoutName = "_Layout_Therapeut";
+            }
+
+            ViewResult myView = View(db.Patients.ToList());
+
+            if (option == "Gender")
+            {
+                myView = View(db.Patients.Where(x => x.gender.StartsWith(search) || search == null).ToList());
+            }
+            else if (option == "Name")
+            {
+                myView = View(db.Patients.Where(x => x.surname.StartsWith(search) || search == null).ToList());
+            }
+            else if (option == "Geburtsdatum")
+            {
+                try
+                {
+                    DateTime searchDate = Convert.ToDateTime(search);
+                    myView = View(db.Patients.Where(x => x.dateofbirth.Equals(searchDate) || search == null).ToList());
+                }
+                catch (System.FormatException)
+                {
+                    myView = View(db.Patients.ToList());
+                }
+
+            }
+
+            myView.MasterName = myLayoutName;
+
+            return myView;
+        }
+
+        public ActionResult IndexPfleger(string option, string search)
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Pflegepersonal"))
+            {
+                myLayoutName = "_Layout_Schwester";
+            }
+
+            ViewResult myView = View(db.Patients.ToList());
+
+            if (option == "Gender")
+            {
+                myView = View(db.Patients.Where(x => x.gender.StartsWith(search) || search == null).ToList());
+            }
+            else if (option == "Name")
+            {
+                myView = View(db.Patients.Where(x => x.surname.StartsWith(search) || search == null).ToList());
+            }
+            else if (option == "Geburtsdatum")
+            {
+                try
+                {
+                    DateTime searchDate = Convert.ToDateTime(search);
+                    myView = View(db.Patients.Where(x => x.dateofbirth.Equals(searchDate) || search == null).ToList());
+                }
+                catch (System.FormatException)
+                {
+                    myView = View(db.Patients.ToList());
+                }
+
+            }
+
+            myView.MasterName = myLayoutName;
+
+            return myView;
+        }
+
+        public ActionResult IndexArzt(string option, string search)
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Arzt"))
+            {
+                myLayoutName = "_Layout_Arzt";
+            }
+
+            ViewResult myView = View(db.Patients.ToList());
+
+            if (option == "Gender")
+            {
+                myView = View(db.Patients.Where(x => x.gender.StartsWith(search) || search == null).ToList());
+            }
+            else if (option == "Name")
+            {
+                myView = View(db.Patients.Where(x => x.surname.StartsWith(search) || search == null).ToList());
+            }
+            else if (option == "Geburtsdatum")
+            {
+                try
+                {
+                    DateTime searchDate = Convert.ToDateTime(search);
+                    myView = View(db.Patients.Where(x => x.dateofbirth.Equals(searchDate) || search == null).ToList());
+                }
+                catch (System.FormatException)
                 {
                     myView = View(db.Patients.ToList());
                 }
