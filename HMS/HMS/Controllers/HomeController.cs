@@ -103,7 +103,7 @@ namespace HMS.Controllers
 
             connection = new SqlConnection(ConnectionString);
 
-            String SQLString = String.Format("SELECT dbo.ObjectSet_Room.num,dbo.ObjectSet_User.rolename,dbo.ObjectSet_User.accessright1,dbo.ObjectSet_User.accessright2,dbo.ObjectSet_User.accessright3,dbo.ObjectSet_User.accessright4,dbo.ObjectSet_User.accessright5,dbo.ObjectSet.isactive FROM dbo.ObjectSet_User LEFT JOIN dbo.ObjectSet ON dbo.ObjectSet_User.Id = dbo.ObjectSet.Id WHERE  username = '{0}' AND password = '{1}' ", username, password);
+            String SQLString = String.Format("SELECT dbo.ObjectSet_User.username,dbo.ObjectSet_User.rolename,dbo.ObjectSet_User.accessright1,dbo.ObjectSet_User.accessright2,dbo.ObjectSet_User.accessright3,dbo.ObjectSet_User.accessright4,dbo.ObjectSet_User.accessright5,dbo.ObjectSet.isactive FROM dbo.ObjectSet_User LEFT JOIN dbo.ObjectSet ON dbo.ObjectSet_User.Id = dbo.ObjectSet.Id WHERE  username = '{0}' AND password = '{1}' ", username, password);
 
             SqlCommand cmd = new SqlCommand(SQLString, connection);
 
