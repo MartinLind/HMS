@@ -119,6 +119,13 @@ namespace HMS.Controllers
 
             ViewResult myView = View();
             myView.MasterName = myLayoutName;
+
+            //Für Raum
+            ViewBag.Id = new SelectList(db.Rooms, "Id", "number");
+
+            //Für User
+            ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+
             return myView;
             //return View();
         }
@@ -131,21 +138,48 @@ namespace HMS.Controllers
         public ActionResult Create([Bind(Include = "Id,timecreate,timeclosed,casenr,diagnosis,medication,therapy,expectedtime,timemodify,isactive")] LocalCase localCase)
         {
             if (ModelState.IsValid)
-            {
-
-                //localCase.Room.Add(db.Rooms.Find(idRoom));
+            {             
+          
+                
                 //Mit dem Befehlt kann man einem Case einem Raum zuordnen.
                 //Wir müssen also irgendwie noch die id beim Create mitliefern (int? idRoom) und hier dann speichern
                 //Analog auch mit Patienten
                 //localCase.Patient.Add(db.Patient.Find(idPat));
 
                 localCase.timecreate = DateTime.Now;
-                //localCase.timeclosed = DateTime.Now;
                 localCase.timemodify = DateTime.Now;
+
+                //
+                //Hier wird die Beziehung Raum - Behandlung gespeichert
+                //
+                string wirbrauchendieid = Request.Form["Id"].ToString();
+                int roomId = System.Convert.ToInt32(wirbrauchendieid);
+                localCase.Room.Add(db.Rooms.Find(roomId));
+
+                //
+                //Hier wird die Beziehung User - Behandlung gespeichert
+                //
+                string dieidvomuser = Request.Form["IdUser"].ToString();
+                int userId = System.Convert.ToInt32(dieidvomuser);
+                localCase.User.Add(db.Users.Find(userId));
+
+
+                //
+                //Hier wird die Beziehung Patient - Behandlung gespeichert
+                //
+
+
+                ViewBag.Id = new SelectList(db.Rooms, "Id", "number", localCase.Id);
+                ViewBag.IdUser = new SelectList(db.Users, "Id", "surname", localCase.Id);
+                //localCase.Room.Add(db.Rooms.Find(ViewBag.selectedValue));
                 db.LocalCases.Add(localCase);
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            
+           
+            //localCase.Room.Add(db.Rooms.Find(ViewBag.Id));
 
             return View(localCase);
         }

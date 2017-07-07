@@ -48,6 +48,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Room)
         </th>
+        <th>
+            @Html.DisplayName("Patient")
+        </th>
+        <th>
+            @Html.DisplayName("Nachname User")
+        </th>
         <th></th>
     </tr>
 
@@ -83,8 +89,17 @@
         <td>
             @foreach (var test in item.Room){
             @test.number
-            }
-
+            } 
+        </td>
+        <td>
+            @foreach (var test in item.Patient){
+            @test.surname
+            } 
+        </td>
+        <td>
+            @foreach (var test in item.User){
+            @test.surname
+            } 
         </td>
         <td>
                 <input id="GoCreatePatient" type="button" value="Bearbeiten" class="btn btn-default"   style="width:90px"
