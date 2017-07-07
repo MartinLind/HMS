@@ -34,11 +34,11 @@ namespace HMS.Controllers
 
             ViewResult myView = View(db.Patients.ToList());
 
-            if (option == "Gender")
-            {
-                myView  = View(db.Patients.Where(x => x.gender.StartsWith(search) || search == null).ToList());
-            }
-            else if (option == "Name")
+            //if (option == "Gender")
+            //{
+            //    myView  = View(db.Patients.Where(x => x.gender.StartsWith(search) || search == null).ToList());
+            //}
+            if (option == "Name")
             {
                 myView = View(db.Patients.Where(x => x.surname.StartsWith(search) || search == null).ToList());
             }
@@ -47,14 +47,14 @@ namespace HMS.Controllers
                 try
                 {
                     DateTime searchDate = Convert.ToDateTime(search);
-                    myView = View(db.Patients.Where(x => x.dateofbirth.Equals(searchDate) || search == null).ToList());
+                    myView = View(db.Patients.Where(x => x.dateofbirth.Equals(search) || search == null).ToList());
                 }
-                catch(System.FormatException)
+                catch (System.FormatException)
                 {
-                    myView = View(db.Patients.ToList());
+                myView = View(db.Patients.ToList());
                 }
 
-            }
+        }
 
             myView.MasterName = myLayoutName;
 

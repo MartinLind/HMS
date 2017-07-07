@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HMS.Models;
-
+using System.Data.SqlClient;
 namespace HMS.Controllers
 {
     public class RoomController : Controller
@@ -202,9 +202,32 @@ namespace HMS.Controllers
         //[Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,number,space,vacancy,type,timecreate,timemodify,isactive")] Room room)
         {
+            SqlConnection connection = null;
+
+            String ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=HMSDB;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+
+            connection = new SqlConnection(ConnectionString);
+
+            String SQLString = String.Format("SELECT dbo.ObjectSet_Room.number FROM dbo.ObjectSet_Room WHERE number = '{0}' ", room.number);
+
+            SqlCommand cmd = new SqlCommand(SQLString, connection);
+
+            connection.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            String dbroomnumber = null;
+
+           
+            while (reader.Read() == true)
+            {
+                dbroomnumber = Convert.ToString(reader["number"]);
+               
+            }
             if (ModelState.IsValid)
             {
-                if(System.Convert.ToInt32(room.vacancy) > System.Convert.ToInt32(room.space))
+
+                if (System.Convert.ToInt32(room.vacancy) > System.Convert.ToInt32(room.space))
                 {
                     ModelState.AddModelError("", "Überprüfen Sie Ihre Eingabe auf Richtigkeit! Es können nicht mehr freie Betten angeboten werden als unser Platzangebot!");
                     return View(room);
@@ -213,11 +236,25 @@ namespace HMS.Controllers
                     //return View(room);
                 }
 
-                db.Rooms.Add(room);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //db.Rooms.Add(room);
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
             }
 
+
+            if (dbroomnumber == null)
+            {
+                /// success
+                db.Rooms.Add(room);
+                db.SaveChanges();
+                return RedirectToAction("Index"); ;
+            }
+            else
+            {
+                ModelState.AddModelError("", "Raumnummer bereits vergeben");
+            }
+
+           
             return View(room);
         }
 
