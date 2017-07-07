@@ -120,7 +120,9 @@ namespace HMS.Controllers
             ViewResult myView = View();
             myView.MasterName = myLayoutName;
 
-            //Für Raum
+            //Für Raum:
+            //ViewBag.Id = der Name der Liste
+            //db.Rooms = Datenbank, "Id" = Attribut 
             ViewBag.Id = new SelectList(db.Rooms, "Id", "number");
 
             //Für User

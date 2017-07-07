@@ -47,7 +47,7 @@ namespace HMS.Controllers
                 try
                 {
                     DateTime searchDate = Convert.ToDateTime(search);
-                    myView = View(db.Patients.Where(x => x.dateofbirth.Equals(search) || search == null).ToList());
+                    myView = View(db.Patients.Where(x => x.dateofbirth.Equals(searchDate) || search == null).ToList());
                 }
                 catch (System.FormatException)
                 {

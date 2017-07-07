@@ -114,6 +114,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Room, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                <!-- Id ist der Name von der Liste aus dem Controller, 2 Variable (String sagt was default angezeigt wird -->
                @Html.DropDownList("Id", " ")
             </div>
         </div>
@@ -121,6 +122,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.User, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                <!-- IdUser ist der Name von der Liste aus dem Controller, 2 Variable (String sagt was default angezeigt wird -->
                @Html.DropDownList("IdUser", " ")
             </div>
         </div>
