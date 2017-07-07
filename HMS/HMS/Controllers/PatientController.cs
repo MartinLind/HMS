@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HMS.Models;
+using System.Data.SqlClient;
 
 namespace HMS.Controllers
 {
@@ -244,6 +245,43 @@ namespace HMS.Controllers
         //[Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult Create([Bind(Include = "Id,insuranceID,insurance,prename,surname,phone,email,gender,street,city,zip,dateofbirth,timecreate,timemodify,isactive")] Patient patient)
         {
+            SqlConnection connection = null;
+
+            String ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=HMSDB;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+
+            connection = new SqlConnection(ConnectionString);
+
+            String SQLString = String.Format("SELECT dbo.ObjectSet_Patient.insuranceID FROM dbo.ObjectSet_Patient WHERE insuranceID = '{0}' ", patient.insuranceID);
+
+            SqlCommand cmd = new SqlCommand(SQLString, connection);
+
+            connection.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            String dbroomnumber = null;
+
+
+            while (reader.Read() == true)
+            {
+                dbroomnumber = Convert.ToString(reader["insuranceID"]);
+
+            }
+          
+
+            if (dbroomnumber == null)
+            {
+                /// success
+                db.Patients.Add(patient);
+                db.SaveChanges();
+                return RedirectToAction("Index"); ;
+            }
+            else
+            {
+                ModelState.AddModelError("", "Patient bereits vergeben");
+            }
+
+
             if (ModelState.IsValid)
             {
                 patient.timecreate = DateTime.Now;
