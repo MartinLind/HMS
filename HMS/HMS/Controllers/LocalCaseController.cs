@@ -229,6 +229,18 @@ namespace HMS.Controllers
 
             ViewResult myView = View(localCase);
             myView.MasterName = myLayoutName;
+
+            //Für Raum:
+            //ViewBag.Id = der Name der Liste
+            //db.Rooms = Datenbank, "Id" = Attribut 
+            ViewBag.Id = null;           
+            ViewBag.Id = new SelectList(db.Rooms, "Id", "number");
+
+            //Für User
+            ViewBag.IdUser = null;
+            ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+
+
             return myView;
             //return View(localCase);
         }
@@ -242,6 +254,12 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                localCase.timemodify = DateTime.Now;
+                //TODO:
+                //Räume und User werden beim Edit noch nicht gespeichert
+                //bisher keine Lösung gefunden
+                //
+
                 db.Entry(localCase).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
