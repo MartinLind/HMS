@@ -129,6 +129,14 @@ namespace HMS.Controllers
             //Für User
             ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
 
+            //Für Patient
+            var url = Url.RequestContext.RouteData.Values["Id"];
+            int id = System.Convert.ToInt32(url);
+            ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(id)).ToList(), "Id", "surname");
+            //So geht es, ich brauche nur noch die id aus der URL
+            //ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(7)).ToList(), "Id", "surname");
+            //ViewBag.Pat = new SelectList(db.Patients, "Id", "surname");
+
             return myView;
             //return View();
         }
@@ -170,6 +178,9 @@ namespace HMS.Controllers
                 //
                 //Hier wird die Beziehung Patient - Behandlung gespeichert
                 //
+                string dieidvompat = Request.Form["Pat"].ToString();
+                int patId = System.Convert.ToInt32(dieidvompat);
+                localCase.Patient.Add(db.Patients.Find(patId));
 
 
                 ViewBag.Id = new SelectList(db.Rooms, "Id", "number", localCase.Id);
