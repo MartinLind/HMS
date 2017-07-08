@@ -33,7 +33,7 @@ namespace HMS.Controllers
             {
                 myLayoutName = "_Layout_Schwester";
             }
-            ViewResult NewView = View(db.LocalCases.ToList());
+            ViewResult NewView = View(db.LocalCases.Where(x => x.isactive.Equals(true)).ToList());
             NewView.MasterName = myLayoutName;
             return NewView;
         }
@@ -58,7 +58,7 @@ namespace HMS.Controllers
             {
                 myLayoutName = "_Layout_Therapeut";
             }
-            ViewResult NewView = View(db.LocalCases.ToList());
+            ViewResult NewView = View(db.LocalCases.Where(x => x.isactive.Equals(true)).ToList());
             NewView.MasterName = myLayoutName;
             return NewView;
         }
