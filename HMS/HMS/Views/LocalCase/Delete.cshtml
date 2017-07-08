@@ -88,6 +88,38 @@
             @Html.DisplayFor(model => model.isactive)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Room)
+        </dt>
+
+        <dd>
+            @foreach (var number in Model.Room)
+            {
+                @Html.DisplayFor(model => number.number)
+            }            
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient)
+        </dt>
+
+        <dd>
+            @foreach (var patient in Model.Patient)
+            {
+                @Html.DisplayFor(model => patient.surname)
+            }            
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+
+        <dd>
+            @foreach (var user in Model.User)
+            {
+                @Html.DisplayFor(model => user.surname)
+            }            
+        </dd>
     </dl>
 
     @using (Html.BeginForm()) {

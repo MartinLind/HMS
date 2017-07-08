@@ -45,7 +45,8 @@ namespace HMS.Controllers
             {
                 myLayoutName = "_Layout_Arzt";
             }
-            ViewResult NewView = View(db.LocalCases.ToList());
+            //ViewResult NewView = View(db.LocalCases.ToList());
+            ViewResult NewView = View(db.LocalCases.Where(x => x.isactive.Equals(true)).ToList());
             NewView.MasterName = myLayoutName;
             return NewView;
         }
@@ -278,7 +279,8 @@ namespace HMS.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             LocalCase localCase = db.LocalCases.Find(id);
-            db.LocalCases.Remove(localCase);
+            //db.LocalCases.Remove(localCase);
+            localCase.isactive = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
