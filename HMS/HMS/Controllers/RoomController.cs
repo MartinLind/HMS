@@ -50,17 +50,15 @@ namespace HMS.Controllers
         {
             String myLayoutName = "";
             
+            
             if (GlobalVariable.currentRole.Equals("Reinigungspersonal"))
             {
                 myLayoutName = "_Layout_Reinigungspersonal";
             }
-            ViewResult myView = View(db.Rooms.Where(x => x.space == x.vacancy ));
-
-            //ViewResult myView = View(db.Rooms.ToList());
+            //Raum wurde gereinigt
+            ViewResult myView = View(db.Rooms.Where(x => x.isactive.Equals(true)));
             myView.MasterName = myLayoutName;
             return myView;
-
-            //return View(db.Rooms.ToList());
         }
 
         public ActionResult IndexPfleger()

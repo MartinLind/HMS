@@ -4,24 +4,18 @@
     Layout = "~/Views/Shared/_Layout_Reinigungspersonal.cshtml";
     ViewBag.Title = "Räume";
 }
+    
+
     <!--Autor: David Bismor -->
  <table>
       <tr>
-           <td style="position:absolute; left:auto"><h2>Putz diese Räume amk:</h2></td>
-
-          <br /><br /><br />
-   <b class="form-group"><h4>Bitte sauber machen:</h4>  </b>   
-    @using(Html.BeginForm("IndexReinigung", "Room", FormMethod.Get))
-    {
-    <input type = "submit", name = "submit", value = "Bitte putzen", class="form-control",style="width:auto" onclick="@("window.location.href='" + @Url.Action("IndexReinigung", "Room") + "'");" />
-    }
-<br /><br />
-
-    
+           <td style="position:absolute; left:auto"><h2>Reinigungsplan:</h2></td>
+   
 </tr>
  </table>
 <br /><br /> <br /> <br />
 <table class="table">
+
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.number)
@@ -30,20 +24,17 @@
             @Html.DisplayNameFor(model => model.space)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.vacancy)
+            @Html.DisplayName("Freie Plätze")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.timecreate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.timemodify)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.isactive)
         </th>
+        <td>
+            @Html.DisplayName(" ")
+        </td>
         <th></th>
     </tr>
 
@@ -62,15 +53,13 @@
             @Html.DisplayFor(modelItem => item.type)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.timecreate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.timemodify)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.isactive)
         </td>
-      
+        <td>
+            <input id="GoIndexRoom" type="button" value="Raum gereinigt" class="btn btn-default"   style="width:120px"
+        onclick="@("window.location.href='" + @Url.Action("IndexReinigung", "Room",  new {id=item.Id} )+ "'");" />
+            <br />
+        </td>
     </tr>
 }
 
