@@ -9,7 +9,7 @@ namespace HMS
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-3.1.1.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -26,6 +26,23 @@ namespace HMS
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+            "~/Scripts/jquery-ui-1.12.1.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/themes/base/css").IncludeDirectory(
+            "~/Content/themes/base", "*.css", true));
+
+            bundles.Add(new ScriptBundle("~/bundles/jQWidgets").Include(
+            "~/Scripts/jQWidgets/jqx-all.js",
+            "~/Scripts/jQWidgets/globalization/globalize.js",
+            "~/Scripts/jQWidgets/globalization/globalize.culture.de-DE.js"));
+
+            bundles.Add(new StyleBundle("~/Content/JQWidget/css").Include(
+                        "~/Content/JQWidget/jqx.base.css",
+                        "~/Content/JQWidget/jqx.classic.css"));
+
+
         }
     }
 }

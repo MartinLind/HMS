@@ -322,5 +322,61 @@ namespace HMS.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
+
+
+        //  --------------CK-----------------------
+
+            // Ich denke Ihr habt keine Wahl außer für jeden Action in jedem Controller zu checken wer das darf. !!!!! Mühsam aber müssen wir leider auch.
+
+        public ActionResult Schichten()
+        {
+            return View();
+        }
+
+        // GET: LocalCase/GetSchichten
+        public JsonResult GetSchichten()
+        {
+
+            //Es muss eine Liste erzeugt werden in denen diese Angaben vorliegen. Eine Beschreibung hier "casenr", 
+            //ein Startdatum als Datetime hier "timecreate" , eine Enddatum als Datetime hier "timeclosed" und eine Eindeutige ID, hier "Id" des Eintrags.
+
+            //Wie diese Liste erzeugt wird ist egal auch der Typ der Liste ist egal. Alle Änderungen der Namen(casenr,timecreate,timeclosed,Id) können in der 
+            //Views /LocalCase/Schichten.cshtml in den Zeilen 31 - 36 angepasst werden. Achtung auch in der Schichten view müssen die Zeilen 61-68 angepasst werden.
+
+            //Nun einfach die Daten zusammensuchen die Ihr anzeigen wollt und voila, werden dann angezeigt.
+            //Über dieses Model könnte das schon funktionieren ist aber recht unsauber oder ihr müsst ein neues erstellen, aber das müsst ihr entscheiden.
+
+            // WICHTIG: KONNTE NICHT MIT DER DB TESTEN WEIL DIE BEI MIR NICHT LÄUFT, daher habe ich hier einige Testbeispiele eingefügt. Über db dann anzeigename des termins, 
+            //start und ende und eine eindeutige id zusammensuchen. habe bei euch im model leider kein passenderen Controller, Model hierfür gefunden.
+
+            List<LocalCase> termine = new List<LocalCase>();
+
+            termine.Add(new LocalCase()
+            {
+                casenr = "test",
+                timecreate = DateTime.Now,
+                timeclosed = DateTime.Now.AddHours(2),
+                Id = 1
+            });
+
+            termine.Add(new LocalCase()
+            {
+                casenr = "test2",
+                timecreate = DateTime.Now.AddHours(3),
+                timeclosed = DateTime.Now.AddHours(4),
+                Id = 2
+            });
+
+
+
+
+            return Json(termine, JsonRequestBehavior.AllowGet);
+        }
+
+        //  --------------CK-End----------------------
+
     }
 }

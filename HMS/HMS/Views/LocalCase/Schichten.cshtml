@@ -1,0 +1,165 @@
+﻿<head>
+    <style type="text/css">
+        .lead {
+            font-weight: 700;
+            font-size: medium;
+        }
+    </style>
+</head>
+<!--Autor: CK -->
+@{
+    ViewBag.Title = "PLAN";
+}
+
+@Styles.Render("~/Content/css")
+@Styles.Render("~/content/themes/base/css")
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/jQWidgets")
+@Styles.Render("~/Content/JQWidget/css")
+
+<script>
+    $(document).ready(function () {
+       initScheduler();
+
+       function initScheduler() {
+         var source =
+            {
+                dataType: "json",
+                dataFields: [
+                    { name: 'casenr', type: 'string' },
+                    { name: 'timecreate', type: 'date' },
+                    { name: 'timeclosed', type: 'date' },
+                    { name: 'Id', type: 'number' },
+                ],
+                id: 'Id',
+                url: '/LocalCase/GetSchichten'
+            };
+        var year = new Date().getFullYear();
+        var month = new Date().getMonth();
+        var day = new Date().getDate();
+        var adapter = new $.jqx.dataAdapter(source);
+
+        $("#scheduler").jqxScheduler({
+            date: new $.jqx.date(year, month + 1, day),
+            width: '100%',
+            height: 700,
+            legendHeight: 34,
+            source: adapter,
+            view: 'dayView',
+            theme: 'classic',
+            showLegend: true,
+            editDialog: false,
+            resources:
+            {
+                colorScheme: "scheme02",
+                dataField: "A",
+                source: new $.jqx.dataAdapter(source),
+            },
+            appointmentDataFields:
+            {
+                from: "timecreate",
+                to: "timeclosed",
+                id: "Id",
+                //description: "Name",
+                subject: "casenr",
+            },
+            views:
+            [
+                'dayView',
+                'weekView'
+            ],
+            localization: {
+                // separator of parts of a date (e.g. '/' in 11/05/1955)
+                '/': "/",
+                // separator of parts of a time (e.g. ':' in 05:44 PM)
+                ':': ":",
+                // the first day of the week (0 = Sunday, 1 = Monday, etc)
+                firstDay: 1,
+                days: {
+                    names: ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+                    namesAbbr: ["Sonn", "Mon", "Dien", "Mitt", "Donn", "Fre", "Sams"],
+                    namesShort: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"]
+                },
+
+                months: {
+                    names: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember", ""],
+                    namesAbbr: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dez", ""]
+                },
+                // AM and PM designators in one of these forms:
+                // The usual view, and the upper and lower case versions
+                //      [standard,lowercase,uppercase]
+                // The culture does not use AM or PM (likely all standard date formats use 24 hour time)
+                //      null
+                AM: ["AM", "am", "AM"],
+                PM: ["PM", "pm", "PM"],
+                eras: [
+                    // eras in reverse chronological order.
+                    // name: the name of the era in this culture (e.g. A.D., C.E.)
+                    // start: when the era starts in ticks (gregorian, gmt), null if it is the earliest supported era.
+                    // offset: offset in years from gregorian calendar
+                    { "name": "A.D.", "start": null, "offset": 0 }
+                ],
+                twoDigitYearMax: 2029,
+                patterns: {
+                    // short date pattern
+                    d: "M/d/yyyy",
+                    // long date pattern
+                    D: "dddd, MMMM dd, yyyy",
+                    // short time pattern
+                    t: "h:mm tt",
+                    // long time pattern
+                    T: "h:mm:ss tt",
+                    // long date, short time pattern
+                    f: "dddd, MMMM dd, yyyy h:mm tt",
+                    // long date, long time pattern
+                    F: "dddd, MMMM dd, yyyy h:mm:ss tt",
+                    // month/day pattern
+                    M: "MMMM dd",
+                    // month/year pattern
+                    Y: "yyyy MMMM",
+                    // S is a sortable format that does not vary by culture
+                    S: "yyyy\u0027-\u0027MM\u0027-\u0027dd\u0027T\u0027HH\u0027:\u0027mm\u0027:\u0027ss",
+                    // formatting of dates in MySQL DataBases
+                    ISO: "yyyy-MM-dd hh:mm:ss",
+                    ISO2: "yyyy-MM-dd HH:mm:ss",
+                    d1: "dd.MM.yyyy",
+                    d2: "dd-MM-yyyy",
+                    d3: "dd-MMMM-yyyy",
+                    d4: "dd-MM-yy",
+                    d5: "H:mm",
+                    d6: "HH:mm",
+                    d7: "HH:mm tt",
+                    d8: "dd/MMMM/yyyy",
+                    d9: "MMMM-dd",
+                    d10: "MM-dd",
+                    d11: "MM-dd-yyyy"
+                },
+                backString: "Vorhergehende",
+                forwardString: "Nächster",
+                toolBarPreviousButtonString: "Vorhergehende",
+                toolBarNextButtonString: "Nächster",
+                emptyDataString: "Keine Daten für diese Daten vorhanden",
+                loadString: "Loading...",
+                clearString: "Löschen",
+                todayString: "Heute",
+                dayViewString: "Tag",
+                weekViewString: "Woche",
+                monthViewString: "Monat",
+                timelineDayViewString: "Zeitleiste Day",
+                timelineWeekViewString: "Zeitleiste Woche",
+                timelineMonthViewString: "Zeitleiste Monat",
+                loadingErrorMessage: "Die Daten werden noch geladen und Sie können eine Eigenschaft nicht festgelegt oder eine Methode aufrufen . Sie können tun, dass, sobald die Datenbindung abgeschlossen ist. jqxScheduler wirft die ' bindingComplete ' Ereignis, wenn die Bindung abgeschlossen ist.",
+                contextMenuEditAppointmentString: "Termin bearbeiten",
+                contextMenuCreateAppointmentString: "Erstellen Sie Neuer Termin"
+            }
+        });
+     }
+});
+</script>
+
+<BODY>
+    <div id="scheduler" />
+</BODY>
