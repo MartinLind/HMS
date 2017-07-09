@@ -28,13 +28,10 @@
             @Html.DisplayNameFor(model => model.type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.timecreate)
+            @Html.DisplayName("Reinigung offen")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.timemodify)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isactive)
+            @Html.DisplayName(" ")
         </th>
         <th></th>
     </tr>
@@ -54,15 +51,13 @@
             @Html.DisplayFor(modelItem => item.type)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.timecreate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.timemodify)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.isactive)
         </td>
-      
+        <td>
+            <input id="GoIndexRoom" type="button" value="Bitte reinigen" class="btn btn-default"   style="width:120px"
+        onclick="@("window.location.href='" + @Url.Action("IndexPfleger", "Room",  new {id=item.Id} )+ "'");" />
+            <br />
+        </td>
     </tr>
 }
 

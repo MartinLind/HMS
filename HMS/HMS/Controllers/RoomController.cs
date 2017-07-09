@@ -46,22 +46,37 @@ namespace HMS.Controllers
             //return View(db.Rooms.ToList());
         }
 
-        public ActionResult IndexReinigung()
+        public ActionResult IndexReinigung(int? id)
         {
             String myLayoutName = "";
-            
-            
             if (GlobalVariable.currentRole.Equals("Reinigungspersonal"))
             {
                 myLayoutName = "_Layout_Reinigungspersonal";
             }
             //Raum wurde gereinigt
+            if (id == null)
+            {
+                ViewResult myView1 = View(db.Rooms.Where(x => x.isactive.Equals(true)));
+                myView1.MasterName = myLayoutName;
+                return myView1;
+            }
+            Room room = db.Rooms.Find(id);
+            if (room == null)
+            {
+                ViewResult myView2 = View(db.Rooms.Where(x => x.isactive.Equals(true)));
+                myView2.MasterName = myLayoutName;
+                return myView2;
+            }
+            room.isactive = false;
+            db.SaveChanges();
+
+
             ViewResult myView = View(db.Rooms.Where(x => x.isactive.Equals(true)));
             myView.MasterName = myLayoutName;
             return myView;
         }
 
-        public ActionResult IndexPfleger()
+        public ActionResult IndexPfleger(int? id)
         {
             String myLayoutName = "";
 
@@ -69,6 +84,21 @@ namespace HMS.Controllers
             {
                 myLayoutName = "_Layout_Schwester";
             }
+            if (id == null)
+            {
+                ViewResult myView1 = View(db.Rooms.ToList());
+                myView1.MasterName = myLayoutName;
+                return myView1;
+            }
+            Room room = db.Rooms.Find(id);
+            if (room == null)
+            {
+                ViewResult myView2 = View(db.Rooms.ToList());
+                myView2.MasterName = myLayoutName;
+                return myView2;
+            }
+            room.isactive = true;
+            db.SaveChanges();
 
             ViewResult myView = View(db.Rooms.ToList());
             myView.MasterName = myLayoutName;
@@ -79,7 +109,7 @@ namespace HMS.Controllers
             //return View(db.Rooms.ToList());
         }
 
-        public ActionResult IndexArzt()
+        public ActionResult IndexArzt(int? id)
         {
             String myLayoutName = "";
 
@@ -87,6 +117,21 @@ namespace HMS.Controllers
             {
                 myLayoutName = "_Layout_Arzt";
             }
+            if (id == null)
+            {
+                ViewResult myView1 = View(db.Rooms.ToList());
+                myView1.MasterName = myLayoutName;
+                return myView1;
+            }
+            Room room = db.Rooms.Find(id);
+            if (room == null)
+            {
+                ViewResult myView2 = View(db.Rooms.ToList());
+                myView2.MasterName = myLayoutName;
+                return myView2;
+            }
+            room.isactive = true;
+            db.SaveChanges();
 
             ViewResult myView = View(db.Rooms.ToList());
             myView.MasterName = myLayoutName;
@@ -97,7 +142,7 @@ namespace HMS.Controllers
             //return View(db.Rooms.ToList());
         }
 
-        public ActionResult IndexTherapeut()
+        public ActionResult IndexTherapeut(int? id)
         {
             String myLayoutName = "";
 
@@ -105,7 +150,21 @@ namespace HMS.Controllers
             {
                 myLayoutName = "_Layout_Therapeut";
             }
-
+            if (id == null)
+            {
+                ViewResult myView1 = View(db.Rooms.ToList());
+                myView1.MasterName = myLayoutName;
+                return myView1;
+            }
+            Room room = db.Rooms.Find(id);
+            if (room == null)
+            {
+                ViewResult myView2 = View(db.Rooms.ToList());
+                myView2.MasterName = myLayoutName;
+                return myView2;
+            }
+            room.isactive = true;
+            db.SaveChanges();
             ViewResult myView = View(db.Rooms.ToList());
             myView.MasterName = myLayoutName;
             return myView;
