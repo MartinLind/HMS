@@ -124,9 +124,10 @@ namespace HMS.Controllers
             //Für Raum:
             //ViewBag.Id = der Name der Liste
             //db.Rooms = Datenbank, "Id" = Attribut 
-            ViewBag.Id = new SelectList(db.Rooms, "Id", "number");
+            ViewBag.Id= new SelectList(db.Rooms, "Id", "number");
 
             //Für User
+            
             ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
 
             //Für Patient
@@ -140,6 +141,40 @@ namespace HMS.Controllers
             return myView;
             //return View();
         }
+
+        public ActionResult CreateArzt()
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Arzt"))
+            {
+                myLayoutName = "_Layout_Arzt";
+            }
+            //ViewResult NewView = View(db.LocalCases.ToList());
+            ViewResult NewView = View(db.LocalCases.Where(x => x.isactive.Equals(true)).ToList());
+            NewView.MasterName = myLayoutName;
+            return NewView;
+
+            //Für Raum:
+            //ViewBag.Id = der Name der Liste
+            //db.Rooms = Datenbank, "Id" = Attribut 
+            ViewBag.Id = new SelectList(db.Rooms, "Id", "number");
+
+            //Für User
+
+            ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+
+            //Für Patient
+            var url = Url.RequestContext.RouteData.Values["Id"];
+            int id = System.Convert.ToInt32(url);
+            ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(id)).ToList(), "Id", "surname");
+            //So geht es, ich brauche nur noch die id aus der URL
+            //ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(7)).ToList(), "Id", "surname");
+            //ViewBag.Pat = new SelectList(db.Patients, "Id", "surname");
+
+           // return myView;
+            //return View();
+        }
+
 
         // POST: LocalCase/Create
         // Aktivieren Sie zum Schutz vor übermäßigem Senden von Angriffen die spezifischen Eigenschaften, mit denen eine Bindung erfolgen soll. Weitere Informationen 

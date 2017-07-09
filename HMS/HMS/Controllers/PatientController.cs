@@ -13,18 +13,18 @@ namespace HMS.Controllers
 {
     public class PatientController : Controller
     {
-        private DBContainer db = new DBContainer();
+    private DBContainer db = new DBContainer();
 
         // GET: Patient
         //public ActionResult Index()
         //{
-            //return View(db.Patients.ToList());
+        //return View(db.Patients.ToList());
         //}
 
         //Option sagt uns wonach gesucht wird. Search ist das Suchwort
         //Können noch beliebig viele weitere Suchparameter einbauen
         //MW
-  
+
         public ActionResult Index(string option, string search)
         {
             String myLayoutName = "";
@@ -52,10 +52,10 @@ namespace HMS.Controllers
                 }
                 catch (System.FormatException)
                 {
-                myView = View(db.Patients.ToList());
+                    myView = View(db.Patients.ToList());
                 }
 
-        }
+            }
 
             myView.MasterName = myLayoutName;
 
@@ -212,6 +212,7 @@ namespace HMS.Controllers
 
         // GET: Patient/Create
         //[Authorize(Roles = "Admin, Arzt, Pfleger")]
+        
         public ActionResult Create()
         {
             String myLayoutName = "";

@@ -1,25 +1,25 @@
 ﻿@model HMS.Models.LocalCase
 
 @{
-    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+    Layout = "~/Views/Shared/_Layout_Arzt.cshtml";
     ViewBag.Title = "Behandlung";
 }
 
 <h2>Eine neue Behandlung anlegen..</h2>
 
 <!--Autor: David Bismor -->
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-       
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group", style="display:none">
+        <div class="form-group" , style="display:none">
             @Html.LabelFor(model => model.timecreate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.timecreate, new { htmlAttributes = new { @class = "form-control", @type="date", @Value = "2017-01-01", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.timecreate, new { htmlAttributes = new { @class = "form-control", @type = "date", @Value = "2017-01-01", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.timecreate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -27,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Patient, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               @Html.DropDownList("Pat", null, " ", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Pat")
             </div>
         </div>
 
@@ -70,8 +70,8 @@
                         new SelectListItem() {Text = "M23 - Meniskusriss", Value="M23 - Meniskusriss"},
                         new SelectListItem() {Text = "M50 - Zervikale Bandscheibenschäden", Value="Zervikale Bandscheibenschäden"},
                         new SelectListItem() {Text = "M87 - Knochennekrose", Value="M87 - Knochennekrose"}
-                        
-    }, new {@class="form-control"}) 
+
+    }, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.diagnosis, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -100,10 +100,10 @@
             </div>
         </div>
 
-        <div class="form-group", style="display:none">
+        <div class="form-group" , style="display:none">
             @Html.LabelFor(model => model.timemodify, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.timemodify, new { htmlAttributes = new { @class = "form-control", @type="date", @Value = "2017-01-01", @readonly = "readonly" } })
+                @Html.EditorFor(model => model.timemodify, new { htmlAttributes = new { @class = "form-control", @type = "date", @Value = "2017-01-01", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.timemodify, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -122,7 +122,7 @@
             @Html.LabelFor(model => model.Room, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <!-- Id ist der Name von der Liste aus dem Controller, 3 Variable (String sagt was default angezeigt wird -->
-               @Html.DropDownList("Id",null,  " ",  htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Id", null, " ", htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
 
@@ -131,15 +131,15 @@
             <div class="col-md-10">
                 <!--Martin Wichary: IdUser ist der Name von der Liste aus dem Controller, 3 Variable (String sagt was default angezeigt wird -->
                 <!--David Bismor: Abgeänderung der Überladung -->
-               @Html.DropDownList("IdUser", null, " ", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("IdUser", null, " ", htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Anlegen" class="btn btn-default" style="width:90px"/> 
-                 <input id="BackToIndex" type="button" value="Abbrechen" class="btn btn-default" style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Index", "LocalCase") + "'");" />
+                <input type="submit" value="Anlegen" class="btn btn-default" style="width:90px" />
+                <input id="BackToIndex" type="button" value="Abbrechen" class="btn btn-default" style="width:90px"
+                       onclick="@("window.location.href='" + @Url.Action("IndexArzt", "LocalCase") + "'");" />
             </div>
         </div>
     </div>

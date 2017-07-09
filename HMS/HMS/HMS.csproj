@@ -804,6 +804,7 @@
     <Content Include="Views\Room\IndexTherapeut.cshtml" />
     <Content Include="Views\Patient\IndexPfleger.cshtml" />
     <Content Include="Views\Patient\IndexArzt.cshtml" />
+    <Content Include="Views\LocalCase\CreateArzt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
