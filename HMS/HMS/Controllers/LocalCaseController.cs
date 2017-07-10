@@ -143,20 +143,20 @@ namespace HMS.Controllers
             {
                 myLayoutName = "_Layout_Arzt";
             }
-            ViewResult NewView = View(db.LocalCases.Where(x => x.isactive.Equals(true)).ToList());
+            ViewResult NewView = View();
           
 
             //Für Raum:
             ViewBag.Id = new SelectList(db.Rooms, "Id", "number");
 
             //Für User
-
             ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
 
             //Für Patient
             var url = Url.RequestContext.RouteData.Values["Id"];
             int id = System.Convert.ToInt32(url);
             ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(id)).ToList(), "Id", "surname");
+
             NewView.MasterName = myLayoutName;
             return NewView;
         }
