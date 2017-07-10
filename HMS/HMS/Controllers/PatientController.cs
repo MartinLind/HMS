@@ -15,16 +15,7 @@ namespace HMS.Controllers
     {
     private DBContainer db = new DBContainer();
 
-        // GET: Patient
-        //public ActionResult Index()
-        //{
-        //return View(db.Patients.ToList());
-        //}
-
-        //Option sagt uns wonach gesucht wird. Search ist das Suchwort
-        //Können noch beliebig viele weitere Suchparameter einbauen
-        //MW
-
+   
         public ActionResult Index(string option, string search)
         {
             String myLayoutName = "";
@@ -34,11 +25,6 @@ namespace HMS.Controllers
             }
 
             ViewResult myView = View(db.Patients.ToList());
-
-            //if (option == "Gender")
-            //{
-            //    myView  = View(db.Patients.Where(x => x.gender.StartsWith(search) || search == null).ToList());
-            //}
             if (option == "Name")
             {
                 myView = View(db.Patients.Where(x => x.surname.StartsWith(search) || search == null).ToList());
@@ -175,7 +161,6 @@ namespace HMS.Controllers
         }
 
         // GET: Patient/Details/5
-        //[Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -249,7 +234,6 @@ namespace HMS.Controllers
         }
 
         // GET: Patient/Create
-        //[Authorize(Roles = "Admin, Arzt, Pfleger")]
 
         public ActionResult Create()
         {
@@ -273,7 +257,6 @@ namespace HMS.Controllers
             ViewResult myView = View();
             myView.MasterName = myLayoutName;
             return myView;
-            //return View();
         }
 
         public ActionResult CreateArzt()
@@ -289,7 +272,6 @@ namespace HMS.Controllers
             ViewResult myView = View();
             myView.MasterName = myLayoutName;
             return myView;
-            //return View();
         }
 
         public ActionResult CreatePfleger()
@@ -305,16 +287,12 @@ namespace HMS.Controllers
             ViewResult myView = View();
             myView.MasterName = myLayoutName;
             return myView;
-            //return View();
         }
 
 
         // POST: Patient/Create
-        // Aktivieren Sie zum Schutz vor übermäßigem Senden von Angriffen die spezifischen Eigenschaften, mit denen eine Bindung erfolgen soll. Weitere Informationen 
-        // finden Sie unter https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult Create([Bind(Include = "Id,insuranceID,insurance,prename,surname,phone,email,gender,street,city,zip,dateofbirth,timecreate,timemodify,isactive")] Patient patient)
         {
             SqlConnection connection = null;
@@ -472,7 +450,6 @@ namespace HMS.Controllers
         }
 
         // GET: Patient/Edit/5
-        //[Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -519,8 +496,6 @@ namespace HMS.Controllers
             ViewResult myView = View(patient);
             myView.MasterName = myLayoutName;
             return myView;
-
-            //return View(patient);
         }
 
         public ActionResult EditPfleger(int? id)
@@ -545,23 +520,16 @@ namespace HMS.Controllers
             ViewResult myView = View(patient);
             myView.MasterName = myLayoutName;
             return myView;
-            //return View(patient);
         }
 
         // POST: Patient/Edit/5
-        // Aktivieren Sie zum Schutz vor übermäßigem Senden von Angriffen die spezifischen Eigenschaften, mit denen eine Bindung erfolgen soll. Weitere Informationen 
-        // finden Sie unter https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult Edit([Bind(Include = "Id,insuranceID, insurance,prename,surname,phone,email,gender,street,city,zip,dateofbirth,,timecreate, timemodify,isactive")] Patient patient)
         {
             //
             if (ModelState.IsValid)
             {
-                //patient.dateofbirth = DateTime.Now;
-                //patient.timecreate = DateTime.Now;
-                patient.timemodify = DateTime.Now;
                 db.Entry(patient).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index", "Patient");
@@ -571,14 +539,11 @@ namespace HMS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult EditArzt([Bind(Include = "Id,insuranceID, insurance,prename,surname,phone,email,gender,street,city,zip,dateofbirth,,timecreate, timemodify,isactive")] Patient patient)
         {
             //
             if (ModelState.IsValid)
             {
-                //patient.dateofbirth = DateTime.Now;
-                //patient.timecreate = DateTime.Now;
                 patient.timemodify = DateTime.Now;
                 db.Entry(patient).State = EntityState.Modified;
                 db.SaveChanges();
@@ -590,14 +555,11 @@ namespace HMS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult EditPfleger([Bind(Include = "Id,insuranceID, insurance,prename,surname,phone,email,gender,street,city,zip,dateofbirth,,timecreate, timemodify,isactive")] Patient patient)
         {
             //
             if (ModelState.IsValid)
             {
-                //patient.dateofbirth = DateTime.Now;
-                //patient.timecreate = DateTime.Now;
                 patient.timemodify = DateTime.Now;
                 db.Entry(patient).State = EntityState.Modified;
                 db.SaveChanges();
@@ -608,7 +570,6 @@ namespace HMS.Controllers
 
 
         // GET: Patient/Delete/5
-        //[Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -655,7 +616,6 @@ namespace HMS.Controllers
             ViewResult myView = View(patient);
             myView.MasterName = myLayoutName;
             return myView;
-            //return View(patient);
         }
 
         public ActionResult DeletePfleger(int? id)
@@ -685,7 +645,6 @@ namespace HMS.Controllers
         // POST: Patient/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult DeleteConfirmed(int id)
         {
             Patient patient = db.Patients.Find(id);
@@ -696,7 +655,6 @@ namespace HMS.Controllers
 
         [HttpPost, ActionName("DeleteArzt")]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult DeleteConfirmedArzt(int id)
         {
             Patient patient = db.Patients.Find(id);
@@ -707,7 +665,6 @@ namespace HMS.Controllers
 
         [HttpPost, ActionName("DeletePfleger")]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult DeleteConfirmedPfleger(int id)
         {
             Patient patient = db.Patients.Find(id);
