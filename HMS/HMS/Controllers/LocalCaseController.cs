@@ -268,12 +268,12 @@ namespace HMS.Controllers
             //Für Raum:
             //ViewBag.Id = der Name der Liste
             //db.Rooms = Datenbank, "Id" = Attribut 
-            ViewBag.Id = null;           
-            ViewBag.Id = new SelectList(db.Rooms, "Id", "number");
+            ViewBag.IdEditAdmin = null;           
+            ViewBag.IdEditAdmin = new SelectList(db.Rooms, "Id", "number");
 
             //Für User
-            ViewBag.IdUser = null;
-            ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+            ViewBag.IdUserAdmin = null;
+            ViewBag.IdUserAdmin = new SelectList(db.Users, "Id", "surname");
 
 
             return myView;
@@ -294,6 +294,28 @@ namespace HMS.Controllers
                 //Räume und User werden beim Edit noch nicht gespeichert
                 //bisher keine Lösung gefunden
                 //
+
+                var item = db.Entry<LocalCase>(localCase);
+                item.State = System.Data.Entity.EntityState.Modified;
+                //Raum löschen
+                item.Collection(i => i.Room).Load();
+                localCase.Room.Clear();
+                //User löschen
+                item.Collection(i => i.User).Load();
+                localCase.User.Clear();
+
+                    //
+                    //Hier wird die Beziehung Raum - Behandlung gespeichert
+                    //
+                    string wirbrauchendieid = Request.Form["IdEditAdmin"].ToString();
+                    int roomId = System.Convert.ToInt32(wirbrauchendieid);
+                    localCase.Room.Add(db.Rooms.Find(roomId));
+                    //
+                    //Hier wird die Beziehung User - Behandlung gespeichert
+                    //
+                    string dieidvomuser = Request.Form["IdUserAdmin"].ToString();
+                    int userId = System.Convert.ToInt32(dieidvomuser);
+                    localCase.User.Add(db.Users.Find(userId));
 
                 db.Entry(localCase).State = EntityState.Modified;
                 db.SaveChanges();
