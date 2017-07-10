@@ -1,26 +1,19 @@
 ﻿@model HMS.Models.Patient
 
 @{
-    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
-    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_Pfleger.cshtml";
+    ViewBag.Title = "Entlassen";
 }
 <!--Autor: David Bismor -->
-<h2>Details</h2>
+<h2>Patienten entlassen..</h2>
 
+<h3>Wollen Sie wirklich fortfahren?</h3>
 <div>
-  
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.insurance)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.insurance)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.prename)
         </dt>
 
         <dd>
@@ -116,13 +109,17 @@
         </dd>
 
     </dl>
-</div>
-<p>
 
-            <input id="EditThis" type="button" value="Bearbeiten" class="btn btn-default" style="width: 100px"
-        onclick="@("window.location.href='" + @Url.Action("Edit", "Patient", new {id = Model.Id}) + "'");" />
-              <input id="BackToList" type="button" value="Zurück" class="btn btn-default" style="width: 100px"
-        onclick="@("window.location.href='" + @Url.Action("Index", "Patient") + "'");" />
-    <input id="BackToList" type="button" value="Behandlung anlegen" class="btn btn-default" style="width: 160px"
-        onclick="@("window.location.href='" + @Url.Action("Create", "LocalCase", new {id = Model.Id}) + "'");" />
-</p>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Bestätigen" class="btn btn-default" style="width:90px" />
+            <input id="BackToList" type="button" value="Abbrechen" class="btn btn-default" style="width:90px"
+                   onclick="@("window.location.href='" + @Url.Action("IndexPfleger", "Patient") + "'");" />
+
+            <!--  @Html.ActionLink("Back to List", "Index")-->
+        </div>
+    }
+</div>

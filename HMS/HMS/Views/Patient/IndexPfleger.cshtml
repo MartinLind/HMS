@@ -5,7 +5,7 @@
     ViewBag.Title = "Patienten";
 }
     <!-- Versuch einer Suche, MW-->
- <!--   @using(Html.BeginForm("Index", "Patient", FormMethod.Get)) {
+ <!--   @using(Html.BeginForm("IndexPfleger", "Patient", FormMethod.Get)) {
     <br></br>
     <b> Suchoption: </b>
     @Html.RadioButton("option", "Name") <text> Name </text> 
@@ -19,7 +19,7 @@
 
         <td style="position:absolute; right:5%; top:10%">
    <input id="GoCreatePatient" type="button" value="Patienten anlegen" class="btn btn-default" style="width:140px"  
-        onclick="@("window.location.href='" + @Url.Action("Create", "Patient") + "'");" />
+        onclick="@("window.location.href='" + @Url.Action("CreatePfleger", "Patient") + "'");" />
             </td>
 </tr>
     
@@ -27,16 +27,16 @@
  
 <br /><br /><br />
    <b class="form-group"><h4>Suchoption:</h4>  </b>   
-    @using(Html.BeginForm("Index", "Patient", FormMethod.Get))
+    @using(Html.BeginForm("IndexPfleger", "Patient", FormMethod.Get))
     {
     @Html.RadioButton("option", "Name") <text> Name </text> 
     @Html.RadioButton("option", "Geburtsdatum") <text> Geburtsdatum </text>  <br />
     @Html.TextBox("search",null,  new {@class="form-control"})
-    <input type = "submit", name = "submit", value = "Suche", class="form-control",style="width:auto" onclick="@("window.location.href='" + @Url.Action("Index", "Patient") + "'");" />
+    <input type = "submit", name = "submit", value = "Suche", class="form-control",style="width:auto" onclick="@("window.location.href='" + @Url.Action("IndexPflger", "Patient") + "'");" />
     }
-    @using(Html.BeginForm("Index", "Patient", FormMethod.Get))
+    @using(Html.BeginForm("IndexPfleger", "Patient", FormMethod.Get))
     {
-    <input type = "submit", name = "submit", value = "Alle anzeigen", class="form-control",style="width:auto" onclick="@("window.location.href='" + @Url.Action("Index", "Patient") + "'");" />
+    <input type = "submit", name = "submit", value = "Alle anzeigen", class="form-control",style="width:auto" onclick="@("window.location.href='" + @Url.Action("IndexPfleger", "Patient") + "'");" />
     }
 <br />
 <table class="table" style="width:auto">
@@ -132,13 +132,13 @@
         </td>
         <td>
              <input id="GoCreatePatient" type="button" value="Bearbeiten" class="btn btn-default"   style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Edit", "Patient",  new {id=item.Id} )+ "'");" />
+        onclick="@("window.location.href='" + @Url.Action("EditPfleger", "Patient",  new {id=item.Id} )+ "'");" />
             <br />
              <input id="GoCreatePatient" type="button" value="Details" class="btn btn-default"  style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Details", "Patient",  new {id=item.Id} ) + "'");" />
+        onclick="@("window.location.href='" + @Url.Action("DetailsPfleger", "Patient",  new {id=item.Id} ) + "'");" />
             <br />
              <input id="GoCreatePatient" type="button" value="Entlassen" class="btn btn-default" style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Delete", "Patient",  new {id=item.Id} )+ "'" );" />
+        onclick="@("window.location.href='" + @Url.Action("DeletePfleger", "Patient",  new {id=item.Id} )+ "'" );" />
             <!--
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |

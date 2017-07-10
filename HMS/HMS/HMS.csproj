@@ -805,6 +805,14 @@
     <Content Include="Views\Patient\IndexPfleger.cshtml" />
     <Content Include="Views\Patient\IndexArzt.cshtml" />
     <Content Include="Views\LocalCase\CreateArzt.cshtml" />
+    <Content Include="Views\Patient\CreateArzt.cshtml" />
+    <Content Include="Views\Patient\CreatePfleger.cshtml" />
+    <Content Include="Views\Patient\EditArzt.cshtml" />
+    <Content Include="Views\Patient\EditPfleger.cshtml" />
+    <Content Include="Views\Patient\DeleteArzt.cshtml" />
+    <Content Include="Views\Patient\DeletePfleger.cshtml" />
+    <Content Include="Views\Patient\DetailsArzt.cshtml" />
+    <Content Include="Views\Patient\DetailsPfleger.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

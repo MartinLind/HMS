@@ -188,31 +188,69 @@ namespace HMS.Controllers
                 return HttpNotFound();
             }
             String myLayoutName = "";
-            switch (GlobalVariable.currentRole)
+            if (GlobalVariable.currentRole.Equals("Admin"))
             {
-                case GlobalVariable.Role.Admin:
-                    myLayoutName = "_Layout_Admin";
-                    break;
-                case GlobalVariable.Role.Arzt:
-                    myLayoutName = "_Layout_Arzt";
-                    break;
-                case GlobalVariable.Role.Schwester:
-                    myLayoutName = "_Layout_Schwester";
-                    break;
-                default:
-                    myLayoutName = "_Layout_Reinigungspersonal";
-                    break;
+
+                myLayoutName = "_Layout_Admin";
+
             }
 
-            ViewResult myView = View(patient);
+            ViewResult myView = View();
             myView.MasterName = myLayoutName;
             return myView;
-            //return View(patient);
+        }
+
+        public ActionResult DetailsArzt(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Patient patient = db.Patients.Find(id);
+            if (patient == null)
+            {
+                return HttpNotFound();
+            }
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Arzt"))
+            {
+
+                myLayoutName = "_Layout_Arzt";
+
+            }
+
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+            return myView;
+        }
+
+        public ActionResult DetailsPfleger(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Patient patient = db.Patients.Find(id);
+            if (patient == null)
+            {
+                return HttpNotFound();
+            }
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Pfleger"))
+            {
+
+                myLayoutName = "_Layout_Pfleger";
+
+            }
+
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+            return myView;
         }
 
         // GET: Patient/Create
         //[Authorize(Roles = "Admin, Arzt, Pfleger")]
-        
+
         public ActionResult Create()
         {
             String myLayoutName = "";
@@ -237,6 +275,39 @@ namespace HMS.Controllers
             return myView;
             //return View();
         }
+
+        public ActionResult CreateArzt()
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Arzt"))
+            {
+              
+              myLayoutName = "_Layout_Arzt";
+                        
+            }
+
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+            return myView;
+            //return View();
+        }
+
+        public ActionResult CreatePfleger()
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Pfleger"))
+            {
+
+                myLayoutName = "_Layout_Pfleger";
+
+            }
+
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+            return myView;
+            //return View();
+        }
+
 
         // POST: Patient/Create
         // Aktivieren Sie zum Schutz vor übermäßigem Senden von Angriffen die spezifischen Eigenschaften, mit denen eine Bindung erfolgen soll. Weitere Informationen 
@@ -295,6 +366,111 @@ namespace HMS.Controllers
             return View(patient);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateArzt([Bind(Include = "Id,insuranceID,insurance,prename,surname,phone,email,gender,street,city,zip,dateofbirth,timecreate,timemodify,isactive")] Patient patient)
+        {
+            SqlConnection connection = null;
+
+            String ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=HMSDB1;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+
+            connection = new SqlConnection(ConnectionString);
+
+            String SQLString = String.Format("SELECT dbo.ObjectSet_Patient.insuranceID FROM dbo.ObjectSet_Patient WHERE insuranceID = '{0}' ", patient.insuranceID);
+
+            SqlCommand cmd = new SqlCommand(SQLString, connection);
+
+            connection.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            String dbroomnumber = null;
+
+
+            while (reader.Read() == true)
+            {
+                dbroomnumber = Convert.ToString(reader["insuranceID"]);
+
+            }
+
+
+            if (dbroomnumber == null)
+            {
+                /// success
+                db.Patients.Add(patient);
+                db.SaveChanges();
+                return RedirectToAction("IndexArzt"); ;
+            }
+            else
+            {
+                ModelState.AddModelError("", "Patient bereits vergeben");
+            }
+
+
+            if (ModelState.IsValid)
+            {
+                patient.timecreate = DateTime.Now;
+                patient.timemodify = DateTime.Now;
+                db.Patients.Add(patient);
+                db.SaveChanges();
+                return RedirectToAction("IndexArzt");
+            }
+
+            return View(patient);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreatePfleger([Bind(Include = "Id,insuranceID,insurance,prename,surname,phone,email,gender,street,city,zip,dateofbirth,timecreate,timemodify,isactive")] Patient patient)
+        {
+            SqlConnection connection = null;
+
+            String ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=HMSDB1;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+
+            connection = new SqlConnection(ConnectionString);
+
+            String SQLString = String.Format("SELECT dbo.ObjectSet_Patient.insuranceID FROM dbo.ObjectSet_Patient WHERE insuranceID = '{0}' ", patient.insuranceID);
+
+            SqlCommand cmd = new SqlCommand(SQLString, connection);
+
+            connection.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            String dbroomnumber = null;
+
+
+            while (reader.Read() == true)
+            {
+                dbroomnumber = Convert.ToString(reader["insuranceID"]);
+
+            }
+
+
+            if (dbroomnumber == null)
+            {
+                /// success
+                db.Patients.Add(patient);
+                db.SaveChanges();
+                return RedirectToAction("IndexPfleger"); ;
+            }
+            else
+            {
+                ModelState.AddModelError("", "Patient bereits vergeben");
+            }
+
+
+            if (ModelState.IsValid)
+            {
+                patient.timecreate = DateTime.Now;
+                patient.timemodify = DateTime.Now;
+                db.Patients.Add(patient);
+                db.SaveChanges();
+                return RedirectToAction("IndexPfleger");
+            }
+
+            return View(patient);
+        }
+
         // GET: Patient/Edit/5
         //[Authorize(Roles = "Admin, Arzt, Pfleger")]
         public ActionResult Edit(int? id)
@@ -309,26 +485,66 @@ namespace HMS.Controllers
                 return HttpNotFound();
             }
             String myLayoutName = "";
-            switch (GlobalVariable.currentRole)
+            if (GlobalVariable.currentRole.Equals("Admin"))
             {
-                case GlobalVariable.Role.Admin:
-                    myLayoutName = "_Layout_Admin";
-                    break;
-                case GlobalVariable.Role.Arzt:
-                    myLayoutName = "_Layout_Arzt";
-                    break;
-                case GlobalVariable.Role.Schwester:
-                    myLayoutName = "_Layout_Schwester";
-                    break;
-                default:
-                    myLayoutName = "_Layout_Reinigungspersonal";
-                    break;
+
+                myLayoutName = "_Layout_Admin";
+
             }
 
-            ViewResult myView = View(patient);
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+            return myView;
+        }
+
+        public ActionResult EditArzt(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Patient patient = db.Patients.Find(id);
+            if (patient == null)
+            {
+                return HttpNotFound();
+            }
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Arzt"))
+            {
+
+                myLayoutName = "_Layout_Arzt";
+
+            }
+
+            ViewResult myView = View();
             myView.MasterName = myLayoutName;
             return myView;
 
+            //return View(patient);
+        }
+
+        public ActionResult EditPfleger(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Patient patient = db.Patients.Find(id);
+            if (patient == null)
+            {
+                return HttpNotFound();
+            }
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Pfleger"))
+            {
+
+                myLayoutName = "_Layout_Pfleger";
+
+            }
+
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+            return myView;
             //return View(patient);
         }
 
@@ -348,10 +564,48 @@ namespace HMS.Controllers
                 patient.timemodify = DateTime.Now;
                 db.Entry(patient).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Patient");
             }
             return View(patient);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //[Authorize(Roles = "Admin, Arzt, Pfleger")]
+        public ActionResult EditArzt([Bind(Include = "Id,insuranceID, insurance,prename,surname,phone,email,gender,street,city,zip,dateofbirth,,timecreate, timemodify,isactive")] Patient patient)
+        {
+            //
+            if (ModelState.IsValid)
+            {
+                //patient.dateofbirth = DateTime.Now;
+                //patient.timecreate = DateTime.Now;
+                patient.timemodify = DateTime.Now;
+                db.Entry(patient).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("IndexArzt","Patient");
+            }
+            return View(patient);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //[Authorize(Roles = "Admin, Arzt, Pfleger")]
+        public ActionResult EditPfleger([Bind(Include = "Id,insuranceID, insurance,prename,surname,phone,email,gender,street,city,zip,dateofbirth,,timecreate, timemodify,isactive")] Patient patient)
+        {
+            //
+            if (ModelState.IsValid)
+            {
+                //patient.dateofbirth = DateTime.Now;
+                //patient.timecreate = DateTime.Now;
+                patient.timemodify = DateTime.Now;
+                db.Entry(patient).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("IndexPfleger", "Patient");
+            }
+            return View(patient);
+        }
+
 
         // GET: Patient/Delete/5
         //[Authorize(Roles = "Admin, Arzt, Pfleger")]
@@ -367,26 +621,65 @@ namespace HMS.Controllers
                 return HttpNotFound();
             }
             String myLayoutName = "";
-            switch (GlobalVariable.currentRole)
+            if (GlobalVariable.currentRole.Equals("Admin"))
             {
-                case GlobalVariable.Role.Admin:
-                    myLayoutName = "_Layout_Admin";
-                    break;
-                case GlobalVariable.Role.Arzt:
-                    myLayoutName = "_Layout_Arzt";
-                    break;
-                case GlobalVariable.Role.Schwester:
-                    myLayoutName = "_Layout_Schwester";
-                    break;
-                default:
-                    myLayoutName = "_Layout_Reinigungspersonal";
-                    break;
+
+                myLayoutName = "_Layout_Admin";
+
             }
 
-            ViewResult myView = View(patient);
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+            return myView;
+        }
+
+        public ActionResult DeleteArzt(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Patient patient = db.Patients.Find(id);
+            if (patient == null)
+            {
+                return HttpNotFound();
+            }
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Arzt"))
+            {
+
+                myLayoutName = "_Layout_Arzt";
+
+            }
+
+            ViewResult myView = View();
             myView.MasterName = myLayoutName;
             return myView;
             //return View(patient);
+        }
+
+        public ActionResult DeletePfleger(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Patient patient = db.Patients.Find(id);
+            if (patient == null)
+            {
+                return HttpNotFound();
+            }
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Pfleger"))
+            {
+
+                myLayoutName = "_Layout_Pfleger";
+
+            }
+
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+            return myView;
         }
 
         // POST: Patient/Delete/5
@@ -399,6 +692,28 @@ namespace HMS.Controllers
             db.Patients.Remove(patient);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost, ActionName("DeleteArzt")]
+        [ValidateAntiForgeryToken]
+        //[Authorize(Roles = "Admin, Arzt, Pfleger")]
+        public ActionResult DeleteConfirmedArzt(int id)
+        {
+            Patient patient = db.Patients.Find(id);
+            db.Patients.Remove(patient);
+            db.SaveChanges();
+            return RedirectToAction("IndexArzt");
+        }
+
+        [HttpPost, ActionName("DeletePfleger")]
+        [ValidateAntiForgeryToken]
+        //[Authorize(Roles = "Admin, Arzt, Pfleger")]
+        public ActionResult DeleteConfirmedPfleger(int id)
+        {
+            Patient patient = db.Patients.Find(id);
+            db.Patients.Remove(patient);
+            db.SaveChanges();
+            return RedirectToAction("IndexPfleger");
         }
 
         protected override void Dispose(bool disposing)

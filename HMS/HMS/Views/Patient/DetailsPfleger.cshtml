@@ -1,14 +1,14 @@
 ﻿@model HMS.Models.Patient
 
 @{
-    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+    Layout = "~/Views/Shared/_Layout_Pfleger.cshtml";
     ViewBag.Title = "Details";
 }
 <!--Autor: David Bismor -->
 <h2>Details</h2>
 
 <div>
-  
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -118,11 +118,11 @@
     </dl>
 </div>
 <p>
-
-            <input id="EditThis" type="button" value="Bearbeiten" class="btn btn-default" style="width: 100px"
-        onclick="@("window.location.href='" + @Url.Action("Edit", "Patient", new {id = Model.Id}) + "'");" />
-              <input id="BackToList" type="button" value="Zurück" class="btn btn-default" style="width: 100px"
-        onclick="@("window.location.href='" + @Url.Action("Index", "Patient") + "'");" />
+   
+    <input id="EditThis" type="button" value="Bearbeiten" class="btn btn-default" style="width: 100px"
+           onclick="@("window.location.href='" + @Url.Action("EditPfleger", "Patient", new {id = Model.Id}) + "'");" />
+    <input id="BackToList" type="button" value="Zurück" class="btn btn-default" style="width: 100px"
+           onclick="@("window.location.href='" + @Url.Action("IndexPfleger", "Patient") + "'");" />
     <input id="BackToList" type="button" value="Behandlung anlegen" class="btn btn-default" style="width: 160px"
-        onclick="@("window.location.href='" + @Url.Action("Create", "LocalCase", new {id = Model.Id}) + "'");" />
+           onclick="@("window.location.href='" + @Url.Action("CreatePfleger", "LocalCase", new {id = Model.Id}) + "'");" />
 </p>
