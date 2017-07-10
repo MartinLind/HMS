@@ -76,54 +76,53 @@ namespace HMS.Controllers
                 return HttpNotFound();
             }
             String myLayoutName = "";
-            switch (GlobalVariable.currentRole)
+            if (GlobalVariable.currentRole.Equals("Admin"))
             {
-                case GlobalVariable.Role.Admin:
                     myLayoutName = "_Layout_Admin";
-                    break;
-                case GlobalVariable.Role.Arzt:
-                    myLayoutName = "_Layout_Arzt";
-                    break;
-                case GlobalVariable.Role.Schwester:
-                    myLayoutName = "_Layout_Schwester";
-                    break;
-                default:
-                    myLayoutName = "_Layout_Reinigungspersonal";
-                    break;
             }
 
             ViewResult myView = View(localCase);
             myView.MasterName = myLayoutName;
             return myView;
-            //return View(localCase);
+        }
+
+        public ActionResult DetailsArzt(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            LocalCase localCase = db.LocalCases.Find(id);
+            if (localCase == null)
+            {
+                return HttpNotFound();
+            }
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Arzt"))
+            {
+                myLayoutName = "_Layout_Arzt";
+            }
+
+            ViewResult myView = View(localCase);
+            myView.MasterName = myLayoutName;
+            return myView;
         }
 
         // GET: LocalCase/Create
         public ActionResult Create()
         {
             String myLayoutName = "";
-            switch (GlobalVariable.currentRole)
+            if (GlobalVariable.currentRole.Equals("Admin"))
             {
-                case GlobalVariable.Role.Admin:
                     myLayoutName = "_Layout_Admin";
-                    break;
-                case GlobalVariable.Role.Arzt:
-                    myLayoutName = "_Layout_Arzt";
-                    break;
-                case GlobalVariable.Role.Schwester:
-                    myLayoutName = "_Layout_Schwester";
-                    break;
-                default:
-                    myLayoutName = "_Layout_Reinigungspersonal";
-                    break;
+                   
+              
             }
 
             ViewResult myView = View();
             myView.MasterName = myLayoutName;
 
             //Für Raum:
-            //ViewBag.Id = der Name der Liste
-            //db.Rooms = Datenbank, "Id" = Attribut 
             ViewBag.Id= new SelectList(db.Rooms, "Id", "number");
 
             //Für User
@@ -134,12 +133,7 @@ namespace HMS.Controllers
             var url = Url.RequestContext.RouteData.Values["Id"];
             int id = System.Convert.ToInt32(url);
             ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(id)).ToList(), "Id", "surname");
-            //So geht es, ich brauche nur noch die id aus der URL
-            //ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(7)).ToList(), "Id", "surname");
-            //ViewBag.Pat = new SelectList(db.Patients, "Id", "surname");
-
             return myView;
-            //return View();
         }
 
         public ActionResult CreateArzt()
@@ -149,14 +143,10 @@ namespace HMS.Controllers
             {
                 myLayoutName = "_Layout_Arzt";
             }
-            //ViewResult NewView = View(db.LocalCases.ToList());
             ViewResult NewView = View(db.LocalCases.Where(x => x.isactive.Equals(true)).ToList());
-            NewView.MasterName = myLayoutName;
-            return NewView;
+          
 
             //Für Raum:
-            //ViewBag.Id = der Name der Liste
-            //db.Rooms = Datenbank, "Id" = Attribut 
             ViewBag.Id = new SelectList(db.Rooms, "Id", "number");
 
             //Für User
@@ -167,12 +157,8 @@ namespace HMS.Controllers
             var url = Url.RequestContext.RouteData.Values["Id"];
             int id = System.Convert.ToInt32(url);
             ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(id)).ToList(), "Id", "surname");
-            //So geht es, ich brauche nur noch die id aus der URL
-            //ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(7)).ToList(), "Id", "surname");
-            //ViewBag.Pat = new SelectList(db.Patients, "Id", "surname");
-
-           // return myView;
-            //return View();
+            NewView.MasterName = myLayoutName;
+            return NewView;
         }
 
 
@@ -220,15 +206,63 @@ namespace HMS.Controllers
 
                 ViewBag.Id = new SelectList(db.Rooms, "Id", "number", localCase.Id);
                 ViewBag.IdUser = new SelectList(db.Users, "Id", "surname", localCase.Id);
-                //localCase.Room.Add(db.Rooms.Find(ViewBag.selectedValue));
                 db.LocalCases.Add(localCase);
                 
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             
-           
-            //localCase.Room.Add(db.Rooms.Find(ViewBag.Id));
+
+            return View(localCase);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateArzt([Bind(Include = "Id,timecreate,timeclosed,casenr,diagnosis,medication,therapy,expectedtime,timemodify,isactive")] LocalCase localCase)
+        {
+            if (ModelState.IsValid)
+            {
+
+
+                //Mit dem Befehlt kann man einem Case einem Raum zuordnen.
+                //Wir müssen also irgendwie noch die id beim Create mitliefern (int? idRoom) und hier dann speichern
+                //Analog auch mit Patienten
+                //localCase.Patient.Add(db.Patient.Find(idPat));
+
+                localCase.timecreate = DateTime.Now;
+                localCase.timemodify = DateTime.Now;
+
+                //
+                //Hier wird die Beziehung Raum - Behandlung gespeichert
+                //
+                string wirbrauchendieid = Request.Form["Id"].ToString();
+                int roomId = System.Convert.ToInt32(wirbrauchendieid);
+                localCase.Room.Add(db.Rooms.Find(roomId));
+
+                //
+                //Hier wird die Beziehung User - Behandlung gespeichert
+                //
+                string dieidvomuser = Request.Form["IdUser"].ToString();
+                int userId = System.Convert.ToInt32(dieidvomuser);
+                localCase.User.Add(db.Users.Find(userId));
+
+
+                //
+                //Hier wird die Beziehung Patient - Behandlung gespeichert
+                //
+                string dieidvompat = Request.Form["Pat"].ToString();
+                int patId = System.Convert.ToInt32(dieidvompat);
+                localCase.Patient.Add(db.Patients.Find(patId));
+
+
+                ViewBag.Id = new SelectList(db.Rooms, "Id", "number", localCase.Id);
+                ViewBag.IdUser = new SelectList(db.Users, "Id", "surname", localCase.Id);
+                db.LocalCases.Add(localCase);
+
+                db.SaveChanges();
+                return RedirectToAction("IndexArzt");
+            }
+            
 
             return View(localCase);
         }
@@ -246,38 +280,52 @@ namespace HMS.Controllers
                 return HttpNotFound();
             }
             String myLayoutName = "";
-            switch (GlobalVariable.currentRole)
+            if (GlobalVariable.currentRole.Equals("Admin"))
             {
-                case GlobalVariable.Role.Admin:
                     myLayoutName = "_Layout_Admin";
-                    break;
-                case GlobalVariable.Role.Arzt:
-                    myLayoutName = "_Layout_Arzt";
-                    break;
-                case GlobalVariable.Role.Schwester:
-                    myLayoutName = "_Layout_Schwester";
-                    break;
-                default:
-                    myLayoutName = "_Layout_Reinigungspersonal";
-                    break;
             }
 
             ViewResult myView = View(localCase);
             myView.MasterName = myLayoutName;
 
-            //Für Raum:
-            //ViewBag.Id = der Name der Liste
-            //db.Rooms = Datenbank, "Id" = Attribut 
             ViewBag.Id = null;           
             ViewBag.Id = new SelectList(db.Rooms, "Id", "number");
 
             //Für User
             ViewBag.IdUser = null;
             ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+           
+            return myView;
+        }
 
+        public ActionResult EditArzt(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            LocalCase localCase = db.LocalCases.Find(id);
+            if (localCase == null)
+            {
+                return HttpNotFound();
+            }
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Arzt"))
+            {
+                myLayoutName = "_Layout_Arzt";
+            }
+
+            ViewResult myView = View(localCase);
+            myView.MasterName = myLayoutName;
+
+            ViewBag.Id = null;
+            ViewBag.Id = new SelectList(db.Rooms, "Id", "number");
+
+            //Für User
+            ViewBag.IdUser = null;
+            ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
 
             return myView;
-            //return View(localCase);
         }
 
         // POST: LocalCase/Edit/5
@@ -302,6 +350,25 @@ namespace HMS.Controllers
             return View(localCase);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditArzt([Bind(Include = "Id,timecreate,timeclosed,casenr,diagnosis,medication,therapy,expectedtime,timecreate,timemodify,isactive")] LocalCase localCase)
+        {
+            if (ModelState.IsValid)
+            {
+                localCase.timemodify = DateTime.Now;
+                //TODO:
+                //Räume und User werden beim Edit noch nicht gespeichert
+                //bisher keine Lösung gefunden
+                //
+
+                db.Entry(localCase).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("IndexArzt");
+            }
+            return View(localCase);
+        }
+
         // GET: LocalCase/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -315,26 +382,36 @@ namespace HMS.Controllers
                 return HttpNotFound();
             }
             String myLayoutName = "";
-            switch (GlobalVariable.currentRole)
+            if (GlobalVariable.currentRole.Equals("Admin"))
             {
-                case GlobalVariable.Role.Admin:
                     myLayoutName = "_Layout_Admin";
-                    break;
-                case GlobalVariable.Role.Arzt:
-                    myLayoutName = "_Layout_Arzt";
-                    break;
-                case GlobalVariable.Role.Schwester:
-                    myLayoutName = "_Layout_Schwester";
-                    break;
-                default:
-                    myLayoutName = "_Layout_Reinigungspersonal";
-                    break;
             }
 
             ViewResult myView = View(localCase);
             myView.MasterName = myLayoutName;
             return myView;
-            //return View(localCase);
+        }
+
+        public ActionResult DeleteArzt(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            LocalCase localCase = db.LocalCases.Find(id);
+            if (localCase == null)
+            {
+                return HttpNotFound();
+            }
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Arzt"))
+            {
+                myLayoutName = "_Layout_Arzt";
+            }
+
+            ViewResult myView = View(localCase);
+            myView.MasterName = myLayoutName;
+            return myView;
         }
 
         // POST: LocalCase/Delete/5
@@ -347,6 +424,17 @@ namespace HMS.Controllers
             localCase.isactive = false;
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost, ActionName("DeleteArzt")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmedArzt(int id)
+        {
+            LocalCase localCase = db.LocalCases.Find(id);
+            //db.LocalCases.Remove(localCase);
+            localCase.isactive = false;
+            db.SaveChanges();
+            return RedirectToAction("IndexArzt");
         }
 
         protected override void Dispose(bool disposing)

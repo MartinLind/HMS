@@ -11,7 +11,7 @@
 
         <td style="position:absolute; right:5%; top:10%">
    <input id="GoCreatePatient" type="button" value="Behandlung hinzufügen" class="btn btn-default" style="width:175px"  
-        onclick="@("window.location.href='" + @Url.Action("Create", "LocalCase") + "'");" />
+        onclick="@("window.location.href='" + @Url.Action("CreateArzt", "LocalCase") + "'");" />
             </td>
 </tr>
  </table>
@@ -48,7 +48,13 @@
         <th>
             @Html.DisplayNameFor(model => model.Room)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayName("Patient")
+        </th>
+        <th>
+            @Html.DisplayName("Zugeteiltes Personal")
+        </th>
+       
     </tr>
 
 @foreach (var item in Model) {
@@ -87,19 +93,27 @@
 
         </td>
         <td>
+            @foreach (var test in item.Patient)
+            {
+                @test.surname
+            }
+        </td>
+        <td>
+            @foreach (var test in item.User)
+            {
+                @test.surname
+            }
+        </td>
+        <td>
                 <input id="GoCreatePatient" type="button" value="Bearbeiten" class="btn btn-default"   style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Edit", "LocalCase",  new {id=item.Id} )+ "'");" />
+        onclick="@("window.location.href='" + @Url.Action("EditArzt", "LocalCase",  new {id=item.Id} )+ "'");" />
             <br />
              <input id="GoCreatePatient" type="button" value="Details" class="btn btn-default"  style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Details", "LocalCase",  new {id=item.Id} ) + "'");" />
+        onclick="@("window.location.href='" + @Url.Action("DetailsArzt", "LocalCase",  new {id=item.Id} ) + "'");" />
             <br />
              <input id="GoCreatePatient" type="button" value="Beenden" class="btn btn-default" style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Delete", "LocalCase",  new {id=item.Id} )+ "'" );" />
-<!--
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id }) 
-    -->
+        onclick="@("window.location.href='" + @Url.Action("DeleteArzt", "LocalCase",  new {id=item.Id} )+ "'" );" />
+
         </td>
     </tr>
 }

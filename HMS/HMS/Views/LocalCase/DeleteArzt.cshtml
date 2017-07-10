@@ -1,7 +1,7 @@
 ﻿@model HMS.Models.LocalCase
 
 @{
-    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+    Layout = "~/Views/Shared/_Layout_Arzt.cshtml";
     ViewBag.Title = "Delete";
 }
 <!--Autor: David Bismor -->
@@ -9,7 +9,7 @@
 
 <h3>Wollen Sie wirklich fortfahren?</h3>
 <div>
-   
+
     <hr />
     <dl class="dl-horizontal">
 
@@ -96,7 +96,7 @@
             @foreach (var number in Model.Room)
             {
                 @Html.DisplayFor(model => number.number)
-            }            
+            }
         </dd>
 
         <dt>
@@ -107,7 +107,7 @@
             @foreach (var patient in Model.Patient)
             {
                 @Html.DisplayFor(model => patient.surname)
-            }            
+            }
         </dd>
 
         <dt>
@@ -118,19 +118,20 @@
             @foreach (var user in Model.User)
             {
                 @Html.DisplayFor(model => user.surname)
-            }            
+            }
         </dd>
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
             <!--<input type="submit" value="Delete" class="btn btn-default" /> -->
             <!-- Wollen wir abschließen oder löschen? -->
-           <input type="submit" value="Behandlung abschließen" class="btn btn-default" style="width:200px"/> 
+            <input type="submit" value="Behandlung abschließen" class="btn btn-default" style="width:200px" />
             <input id="BackToList" type="button" value="Abbrechen" class="btn btn-default" style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Index", "LocalCase") + "'");" />
+                   onclick="@("window.location.href='" + @Url.Action("IndexArzt", "LocalCase") + "'");" />
         </div>
     }
 </div>

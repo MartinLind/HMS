@@ -1,18 +1,23 @@
 ﻿@model HMS.Models.LocalCase
 
 @{
-    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
-    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout_Arzt.cshtml";
+    ViewBag.Title = "Details";
 }
 <!--Autor: David Bismor -->
-<h2>Bahandlung abschließen..</h2>
+<h2>Details</h2>
 
-<h3>Wollen Sie wirklich fortfahren?</h3>
 <div>
-   
+
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.timecreate)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.timecreate)
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.timeclosed)
@@ -29,7 +34,6 @@
         <dd>
             @Html.DisplayFor(model => model.casenr)
         </dd>
-
 
         <dt>
             @Html.DisplayNameFor(model => model.diagnosis)
@@ -63,15 +67,6 @@
             @Html.DisplayFor(model => model.expectedtime)
         </dd>
 
-
-        <dt>
-            @Html.DisplayNameFor(model => model.timecreate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.timecreate)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.timemodify)
         </dt>
@@ -96,7 +91,7 @@
             @foreach (var number in Model.Room)
             {
                 @Html.DisplayFor(model => number.number)
-            }            
+            }
         </dd>
 
         <dt>
@@ -107,7 +102,7 @@
             @foreach (var patient in Model.Patient)
             {
                 @Html.DisplayFor(model => patient.surname)
-            }            
+            }
         </dd>
 
         <dt>
@@ -118,19 +113,14 @@
             @foreach (var user in Model.User)
             {
                 @Html.DisplayFor(model => user.surname)
-            }            
+            }
         </dd>
+
     </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <!--<input type="submit" value="Delete" class="btn btn-default" /> -->
-            <!-- Wollen wir abschließen oder löschen? -->
-           <input type="submit" value="Behandlung abschließen" class="btn btn-default" style="width:200px"/> 
-            <input id="BackToList" type="button" value="Abbrechen" class="btn btn-default" style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Index", "LocalCase") + "'");" />
-        </div>
-    }
 </div>
+<p>
+    <input id="EditThis" type="button" value="Bearbeiten" class="btn btn-default" style="width: 100px"
+           onclick="@("window.location.href='" + @Url.Action("EditArzt", "LocalCase", new {id = Model.Id}) + "'");" />
+    <input id="BackToList" type="button" value="Zurück" class="btn btn-default" style="width: 100px"
+           onclick="@("window.location.href='" + @Url.Action("IndexArzt", "LocalCase") + "'");" />
+</p>
