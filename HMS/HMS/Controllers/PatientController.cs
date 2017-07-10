@@ -195,7 +195,7 @@ namespace HMS.Controllers
 
             }
 
-            ViewResult myView = View();
+            ViewResult myView = View(patient);
             myView.MasterName = myLayoutName;
             return myView;
         }
@@ -219,7 +219,7 @@ namespace HMS.Controllers
 
             }
 
-            ViewResult myView = View();
+            ViewResult myView = View(patient);
             myView.MasterName = myLayoutName;
             return myView;
         }
@@ -243,7 +243,7 @@ namespace HMS.Controllers
 
             }
 
-            ViewResult myView = View();
+            ViewResult myView = View(patient);
             myView.MasterName = myLayoutName;
             return myView;
         }
@@ -492,7 +492,7 @@ namespace HMS.Controllers
 
             }
 
-            ViewResult myView = View();
+            ViewResult myView = View(patient);
             myView.MasterName = myLayoutName;
             return myView;
         }
@@ -516,7 +516,7 @@ namespace HMS.Controllers
 
             }
 
-            ViewResult myView = View();
+            ViewResult myView = View(patient);
             myView.MasterName = myLayoutName;
             return myView;
 
@@ -542,7 +542,7 @@ namespace HMS.Controllers
 
             }
 
-            ViewResult myView = View();
+            ViewResult myView = View(patient);
             myView.MasterName = myLayoutName;
             return myView;
             //return View(patient);
@@ -628,7 +628,7 @@ namespace HMS.Controllers
 
             }
 
-            ViewResult myView = View();
+            ViewResult myView = View(patient);
             myView.MasterName = myLayoutName;
             return myView;
         }
@@ -652,7 +652,7 @@ namespace HMS.Controllers
 
             }
 
-            ViewResult myView = View();
+            ViewResult myView = View(patient);
             myView.MasterName = myLayoutName;
             return myView;
             //return View(patient);
@@ -677,7 +677,7 @@ namespace HMS.Controllers
 
             }
 
-            ViewResult myView = View();
+            ViewResult myView = View(patient);
             myView.MasterName = myLayoutName;
             return myView;
         }
