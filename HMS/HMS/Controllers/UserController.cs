@@ -7,13 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HMS.Models;
+using System.Collections;
 
 namespace HMS.Controllers
 {
     public class UserController : Controller
     {
         private DBContainer db = new DBContainer();
-
+        
         // GET: User
         //Autor: David & Yunus
         public ActionResult Index()
@@ -109,24 +110,33 @@ namespace HMS.Controllers
             User model = new User();
             model.timecreate = DateTime.Now;
             model.timemodify = DateTime.Now;
+           
 
             return View(model);
         }
 
         // POST: User/Create
-        // Aktivieren Sie zum Schutz vor übermäßigem Senden von Angriffen die spezifischen Eigenschaften, mit denen eine Bindung erfolgen soll. Weitere Informationen 
-        // finden Sie unter https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Autor: David Bismor
+        // Automatisches setzes der Rechte - in den Views nur auf display:none gesetzt
+        // Keine manuelle Zuweisung der Rechte mehr nötig, Platzeinsparung in der View!!
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,username,password,rolename,accessright1,accessright2,accessright3,accessright4,accessright5,prename,surname,phone,email,gender,street,city,zip,dateofbirth,timecreate,timemodify,isactive")] User user)
         {
             if (ModelState.IsValid)
             {
+                string value = user.rolename;
+                if (value.Equals("Admin")){user.accessright1 = true; }
+               else if (value.Equals("Arzt")) { user.accessright2 = true; }
+                else if (value.Equals("Pflegepersonal")) { user.accessright3 = true; }
+                else if (value.Equals("Reinigungspersonal")) { user.accessright4 = true; }
+                else if (value.Equals("Therapeut")) { user.accessright5 = true; }
+                
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+           
             return View(user);
         }
 
@@ -155,6 +165,12 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                string value = user.rolename;
+                if (value.Equals("Admin")) { user.accessright1 = true; user.accessright2 = false; user.accessright3 = false;user.accessright4 = false; user.accessright5 = false; }
+                else if (value.Equals("Arzt")) { user.accessright2 = true; user.accessright1 = false; user.accessright3 = false; user.accessright4 = false; user.accessright5 = false; }
+                else if (value.Equals("Pflegepersonal")) { user.accessright3 = true; user.accessright2 = false; user.accessright1 = false; user.accessright4 = false; user.accessright5 = false; }
+                else if (value.Equals("Reinigungspersonal")) { user.accessright4 = true; user.accessright2 = false; user.accessright3 = false; user.accessright1 = false; user.accessright5 = false; }
+                else if (value.Equals("Therapeut")) { user.accessright5 = true; user.accessright2 = false; user.accessright3 = false; user.accessright4 = false; user.accessright1 = false; }
                 user.timemodify = DateTime.Now;
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();

@@ -29,19 +29,19 @@
         <th>
             @Html.DisplayNameFor(model => model.rolename)
         </th>
-        <th>
+        <th style="display:none">
             @Html.DisplayNameFor(model => model.accessright1)
         </th>
-        <th>
+        <th style="display:none">
             @Html.DisplayNameFor(model => model.accessright2)
         </th>
-        <th>
+        <th style="display:none">
             @Html.DisplayNameFor(model => model.accessright3)
         </th>
-        <th>
+        <th style="display:none">
             @Html.DisplayNameFor(model => model.accessright4)
         </th>
-        <th>
+        <th style="display:none">
             @Html.DisplayNameFor(model => model.accessright5)
         </th>
         <th>
@@ -95,19 +95,19 @@
         <td>
             @Html.DisplayFor(modelItem => item.rolename)
         </td>
-        <td>
+        <td style="display:none">
             @Html.DisplayFor(modelItem => item.accessright1)
         </td>
-        <td>
+        <td style="display:none">
             @Html.DisplayFor(modelItem => item.accessright2)
         </td>
-        <td>
+        <td style="display:none">
             @Html.DisplayFor(modelItem => item.accessright3)
         </td>
-        <td>
+        <td style="display:none">
             @Html.DisplayFor(modelItem => item.accessright4)
         </td>
-        <td>
+        <td style="display:none">
             @Html.DisplayFor(modelItem => item.accessright5)
         </td>
         <td>
@@ -156,9 +156,7 @@
             <br />
              <input id="GoCreatePatient" type="button" value="Löschen" class="btn btn-default" style="width:90px"
         onclick="@("window.location.href='" + @Url.Action("Delete", "User",  new {id=item.Id} )+ "'" );" />
-          <!--  @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })-->
+ 
         </td>
     </tr>
 }
