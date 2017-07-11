@@ -290,8 +290,9 @@ namespace HMS.Controllers
             //Für Raum:
             //ViewBag.Id = der Name der Liste
             //db.Rooms = Datenbank, "Id" = Attribut 
+           
             ViewBag.IdEditAdmin = null;
-            ViewBag.IdEditAdmin = new SelectList(db.Rooms, "Id", "number");
+            ViewBag.IdEditAdmin = new SelectList(db.Rooms,  "Id", "number");
 
             //Für User
             ViewBag.IdUserAdmin = null;
@@ -320,6 +321,7 @@ namespace HMS.Controllers
             ViewResult myView = View(localCase);
             myView.MasterName = myLayoutName;
 
+            //Für Raum
             ViewBag.IdEditArzt = null;
             ViewBag.IdEditArzt = new SelectList(db.Rooms, "Id", "number");
 

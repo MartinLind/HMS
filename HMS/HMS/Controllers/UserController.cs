@@ -107,6 +107,7 @@ namespace HMS.Controllers
         public ActionResult Create()
         {
             //Autor: David Bismor
+            
             User model = new User();
             model.timecreate = DateTime.Now;
             model.timemodify = DateTime.Now;
