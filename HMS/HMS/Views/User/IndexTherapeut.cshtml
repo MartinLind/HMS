@@ -17,101 +17,61 @@
 <br /><br /> <br /> <br />
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.rolename)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.accessright1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.accessright2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.accessright3)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.accessright4)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.accessright5)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.prename)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.surname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.street)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.city)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.zip)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dateofbirth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.timecreate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.timemodify)
-        </th>
-        <th >
-            @Html.DisplayNameFor(model => model.isactive)
-        </th>
-         
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
+    <th>
+        @Html.DisplayNameFor(model => model.prename)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.surname)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.rolename)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.phone)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.email)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.gender)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.street)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.city)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.zip)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.dateofbirth)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.timecreate)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.timemodify)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.isactive)
+    </th>
+
+    <th></th>
+</tr>
+
+@foreach (var item in Model)
+{
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.rolename)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.accessright1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.accessright2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.accessright3)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.accessright4)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.accessright5)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.prename)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rolename)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.phone)
@@ -143,8 +103,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.isactive)
         </td>
-        
-      
+
+
     </tr>
 }
 
