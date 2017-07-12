@@ -137,8 +137,14 @@
              <input id="GoCreatePatient" type="button" value="Details" class="btn btn-default"  style="width:90px"
         onclick="@("window.location.href='" + @Url.Action("DetailsPfleger", "Patient",  new {id=item.Id} ) + "'");" />
             <br />
-             <input id="GoCreatePatient" type="button" value="Entlassen" class="btn btn-default" style="width:90px"
+             @if (item.isactive == false){
+            <input id="GoCreatePatient" type="button" value="Patient aufnehmen" class="btn btn-default"   style="width:auto"
+        onclick="@("window.location.href='" + @Url.Action("PatientActivePfleger", "Patient",  new {id=item.Id} )+ "'");" />
+            }
+            @if (item.isactive == true){
+            <input id="GoCreatePatient" type="button" value="Entlassen" class="btn btn-default" style="width:90px"
         onclick="@("window.location.href='" + @Url.Action("DeletePfleger", "Patient",  new {id=item.Id} )+ "'" );" />
+            }
             <!--
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |

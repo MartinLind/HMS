@@ -129,8 +129,14 @@
              <input id="GoCreatePatient" type="button" value="Details" class="btn btn-default"  style="width:90px"
         onclick="@("window.location.href='" + @Url.Action("DetailsArzt", "Patient",  new {id=item.Id} ) + "'");" />
             <br />
-             <input id="GoCreatePatient" type="button" value="Entlassen" class="btn btn-default" style="width:90px"
+             @if (item.isactive == false){
+            <input id="GoCreatePatient" type="button" value="Patient aufnehmen" class="btn btn-default"   style="width:auto"
+        onclick="@("window.location.href='" + @Url.Action("PatientActiveArzt", "Patient",  new {id=item.Id} )+ "'");" />
+            }
+            @if (item.isactive == true){
+            <input id="GoCreatePatient" type="button" value="Entlassen" class="btn btn-default" style="width:90px"
         onclick="@("window.location.href='" + @Url.Action("DeleteArzt", "Patient",  new {id=item.Id} )+ "'" );" />
+            }
          
         </td>
     </tr>

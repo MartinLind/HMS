@@ -1,0 +1,15 @@
+﻿@model HMS.Models.Patient
+
+@{
+    Layout = "~/Views/Shared/_Layout_Schwester.cshtml";
+    ViewBag.Title = "PatientActivePfleger";
+}
+<!--Autor: David Bismor -->
+<!--und auch bisschen Martin Wichary :) -->
+<h2>Patient wurde aufgenommen</h2>
+<br />
+<p>
+            <input id="BackToList" type="button" value="Ok" class="btn btn-default" style="width: 100px"
+        onclick="@("window.location.href='" + @Url.Action("IndexPfleger", "Patient") + "'");" />
+            
+</p>
