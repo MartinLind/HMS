@@ -5,6 +5,7 @@
     ViewBag.Title = "Details";
 }
 <!--Autor: David Bismor -->
+<!--und auch bisschen Martin Wichary :) -->
 <h2>Details</h2>
 
 <div>
@@ -125,4 +126,6 @@
            onclick="@("window.location.href='" + @Url.Action("IndexArzt", "Patient") + "'");" />
     <input id="BackToList" type="button" value="Behandlung anlegen" class="btn btn-default" style="width: 160px"
            onclick="@("window.location.href='" + @Url.Action("CreateArzt", "LocalCase", new {id = Model.Id}) + "'");" />
+    <input id="BackToList" type="button" value="Historie" class="btn btn-default" style="width: auto"
+        onclick="@("window.location.href='" + @Url.Action("HistorieArzt", "LocalCase", new {id = Model.Id}) + "'");" />
 </p>

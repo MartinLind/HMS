@@ -492,13 +492,71 @@ namespace HMS.Controllers
             base.Dispose(disposing);
         }
 
+        //Autor: Martin Wichary
+        public ActionResult Historie(int? id)
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Admin"))
+            {
+                myLayoutName = "_Layout_Admin";
+            }
+            if (id == null)
+            {
+                ViewResult NewViewErr = View(db.Patients.ToList());
+                NewViewErr.MasterName = myLayoutName;
+                return NewViewErr;
+            }
+            Patient pat = db.Patients.Find(id);
+            ViewResult NewView = View(pat.LocalCase.ToList());
+            NewView.MasterName = myLayoutName;
+            return NewView;
+        }
+        //Autor: Martin Wichary
+        public ActionResult HistorieArzt(int? id)
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Arzt"))
+            {
+                myLayoutName = "_Layout_Arzt";
+            }
+            if (id == null)
+            {
+                ViewResult NewViewErr = View(db.Patients.ToList());
+                NewViewErr.MasterName = myLayoutName;
+                return NewViewErr;
+            }
+            Patient pat = db.Patients.Find(id);
+            ViewResult NewView = View(pat.LocalCase.ToList());
+            NewView.MasterName = myLayoutName;
+            return NewView;
+        }
+
+        //Autor: Martin Wichary
+        public ActionResult HistoriePfleger(int? id)
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Schwester"))
+            {
+                myLayoutName = "_Layout_Schwester";
+            }
+            if (id == null)
+            {
+                ViewResult NewViewErr = View(db.Patients.ToList());
+                NewViewErr.MasterName = myLayoutName;
+                return NewViewErr;
+            }
+            Patient pat = db.Patients.Find(id);
+            ViewResult NewView = View(pat.LocalCase.ToList());
+            NewView.MasterName = myLayoutName;
+            return NewView;
+        }
 
 
 
 
         //  --------------CK-----------------------
 
-            // Ich denke Ihr habt keine Wahl außer für jeden Action in jedem Controller zu checken wer das darf. !!!!! Mühsam aber müssen wir leider auch.
+        // Ich denke Ihr habt keine Wahl außer für jeden Action in jedem Controller zu checken wer das darf. !!!!! Mühsam aber müssen wir leider auch.
 
         public ActionResult Schichten()
         {

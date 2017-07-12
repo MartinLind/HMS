@@ -816,6 +816,9 @@
     <Content Include="Views\LocalCase\EditArzt.cshtml" />
     <Content Include="Views\LocalCase\DeleteArzt.cshtml" />
     <Content Include="Views\LocalCase\DetailsArzt.cshtml" />
+    <Content Include="Views\LocalCase\Historie.cshtml" />
+    <Content Include="Views\LocalCase\HistorieArzt.cshtml" />
+    <Content Include="Views\LocalCase\HistoriePfleger.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

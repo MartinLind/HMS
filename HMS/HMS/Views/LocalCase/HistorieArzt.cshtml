@@ -1,0 +1,107 @@
+﻿@model IEnumerable<HMS.Models.LocalCase>
+
+@{
+    Layout = "~/Views/Shared/_Layout_Arzt.cshtml";
+    ViewBag.Title = "Historie";
+}
+    <!--Autor: Martin Wichary -->
+<table>
+      <tr>
+           <td style="position: absolute; left:auto"><h2>Historie</h2></td>
+           </td>
+      </tr>
+
+ </table>
+    <br /><br /> <br /> <br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.timecreate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timeclosed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.casenr)
+        </th>        
+        <th>
+            @Html.DisplayNameFor(model => model.diagnosis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.medication)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.therapy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.expectedtime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timemodify)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isactive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Room)
+        </th>
+        <th>
+            @Html.DisplayName("Patient")
+        </th>
+        <th>
+            @Html.DisplayName("Zugeteiltes Personal")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.timecreate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.timeclosed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.casenr)
+        </td>        
+        <td>
+            @Html.DisplayFor(modelItem => item.diagnosis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.medication)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.therapy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.expectedtime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.timemodify)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isactive)
+        </td>
+        <td>
+            @foreach (var test in item.Room){
+            @test.number
+            } 
+        </td>
+        <td>
+            @foreach (var test in item.Patient){
+            @test.surname
+            } 
+        </td>
+        <td>
+            @foreach (var test in item.User){
+            @test.surname
+            } 
+        </td>
+        
+    </tr>
+}
+
+</table>
+    <input id="GoCreatePatient" type="button" value="Zurück" class="btn btn-default"   style="width:auto"
+        onclick="@("window.location.href='" + @Url.Action("IndexArzt", "Patient")+ "'");" />

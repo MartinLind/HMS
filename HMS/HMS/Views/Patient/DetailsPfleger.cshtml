@@ -1,10 +1,11 @@
 ﻿@model HMS.Models.Patient
 
 @{
-    Layout = "~/Views/Shared/_Layout_Pfleger.cshtml";
+    Layout = "~/Views/Shared/_Layout_Schwester.cshtml";
     ViewBag.Title = "Details";
 }
 <!--Autor: David Bismor -->
+<!--und auch bisschen Martin Wichary :) -->
 <h2>Details</h2>
 
 <div>
@@ -125,4 +126,6 @@
            onclick="@("window.location.href='" + @Url.Action("IndexPfleger", "Patient") + "'");" />
     <input id="BackToList" type="button" value="Behandlung anlegen" class="btn btn-default" style="width: 160px"
            onclick="@("window.location.href='" + @Url.Action("CreatePfleger", "LocalCase", new {id = Model.Id}) + "'");" />
+    <input id="BackToList" type="button" value="Historie" class="btn btn-default" style="width: auto"
+        onclick="@("window.location.href='" + @Url.Action("HistoriePfleger", "LocalCase", new {id = Model.Id}) + "'");" />
 </p>
