@@ -550,6 +550,24 @@ namespace HMS.Controllers
             NewView.MasterName = myLayoutName;
             return NewView;
         }
+        public ActionResult HistorieTherapeut(int? id)
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Therapeut"))
+            {
+                myLayoutName = "_Layout_Therapeut";
+            }
+            if (id == null)
+            {
+                ViewResult NewViewErr = View(db.Patients.ToList());
+                NewViewErr.MasterName = myLayoutName;
+                return NewViewErr;
+            }
+            Patient pat = db.Patients.Find(id);
+            ViewResult NewView = View(pat.LocalCase.ToList());
+            NewView.MasterName = myLayoutName;
+            return NewView;
+        }
 
 
 

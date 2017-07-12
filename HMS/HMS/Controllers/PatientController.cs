@@ -229,6 +229,29 @@ namespace HMS.Controllers
             myView.MasterName = myLayoutName;
             return myView;
         }
+        public ActionResult DetailsTherapeut(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Patient patient = db.Patients.Find(id);
+            if (patient == null)
+            {
+                return HttpNotFound();
+            }
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Therapeut"))
+            {
+
+                myLayoutName = "_Layout_Therapeut";
+
+            }
+
+            ViewResult myView = View(patient);
+            myView.MasterName = myLayoutName;
+            return myView;
+        }
 
         // GET: Patient/Create
 
