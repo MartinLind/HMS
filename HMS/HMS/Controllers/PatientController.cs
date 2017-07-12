@@ -650,10 +650,10 @@ namespace HMS.Controllers
                 return HttpNotFound();
             }
             String myLayoutName = "";
-            if (GlobalVariable.currentRole.Equals("Pfleger"))
+            if (GlobalVariable.currentRole.Equals("Schwester"))
             {
 
-                myLayoutName = "_Layout_Pfleger";
+                myLayoutName = "_Layout_Schwester";
 
             }
 
@@ -668,7 +668,8 @@ namespace HMS.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Patient patient = db.Patients.Find(id);
-            db.Patients.Remove(patient);
+            //db.Patients.Remove(patient);
+            patient.isactive = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -678,7 +679,8 @@ namespace HMS.Controllers
         public ActionResult DeleteConfirmedArzt(int id)
         {
             Patient patient = db.Patients.Find(id);
-            db.Patients.Remove(patient);
+            //db.Patients.Remove(patient);
+            patient.isactive = false;
             db.SaveChanges();
             return RedirectToAction("IndexArzt");
         }
@@ -688,7 +690,8 @@ namespace HMS.Controllers
         public ActionResult DeleteConfirmedPfleger(int id)
         {
             Patient patient = db.Patients.Find(id);
-            db.Patients.Remove(patient);
+            //db.Patients.Remove(patient);
+            patient.isactive = false;
             db.SaveChanges();
             return RedirectToAction("IndexPfleger");
         }
