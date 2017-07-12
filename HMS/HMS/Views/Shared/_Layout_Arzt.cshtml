@@ -21,12 +21,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                <!--     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
-                          <li>@Html.ActionLink("Info", "About", "Home")</li>
-                             <li>@Html.ActionLink("TestPage", "Test1", "Home")</li> 
-                    
-                    Für sichtbarkeit der Views, einfach in li packen: style="display:none"
-                    -->
+             
                     
                      <li>@Html.ActionLink("Patient", "IndexArzt", "Patient")</li>
                      <li>@Html.ActionLink("Personal", "IndexArzt", "User")</li>
@@ -38,9 +33,10 @@
                    
                 </ul>
 
-                <ul class="nav navbar-nav navbar-right">
-                          @Html.ActionLink("Logout", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                    </ul>
+                <ul class="nav navbar-nav navbar-brand navbar-right">
+                    <span style="font-size:smaller">@ViewBag.Logged</span>
+                    @Html.ActionLink("Logout", "Index", "Home", new { area = "" })
+                </ul>
             </div>
         </div>
     </div>

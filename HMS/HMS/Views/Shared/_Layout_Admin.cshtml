@@ -32,12 +32,10 @@
                 
                    
                 </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Cant display the current username
-                        <span class="navbar-brand" style="font-size:11pt">Logged in as </span>
-                        lbl.Text = Session("User").ToString() --> 
-                        @ViewBag.Logged
-                          @Html.ActionLink("Logout", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                
+                    <ul class="nav navbar-nav navbar-brand navbar-right">
+                  <span style="font-size:smaller">@ViewBag.Logged</span>
+                        @Html.ActionLink("Logout", "Index", "Home", new { area = "" })
                            
                     </ul>
             </div>

@@ -33,9 +33,10 @@
                 
                    
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                          @Html.ActionLink("Logout", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                    </ul>
+                <ul class="nav navbar-nav navbar-brand navbar-right">
+                    <span style="font-size:smaller">@ViewBag.Logged</span>
+                    @Html.ActionLink("Logout", "Index", "Home", new { area = "" })
+                </ul>
             </div>
         </div>
     </div>

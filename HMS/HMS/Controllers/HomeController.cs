@@ -49,27 +49,27 @@ namespace HMS.Controllers
             {
                 case FunctionLoginStatus.SUCCESS_Admin:
                     result = View("Home", "_Layout_Admin");
-                    ViewBag.Logged = "Welcome" + username;
+                    ViewBag.Logged = "Welcome " + username;
                     GlobalVariable.currentRole = GlobalVariable.Role.Admin;
                     break;
                 case FunctionLoginStatus.SUCCESS_Arzt:
                     result = View("Home", "_Layout_Arzt");
-                    ViewBag.Logged = "Welcome" + username;
+                    ViewBag.Logged = "Welcome " + username;
                     GlobalVariable.currentRole = GlobalVariable.Role.Arzt;
                     break;
                 case FunctionLoginStatus.SUCCESS_Schwester:
                     result = View("Home", "_Layout_Schwester");
-                    ViewBag.Logged = "Welcome" + username;
+                    ViewBag.Logged = "Welcome " + username;
                     GlobalVariable.currentRole = GlobalVariable.Role.Schwester;
                     break;
                 case FunctionLoginStatus.SUCCESS_Reinigungspersonal:
                     result = View("Home", "_Layout_Reinigungspersonal");
-                    ViewBag.Logged = "Welcome"+username;
+                    ViewBag.Logged = "Welcome " + username;
                     GlobalVariable.currentRole = GlobalVariable.Role.Reinigungspersonal;
                     break;
                 case FunctionLoginStatus.SUCCESS_Therapeut:
                     result = View("Home", "_Layout_Therapeut");
-                    ViewBag.Logged = "Welcome" + username;
+                    ViewBag.Logged = "Welcome " + username;
                     GlobalVariable.currentRole = GlobalVariable.Role.Therapeut;
                     break;
                 case FunctionLoginStatus.FAIL:
