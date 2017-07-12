@@ -36,8 +36,9 @@
                         <!-- Cant display the current username
                         <span class="navbar-brand" style="font-size:11pt">Logged in as </span>
                         lbl.Text = Session("User").ToString() --> 
+                        @ViewBag.Logged
                           @Html.ActionLink("Logout", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                        
+                           
                     </ul>
             </div>
         </div>

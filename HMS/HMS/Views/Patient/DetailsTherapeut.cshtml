@@ -119,6 +119,8 @@
     </dl>
 </div>
 <p>
+    <input id="BackToList" type="button" value="Zurück" class="btn btn-default" style="width: 100px"
+           onclick="@("window.location.href='" + @Url.Action("IndexTherapeut", "Patient") + "'");" />
     <input id="BackToList" type="button" value="Historie" class="btn btn-default" style="width: auto"
         onclick="@("window.location.href='" + @Url.Action("HistorieTherapeut", "LocalCase", new {id = Model.Id}) + "'");" />
 </p>

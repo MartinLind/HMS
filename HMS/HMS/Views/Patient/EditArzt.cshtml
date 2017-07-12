@@ -107,8 +107,8 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.dateofbirth, new { htmlAttributes = new { @class = "form-control", type = "date", @Value = @Model.dateofbirth.ToString("yyyy-MM-dd"), @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.dateofbirth, "", new { @class = "text-danger" })
-                <!--  @Html.DisplayFor(model => model.dateofbirth, new{ htmlAttributes= new {  @class = "form-control" }} )
-                <!--  @Html.ValidationMessageFor(model => model.dateofbirth, "", new { @class = "text-danger" }) -->
+                  @*@Html.DisplayFor(model => model.dateofbirth, new{ htmlAttributes= new {  @class = "form-control" }} )
+                @Html.ValidationMessageFor(model => model.dateofbirth, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
@@ -118,8 +118,8 @@
                 @Html.EditorFor(model => model.timecreate, new { htmlAttributes = new { @class = "form-control", @type = "date", @Value = @Model.timecreate.ToString("yyyy-MM-dd"), @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.timecreate, "", new { @class = "text-danger" })
 
-                @Html.DisplayFor(model => model.timecreate, new { htmlAttributes = new { @type="date" } })
-                 @Html.ValidationMessageFor(model => model.timecreate, "", new { @class = "text-danger" })
+                @*@Html.DisplayFor(model => model.timecreate, new { htmlAttributes = new { @type="date" } })
+                 @Html.ValidationMessageFor(model => model.timecreate, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
