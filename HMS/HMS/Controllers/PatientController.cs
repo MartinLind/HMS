@@ -24,7 +24,7 @@ namespace HMS.Controllers
                 myLayoutName = "_Layout_Admin";
             }
 
-            ViewResult myView = View(db.Patients.ToList());
+            ViewResult myView = View(db.Patients.Where(x => x.isactive.Equals(true)).ToList());
             if (option == "Name")
             {
                 myView = View(db.Patients.Where(x => x.surname.StartsWith(search) || search == null).ToList());
@@ -40,11 +40,8 @@ namespace HMS.Controllers
                 {
                     myView = View(db.Patients.ToList());
                 }
-
             }
-
             myView.MasterName = myLayoutName;
-
             return myView;
         }
 
@@ -57,7 +54,7 @@ namespace HMS.Controllers
                 myLayoutName = "_Layout_Therapeut";
             }
 
-            ViewResult myView = View(db.Patients.ToList());
+            ViewResult myView = View(db.Patients.Where(x => x.isactive.Equals(true)).ToList());
 
             if (option == "Gender")
             {
@@ -94,7 +91,7 @@ namespace HMS.Controllers
                 myLayoutName = "_Layout_Schwester";
             }
 
-            ViewResult myView = View(db.Patients.ToList());
+            ViewResult myView = View(db.Patients.Where(x => x.isactive.Equals(true)).ToList());
 
             if (option == "Gender")
             {
@@ -131,7 +128,7 @@ namespace HMS.Controllers
                 myLayoutName = "_Layout_Arzt";
             }
 
-            ViewResult myView = View(db.Patients.ToList());
+            ViewResult myView = View(db.Patients.Where(x => x.isactive.Equals(true)).ToList());
 
             if (option == "Gender")
             {

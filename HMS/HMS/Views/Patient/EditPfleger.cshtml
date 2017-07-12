@@ -1,7 +1,7 @@
 ﻿@model HMS.Models.Patient
 
 @{
-    Layout = "~/Views/Shared/_Layout_Pfleger.cshtml";
+    Layout = "~/Views/Shared/_Layout_Schwester.cshtml";
     ViewBag.Title = "Bearbeiten";
 }
 <!--Autor: David Bismor -->
@@ -146,8 +146,6 @@
                 <input type="submit" value="Speichern" class="btn btn-default" style="width:90px" />
                 <input id="BackToList" type="button" value="Abbrechen" class="btn btn-default" style="width:90px"
                        onclick="@("window.location.href='" + @Url.Action("IndexPfleger", "Patient") + "'");" />
-                @*<input id="BackToList" type="button" value="Behandlung anlegen" class="btn btn-default" style="width: 160px"
-                       onclick="@("window.location.href='" + @Url.Action("Create", "LocalCase", new {id = Model.Id}*@) + "'");" />
             </div>
         </div>
     </div>
