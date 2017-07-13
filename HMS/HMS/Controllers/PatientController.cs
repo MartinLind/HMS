@@ -273,8 +273,11 @@ namespace HMS.Controllers
                     myLayoutName = "_Layout_Reinigungspersonal";
                     break;
             }
+            Patient model = new Patient();
+            model.timecreate = DateTime.Now;
+            model.timemodify = DateTime.Now;
 
-            ViewResult myView = View();
+            ViewResult myView = View(model);
             myView.MasterName = myLayoutName;
             return myView;
         }
@@ -288,8 +291,10 @@ namespace HMS.Controllers
               myLayoutName = "_Layout_Arzt";
                         
             }
-
-            ViewResult myView = View();
+            Patient model = new Patient();
+            model.timecreate = DateTime.Now;
+            model.timemodify = DateTime.Now;
+            ViewResult myView = View(model);
             myView.MasterName = myLayoutName;
             return myView;
         }
@@ -303,8 +308,10 @@ namespace HMS.Controllers
                 myLayoutName = "_Layout_Pfleger";
 
             }
-
-            ViewResult myView = View();
+            Patient model = new Patient();
+            model.timecreate = DateTime.Now;
+            model.timemodify = DateTime.Now;
+            ViewResult myView = View(model);
             myView.MasterName = myLayoutName;
             return myView;
         }
