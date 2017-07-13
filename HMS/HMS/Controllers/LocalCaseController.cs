@@ -581,6 +581,11 @@ namespace HMS.Controllers
             return View();
         }
 
+        public ActionResult SchichtenPfleger()
+        {
+            return View();
+        }
+
         // GET: LocalCase/GetSchichten
         public JsonResult GetSchichten()
         {

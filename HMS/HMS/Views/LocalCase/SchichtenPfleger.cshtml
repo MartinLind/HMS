@@ -9,7 +9,7 @@
 
 <!--Autor: CK -->
 @{
-   
+
     ViewBag.Title = "PLAN";
 }
 
@@ -163,33 +163,32 @@
 </script>
 
 <body>
-    
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header"><span class="navbar-brand">HMS</span></div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header"><span class="navbar-brand">HMS</span></div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    <li>@Html.ActionLink("Patient", "IndexPfleger", "Patient")</li>
+                    <li>@Html.ActionLink("Personal", "IndexPfleger", "User")</li>
+                    <li>@Html.ActionLink("Räume", "IndexPfleger", "Room")</li>
+                    <li>@Html.ActionLink("Behandlungen", "IndexPfleger", "LocalCase")</li>
+                    <li>@Html.ActionLink("Schichtplan", "SchichtenPfleger", "LocalCase")</li>
 
 
-                            <li>@Html.ActionLink("Patient", "IndexArzt", "Patient")</li>
-                            <li>@Html.ActionLink("Personal", "IndexArzt", "User")</li>
-                            <li>@Html.ActionLink("Räume", "IndexArzt", "Room")</li>
-                            <li>@Html.ActionLink("Behandlungen", "IndexArzt", "LocalCase")</li>
-                            <li>@Html.ActionLink("Schichtplan", "Schichten", "LocalCase")</li>
 
+                </ul>
 
+                <ul class="nav navbar-nav navbar-brand navbar-right">
+                    <span style="font-size:smaller">@ViewBag.Logged</span>
+                    @Html.ActionLink("Logout", "Index", "Home")
 
-                        </ul>
-
-                        <ul class="nav navbar-nav navbar-brand navbar-right">
-                            <span style="font-size:smaller">@ViewBag.Logged</span>
-                            @Html.ActionLink("Logout", "Index", "Home")
-
-                        </ul>
-                    </div>
-                </div>
-            <div id="scheduler"/>
+                </ul>
+            </div>
         </div>
+        <div id="scheduler" />
+    </div>
     <footer style="background-color: white">
         <p>&copy; @DateTime.Now.Year - Implementierungspraktikum</p>
     </footer>

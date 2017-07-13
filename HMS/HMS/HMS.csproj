@@ -824,6 +824,7 @@
     <Content Include="Views\Patient\PatientActive.cshtml" />
     <Content Include="Views\Patient\PatientActiveArzt.cshtml" />
     <Content Include="Views\Patient\PatientActivePfleger.cshtml" />
+    <Content Include="Views\LocalCase\SchichtenPfleger.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
