@@ -22,7 +22,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
              
-                    
                      <li>@Html.ActionLink("Patient", "IndexArzt", "Patient")</li>
                      <li>@Html.ActionLink("Personal", "IndexArzt", "User")</li>
                     <li>@Html.ActionLink("Räume", "IndexArzt", "Room")</li>
@@ -34,8 +33,9 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-brand navbar-right">
-                    <span style="font-size:smaller">@ViewBag.Logged</span>
-                    @Html.ActionLink("Logout", "Index", "Home", new { area = "" })
+                  @*<span style="font-size:smaller">@ViewBag.logged</span>*@
+                    @ViewBag.logged
+                    @Html.ActionLink("Logout", "Index", "Home")
                 </ul>
             </div>
         </div>

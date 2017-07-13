@@ -54,7 +54,7 @@ namespace HMS.Controllers
                     break;
                 case FunctionLoginStatus.SUCCESS_Arzt:
                     result = View("Home", "_Layout_Arzt");
-                    ViewBag.Logged = "Welcome " + username;
+                    ViewBag.logged = "Welcome " + username;
                     GlobalVariable.currentRole = GlobalVariable.Role.Arzt;
                     break;
                 case FunctionLoginStatus.SUCCESS_Schwester:
