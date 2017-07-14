@@ -21,7 +21,7 @@
    <b class="form-group"><h4>Suchoption:</h4>  </b>   
     @using(Html.BeginForm("IndexArzt", "Patient", FormMethod.Get))
     {
-    @Html.RadioButton("option", "Name") <text> Name </text> 
+    @Html.RadioButton("option", "Name", true) <text> Name </text> 
     @Html.RadioButton("option", "Geburtsdatum") <text> Geburtsdatum </text>  <br />
     @Html.TextBox("search",null,  new {@class="form-control"})
     <input type = "submit", name = "submit", value = "Suche", class="form-control",style="width:auto" onclick="@("window.location.href='" + @Url.Action("IndexArzt", "Patient") + "'");" />

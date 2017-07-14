@@ -37,7 +37,7 @@
                     { name: 'Id', type: 'number' },
                 ],
                 id: 'Id',
-                url: '/LocalCase/GetSchichtenPfleger'
+                url: '/LocalCase/GetSchichtenTherapeut'
             };
         var year = new Date().getFullYear();
         var month = new Date().getMonth();
@@ -174,7 +174,7 @@
                     <li>@Html.ActionLink("Personal", "IndexPfleger", "User")</li>
                     <li>@Html.ActionLink("Räume", "IndexPfleger", "Room")</li>
                     <li>@Html.ActionLink("Behandlungen", "IndexPfleger", "LocalCase")</li>
-                    <li>@Html.ActionLink("Schichtplan", "SchichtenPfleger", "LocalCase")</li>
+                    <li>@Html.ActionLink("Schichtplan", "SchichtenTherapeut", "LocalCase")</li>
 
 
 
@@ -193,3 +193,9 @@
         <p>&copy; @DateTime.Now.Year - Implementierungspraktikum</p>
     </footer>
 </body>
+@{
+    ViewBag.Title = "SchichtenTherapeut";
+}
+
+<h2>SchichtenTherapeut</h2>
+

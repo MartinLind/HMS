@@ -585,6 +585,10 @@ namespace HMS.Controllers
         {
             return View();
         }
+        public ActionResult SchichtenTherapeut()
+        {
+            return View();
+        }
 
         // GET: LocalCase/GetSchichten
         public JsonResult GetSchichten()
@@ -614,7 +618,35 @@ namespace HMS.Controllers
 
             termine.Add(new LocalCase()
             {
-                casenr = "test2",
+                casenr = "Adrian",
+                timecreate = DateTime.Now.AddHours(3),
+                timeclosed = DateTime.Now.AddHours(4),
+                Id = 2
+            });
+
+
+
+
+
+            return Json(termine, JsonRequestBehavior.AllowGet);
+        }
+        //  --------------CK-End----------------------
+
+        public JsonResult GetSchichtenPfleger()
+        {
+            List<LocalCase> termine = new List<LocalCase>();
+
+            termine.Add(new LocalCase()
+            {
+                casenr = "test",
+                timecreate = DateTime.Now,
+                timeclosed = DateTime.Now.AddHours(2),
+                Id = 1
+            });
+
+            termine.Add(new LocalCase()
+            {
+                casenr = "Jonas",
                 timecreate = DateTime.Now.AddHours(3),
                 timeclosed = DateTime.Now.AddHours(4),
                 Id = 2
@@ -626,7 +658,31 @@ namespace HMS.Controllers
             return Json(termine, JsonRequestBehavior.AllowGet);
         }
 
-        //  --------------CK-End----------------------
+        public JsonResult GetSchichtenTherapeut()
+        {
+            List<LocalCase> termine = new List<LocalCase>();
+
+            termine.Add(new LocalCase()
+            {
+                casenr = "test",
+                timecreate = DateTime.Now,
+                timeclosed = DateTime.Now.AddHours(2),
+                Id = 1
+            });
+
+            termine.Add(new LocalCase()
+            {
+                casenr = "Martin",
+                timecreate = DateTime.Now.AddHours(3),
+                timeclosed = DateTime.Now.AddHours(4),
+                Id = 2
+            });
+
+
+
+
+            return Json(termine, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }
