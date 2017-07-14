@@ -39,7 +39,7 @@ namespace HMS.Models
         public System.DateTime timeclosed { get; set; }
 
         [Required(ErrorMessage = "Bitte tätigen Sie eine Eingabe")]
-        [Display(Name = "Behandlungsnummer")]
+        [Display(Name = "Aktion")]
         public string casenr { get; set; }
 
         [Required(ErrorMessage = "Bitte tätigen Sie eine Eingabe")]

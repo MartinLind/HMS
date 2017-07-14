@@ -80,6 +80,9 @@
         <th>
             @Html.DisplayNameFor(model => model.isactive)
         </th>
+        <th>
+            @Html.DisplayName("Raum")
+        </th>
         <th></th>
     </tr>
 
@@ -126,6 +129,15 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.isactive)
+        </td>
+        <td>
+            @foreach (var test in item.LocalCase){
+            if (test.casenr == "Aufnahme"){
+                foreach (var nummer in test.Room){
+                    @nummer.number
+            }
+            } 
+            }
         </td>
 
           <td>

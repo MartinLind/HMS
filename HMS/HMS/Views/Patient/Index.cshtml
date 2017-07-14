@@ -128,8 +128,10 @@
         </td>
         <td>
             @foreach (var test in item.LocalCase){
+            if (test.casenr == "Aufnahme"){
                 foreach (var nummer in test.Room){
                     @nummer.number
+            }
             } 
             }
         </td>
