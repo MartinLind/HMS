@@ -2,7 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
-    ViewBag.Title = "Behandlung";
+    ViewBag.Title = "Aufnahme";
 }
 
 <h2>Eine neue Behandlung anlegen..</h2>
@@ -43,10 +43,8 @@
             @Html.LabelFor(model => model.casenr, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                  @Html.DropDownListFor(model => model.casenr, new List<SelectListItem>
-    {                   new SelectListItem() {Text = "", Value="empty", Selected = true},
-                        new SelectListItem() {Text = "Medikamenteneinnahme", Value="Medikamenteneinnahme"},
-                        new SelectListItem() {Text = "Untersuchung", Value="Untersuchung"},  
-                        new SelectListItem() {Text = "Physiotherapie", Value="Physiotherapie"},   
+    {                   
+                        new SelectListItem() {Text = "Aufnahme", Value="Aufnahme"}  
     }, new {@class="form-control"}) 
                 @Html.ValidationMessageFor(model => model.casenr, "", new { @class = "text-danger" })
             </div>
@@ -144,7 +142,7 @@
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Anlegen" class="btn btn-default" style="width:90px"/> 
                  <input id="BackToIndex" type="button" value="Abbrechen" class="btn btn-default" style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Index", "LocalCase") + "'");" />
+        onclick="@("window.location.href='" + @Url.Action("Index", "Patient") + "'");" />
             </div>
         </div>
     </div>
