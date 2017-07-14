@@ -675,13 +675,6 @@ namespace HMS.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Patient patient = db.Patients.Find(id);
-            //var item = db.Entry<Patient>(patient);
-            //item.State = System.Data.Entity.EntityState.Modified;
-            //Raum löschen
-            //item.Collection(i => i.LocalCase).Load();
-            //patient.LocalCase.Clear();
-
-            //db.Patients.Remove(patient);
             patient.isactive = false;
             foreach ( LocalCase item in patient.LocalCase)
             {
@@ -707,9 +700,22 @@ namespace HMS.Controllers
         public ActionResult DeleteConfirmedArzt(int id)
         {
             Patient patient = db.Patients.Find(id);
-            
-            //db.Patients.Remove(patient);
             patient.isactive = false;
+            foreach (LocalCase item in patient.LocalCase)
+            {
+                if (item.casenr == "Aufnahme")
+                {
+                    item.casenr = "AufnahmeAbgeschlossen";
+                    foreach (Room room in item.Room)
+                    {
+                        string vorher = room.vacancy;
+                        int nachher = System.Convert.ToInt32(vorher);
+                        nachher = nachher + 1;
+                        vorher = System.Convert.ToString(nachher);
+                        room.vacancy = vorher;
+                    }
+                }
+            }
             db.SaveChanges();
             return RedirectToAction("IndexArzt");
         }
@@ -719,8 +725,22 @@ namespace HMS.Controllers
         public ActionResult DeleteConfirmedPfleger(int id)
         {
             Patient patient = db.Patients.Find(id);
-            //db.Patients.Remove(patient);
             patient.isactive = false;
+            foreach (LocalCase item in patient.LocalCase)
+            {
+                if (item.casenr == "Aufnahme")
+                {
+                    item.casenr = "AufnahmeAbgeschlossen";
+                    foreach (Room room in item.Room)
+                    {
+                        string vorher = room.vacancy;
+                        int nachher = System.Convert.ToInt32(vorher);
+                        nachher = nachher + 1;
+                        vorher = System.Convert.ToString(nachher);
+                        room.vacancy = vorher;
+                    }
+                }
+            }
             db.SaveChanges();
             return RedirectToAction("IndexPfleger");
         }

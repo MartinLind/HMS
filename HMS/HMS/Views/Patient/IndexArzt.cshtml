@@ -143,7 +143,7 @@
             <br />
              @if (item.isactive == false){
             <input id="GoCreatePatient" type="button" value="Patient aufnehmen" class="btn btn-default"   style="width:auto"
-        onclick="@("window.location.href='" + @Url.Action("PatientActiveArzt", "Patient",  new {id=item.Id} )+ "'");" />
+        onclick="@("window.location.href='" + @Url.Action("PatientAufnahmeArzt", "LocalCase",  new {id=item.Id} )+ "'");" />
             }
             @if (item.isactive == true){
             <input id="GoCreatePatient" type="button" value="Entlassen" class="btn btn-default" style="width:90px"
