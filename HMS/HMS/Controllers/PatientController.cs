@@ -675,19 +675,13 @@ namespace HMS.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Patient patient = db.Patients.Find(id);
-            //var item = db.Entry<Patient>(patient);
-            //item.State = System.Data.Entity.EntityState.Modified;
-            //Raum löschen
-            //item.Collection(i => i.LocalCase).Load();
-            //patient.LocalCase.Clear();
-
-            //db.Patients.Remove(patient);
             patient.isactive = false;
             foreach ( LocalCase item in patient.LocalCase)
             {
                 if(item.casenr == "Aufnahme")
                 {
-                    item.casenr = "AufnahmeAbgeschlossen";
+                    item.casenr = "Abgeschlossen";
+                    item.isactive = false;
                     foreach (Room room in item.Room)
                     {
                         string vorher = room.vacancy;
@@ -707,9 +701,23 @@ namespace HMS.Controllers
         public ActionResult DeleteConfirmedArzt(int id)
         {
             Patient patient = db.Patients.Find(id);
-            
-            //db.Patients.Remove(patient);
             patient.isactive = false;
+            foreach (LocalCase item in patient.LocalCase)
+            {
+                if (item.casenr == "Aufnahme")
+                {
+                    item.casenr = "Abgeschlossen";
+                    item.isactive = false;
+                    foreach (Room room in item.Room)
+                    {
+                        string vorher = room.vacancy;
+                        int nachher = System.Convert.ToInt32(vorher);
+                        nachher = nachher + 1;
+                        vorher = System.Convert.ToString(nachher);
+                        room.vacancy = vorher;
+                    }
+                }
+            }
             db.SaveChanges();
             return RedirectToAction("IndexArzt");
         }
@@ -719,8 +727,23 @@ namespace HMS.Controllers
         public ActionResult DeleteConfirmedPfleger(int id)
         {
             Patient patient = db.Patients.Find(id);
-            //db.Patients.Remove(patient);
             patient.isactive = false;
+            foreach (LocalCase item in patient.LocalCase)
+            {
+                if (item.casenr == "Aufnahme")
+                {
+                    item.casenr = "Abgeschlossen";
+                    item.isactive = false;
+                    foreach (Room room in item.Room)
+                    {
+                        string vorher = room.vacancy;
+                        int nachher = System.Convert.ToInt32(vorher);
+                        nachher = nachher + 1;
+                        vorher = System.Convert.ToString(nachher);
+                        room.vacancy = vorher;
+                    }
+                }
+            }
             db.SaveChanges();
             return RedirectToAction("IndexPfleger");
         }
@@ -733,81 +756,7 @@ namespace HMS.Controllers
             }
             base.Dispose(disposing);
         }
-
-        public ActionResult PatientActive(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Patient patient = db.Patients.Find(id);
-            if (patient == null)
-            {
-                return HttpNotFound();
-            }
-            String myLayoutName = "";
-            if (GlobalVariable.currentRole.Equals("Admin"))
-            {
-
-                myLayoutName = "_Layout_Admin";
-
-            }
-            patient.isactive = true;
-            db.SaveChanges();
-            ViewResult myView = View(patient);
-            myView.MasterName = myLayoutName;
-            return myView;
-        }
-
-        public ActionResult PatientActiveArzt(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Patient patient = db.Patients.Find(id);
-            if (patient == null)
-            {
-                return HttpNotFound();
-            }
-            String myLayoutName = "";
-            if (GlobalVariable.currentRole.Equals("Arzt"))
-            {
-
-                myLayoutName = "_Layout_Arzt";
-
-            }
-            patient.isactive = true;
-            db.SaveChanges();
-            ViewResult myView = View(patient);
-            myView.MasterName = myLayoutName;
-            return myView;
-        }
-
-        public ActionResult PatientActivePfleger(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Patient patient = db.Patients.Find(id);
-            if (patient == null)
-            {
-                return HttpNotFound();
-            }
-            String myLayoutName = "";
-            if (GlobalVariable.currentRole.Equals("Schwester"))
-            {
-
-                myLayoutName = "_Layout_Schwester";
-
-            }
-            patient.isactive = true;
-            db.SaveChanges();
-            ViewResult myView = View(patient);
-            myView.MasterName = myLayoutName;
-            return myView;
-        }
+        
 
         
         
