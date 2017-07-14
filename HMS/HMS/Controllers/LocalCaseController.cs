@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.SqlClient;
 using HMS.Models;
 
 namespace HMS.Controllers
@@ -13,7 +14,7 @@ namespace HMS.Controllers
     public class LocalCaseController : Controller
     {
         private DBContainer db = new DBContainer();
-
+      //  object raumnummer;
         // GET: LocalCase
         public ActionResult Index()
         {
@@ -295,21 +296,58 @@ namespace HMS.Controllers
             String myLayoutName = "";
             if (GlobalVariable.currentRole.Equals("Admin"))
             {
-                    myLayoutName = "_Layout_Admin";
+                myLayoutName = "_Layout_Admin";
             }
-            ViewResult myView = View(localCase);
-            myView.MasterName = myLayoutName;
+
+            //A try to get the saved Value and set it as selectedValue in the new List.. wont work..
+            // Autor DB
+            //SqlConnection connection = null;
+            //SqlConnection connection2 = null;
+
+            //String ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=HMSDB1;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+
+            //connection = new SqlConnection(ConnectionString);
+            //connection2 = new SqlConnection(ConnectionString);
+
+            //String SQLString = String.Format("SELECT dbo.ObjectSet_Room.number FROM dbo.ObjectSet_Room INNER JOIN dbo.LocalCaseRoom ON dbo.ObjectSet_Room.Id = dbo.LocalCaseRoom.Room_Id INNER JOIN dbo.ObjectSet_LocalCase ON dbo.LocalCaseRoom.LocalCase_Id = dbo.ObjectSet_LocalCase.Id", id);
+            //SqlCommand cmd = new SqlCommand(SQLString, connection);
+            //connection.Open();
+
+            //String SQLString2 = String.Format("SELECT dbo.ObjectSet_Person.surname FROM dbo.ObjectSet_Person INNER JOIN dbo.ObjectSet_User ON dbo.ObjectSet_Person.Id = dbo.ObjectSet_User.Id INNER JOIN dbo.LocalCaseUser ON dbo.ObjectSet_Person.Id = dbo.LocalCaseUser.User_Id WHERE  id = '{0}'", id);
+            //SqlCommand cmd2 = new SqlCommand(SQLString2, connection2);
+            //connection2.Open();
+
+
+            //SqlDataReader reader = cmd.ExecuteReader();
+
+            //while (reader.Read() == true)
+            //{
+            //     Raum = reader["number"];
+
+            //}
 
             //Für Raum:
             //ViewBag.Id = der Name der Liste
             //db.Rooms = Datenbank, "Id" = Attribut 
-           
-            ViewBag.IdEditAdmin = null;
-            ViewBag.IdEditAdmin = new SelectList(db.Rooms,  "Id", "number");
 
+            // ViewBag.IdEditAdmin = null;
+            //LocalCase loc = db.LocalCases.Find(id);
+            
+            //foreach (Room room in loc.Room)
+            //{
+            //    raumnummer = Convert.ToString(room.number);
+            //}
+
+            ViewBag.IdEditAdmin = new SelectList(db.Rooms, "Id", "number");
+            
             //Für User
-            ViewBag.IdUserAdmin = null;
+           // ViewBag.IdUserAdmin = null;
             ViewBag.IdUserAdmin = new SelectList(db.Users, "Id", "surname");
+
+
+
+             ViewResult myView = View(localCase);
+             myView.MasterName = myLayoutName;
 
             return myView;
         }
