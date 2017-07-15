@@ -654,7 +654,11 @@ namespace HMS.Controllers
             {
                 localCase.timecreate = DateTime.Now;
                 localCase.timemodify = DateTime.Now;
-
+                localCase.isactive = true;
+                localCase.diagnosis = "offen";
+                localCase.medication = "offen";
+                localCase.therapy = "offen";
+                localCase.expectedtime = "offen";
                 //
                 //Hier wird die Beziehung Raum - Behandlung gespeichert
                 //
