@@ -12,10 +12,11 @@ namespace HMS.Controllers
 {
     public class HomeController : Controller
     {
-        
+        // Author: Ming
 
         public ActionResult Index()
         {
+            GlobalVariable.currentRole = GlobalVariable.Role.Unknown;
             return View();
         }
         //public ActionResult LoginPage()
@@ -82,6 +83,7 @@ namespace HMS.Controllers
                 //    ViewBag.LoginMessage = "You are retired! goodbye!";
                 //    break;
                 default:
+                    GlobalVariable.currentRole = GlobalVariable.Role.Unknown;
                     break;
             }
 
