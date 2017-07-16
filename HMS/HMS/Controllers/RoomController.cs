@@ -329,6 +329,8 @@ namespace HMS.Controllers
             if (dbroomnumber == null)
             {
                 /// success
+                ///
+                room.isactive = true;
                 db.Rooms.Add(room);
                 db.SaveChanges();
                 return RedirectToAction("Index"); ;

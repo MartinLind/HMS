@@ -160,6 +160,7 @@ namespace HMS.Controllers
                 else if (value.Equals("Pflegepersonal")) { user.accessright3 = true; }
                 else if (value.Equals("Reinigungspersonal")) { user.accessright4 = true; }
                 else if (value.Equals("Therapeut")) { user.accessright5 = true; }
+                user.isactive = true;
                 
                 db.Users.Add(user);
                 db.SaveChanges();

@@ -41,6 +41,7 @@ namespace HMS.Controllers
                     myView = View(db.Patients.ToList());
                 }
             }
+
             myView.MasterName = myLayoutName;
             return myView;
         }

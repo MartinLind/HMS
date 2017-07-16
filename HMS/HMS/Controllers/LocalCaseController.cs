@@ -702,9 +702,9 @@ namespace HMS.Controllers
         public ActionResult PatientAufnahmeArzt()
         {
             String myLayoutName = "";
-            if (GlobalVariable.currentRole.Equals("Admin"))
+            if (GlobalVariable.currentRole.Equals("Arzt"))
             {
-                myLayoutName = "_Layout_Admin";
+                myLayoutName = "_Layout_Arzt";
             }
 
             ViewResult myView = View();
@@ -781,9 +781,9 @@ namespace HMS.Controllers
         public ActionResult PatientAufnahmePflege()
         {
             String myLayoutName = "";
-            if (GlobalVariable.currentRole.Equals("Admin"))
+            if (GlobalVariable.currentRole.Equals("Pflegepersonal"))
             {
-                myLayoutName = "_Layout_Admin";
+                myLayoutName = "_Layout_Schwester";
             }
 
             ViewResult myView = View();
@@ -894,24 +894,24 @@ namespace HMS.Controllers
 
             List<LocalCase> termine = new List<LocalCase>();
 
-            termine.Add(new LocalCase()
-            {
-                casenr = "test",
-                timecreate = DateTime.Now,
-                timeclosed = DateTime.Now.AddHours(2),
-                Id = 1
-            });
+            //termine.Add(new LocalCase()
+            //{
+            //    casenr = "test",
+            //    timecreate = DateTime.Now,
+            //    timeclosed = DateTime.Now.AddHours(2),
+            //    Id = 1
+            //});
 
-            termine.Add(new LocalCase()
-            {
-                casenr = "Adrian",
-                timecreate = DateTime.Now.AddHours(3),
-                timeclosed = DateTime.Now.AddHours(4),
-                Id = 2
-            });
+            //termine.Add(new LocalCase()
+            //{
+            //    casenr = "Adrian",
+            //    timecreate = DateTime.Now.AddHours(3),
+            //    timeclosed = DateTime.Now.AddHours(4),
+            //    Id = 2
+            //});
             //Mit mit for each die Termine reinballern aber nur für den jeweiligen Arzt
             //Dazu brauchen wir ne globale Variable amkkkkkk
-            //LocalCase loc = db.LocalCases.Find(24);
+            //LocalCase loc = db.LocalCases.Find(35);
             //termine.Add(new LocalCase()
             //{
             //    casenr = loc.casenr,
@@ -919,7 +919,34 @@ namespace HMS.Controllers
             //    timeclosed = loc.timeclosed,
             //    Id = loc.Id
             //});
-            
+
+            for (int? i = 1; i < 80; i++)
+            {
+                try
+                {
+                    LocalCase loc = db.LocalCases.Find(i);
+                    if (loc.isactive == true)
+                    {
+                        termine.Add(new LocalCase()
+                        {
+                            casenr = loc.casenr,
+                            timecreate = loc.timecreate,
+                            timeclosed = loc.timeclosed,
+                            Id = loc.Id
+                        });
+                    }
+                }
+                catch (NullReferenceException)
+                {
+
+                }
+                catch (InvalidOperationException e)
+                {
+
+                }
+
+            }
+
 
 
             return Json(termine, JsonRequestBehavior.AllowGet);
@@ -930,22 +957,47 @@ namespace HMS.Controllers
         {
             List<LocalCase> termine = new List<LocalCase>();
 
-            termine.Add(new LocalCase()
-            {
-                casenr = "test",
-                timecreate = DateTime.Now,
-                timeclosed = DateTime.Now.AddHours(2),
-                Id = 1
-            });
+            //termine.Add(new LocalCase()
+            //{
+            //    casenr = "test",
+            //    timecreate = DateTime.Now,
+            //    timeclosed = DateTime.Now.AddHours(2),
+            //    Id = 1
+            //});
 
-            termine.Add(new LocalCase()
+            //termine.Add(new LocalCase()
+            //{
+            //    casenr = "Jonas",
+            //    timecreate = DateTime.Now.AddHours(3),
+            //    timeclosed = DateTime.Now.AddHours(4),
+            //    Id = 2
+            //});
+            for (int? i = 1; i < 80; i++)
             {
-                casenr = "Jonas",
-                timecreate = DateTime.Now.AddHours(3),
-                timeclosed = DateTime.Now.AddHours(4),
-                Id = 2
-            });
+                try
+                {
+                    LocalCase loc = db.LocalCases.Find(i);
+                    if (loc.isactive == true)
+                    {
+                        termine.Add(new LocalCase()
+                        {
+                            casenr = loc.casenr,
+                            timecreate = loc.timecreate,
+                            timeclosed = loc.timeclosed,
+                            Id = loc.Id
+                        });
+                    }
+                }
+                catch (NullReferenceException)
+                {
 
+                }
+                catch (InvalidOperationException e)
+                {
+
+                }
+
+            }
 
 
 
@@ -956,22 +1008,47 @@ namespace HMS.Controllers
         {
             List<LocalCase> termine = new List<LocalCase>();
 
-            termine.Add(new LocalCase()
-            {
-                casenr = "test",
-                timecreate = DateTime.Now,
-                timeclosed = DateTime.Now.AddHours(2),
-                Id = 1
-            });
+            //termine.Add(new LocalCase()
+            //{
+            //    casenr = "test",
+            //    timecreate = DateTime.Now,
+            //    timeclosed = DateTime.Now.AddHours(2),
+            //    Id = 1
+            //});
 
-            termine.Add(new LocalCase()
+            //termine.Add(new LocalCase()
+            //{
+            //    casenr = "Martin",
+            //    timecreate = DateTime.Now.AddHours(3),
+            //    timeclosed = DateTime.Now.AddHours(4),
+            //    Id = 2
+            //});
+            for (int? i = 1; i < 80; i++)
             {
-                casenr = "Martin",
-                timecreate = DateTime.Now.AddHours(3),
-                timeclosed = DateTime.Now.AddHours(4),
-                Id = 2
-            });
+                try
+                {
+                    LocalCase loc = db.LocalCases.Find(i);
+                    if (loc.isactive == true)
+                    {
+                        termine.Add(new LocalCase()
+                        {
+                            casenr = loc.casenr,
+                            timecreate = loc.timecreate,
+                            timeclosed = loc.timeclosed,
+                            Id = loc.Id
+                        });
+                    }
+                }
+                catch (NullReferenceException)
+                {
 
+                }
+                catch (InvalidOperationException e)
+                {
+
+                }
+
+            }
 
 
 
