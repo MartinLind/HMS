@@ -16,7 +16,7 @@ namespace HMS.Controllers
 
         public ActionResult Index()
         {
-            GlobalVariable.currentRole = GlobalVariable.Role.Unknown;
+            GlobalVariable.currentRole = GlobalVariable.Role.Admin;
             return View();
         }
         //public ActionResult LoginPage()
@@ -82,9 +82,9 @@ namespace HMS.Controllers
                 //case FunctionLoginStatus.RETIRE:
                 //    ViewBag.LoginMessage = "You are retired! goodbye!";
                 //    break;
-                default:
-                    GlobalVariable.currentRole = GlobalVariable.Role.Unknown;
-                    break;
+                //default:
+                //    GlobalVariable.currentRole = GlobalVariable.Role.Unknown;
+                //    break;
             }
 
             return result;
@@ -136,7 +136,7 @@ namespace HMS.Controllers
                 dbright_Reinigungspersonal = Convert.ToBoolean(reader["accessright4"]);
                 dbright_Therapeut = Convert.ToBoolean(reader["accessright5"]);
                 dbisactive = Convert.ToBoolean(reader["isactive"]);
-                // so far use Recht5 instead status
+               
                 //in views its now renamed to status and set at the end of the list
                 //we need to get this accessright5 for a new Layout_Therapeut, so we need to get the 
                 //isactive boolean from object

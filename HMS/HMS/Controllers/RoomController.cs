@@ -219,34 +219,61 @@ namespace HMS.Controllers
         //[Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            //Autor: David Bismor
-            Room model = new Room();
-            model.timecreate = DateTime.Now;
-            model.timemodify = DateTime.Now;
-
-            String myLayoutName = "";
+            // Author: Ming
             switch (GlobalVariable.currentRole)
             {
                 case GlobalVariable.Role.Admin:
-                    myLayoutName = "_Layout_Admin";
+                    Room model = new Room();
+                    model.timecreate = DateTime.Now;
+                    model.timemodify = DateTime.Now;
+                    return View(model);
                     break;
                 case GlobalVariable.Role.Arzt:
-                    myLayoutName = "_Layout_Arzt";
+                    return RedirectToAction("IndexArzt");
                     break;
                 case GlobalVariable.Role.Schwester:
-                    myLayoutName = "_Layout_Schwester";
+                    return RedirectToAction("IndexPfleger");
+                    break;
+                case GlobalVariable.Role.Reinigungspersonal:
+                    return RedirectToAction("IndexReinigung");
                     break;
                 case GlobalVariable.Role.Therapeut:
-                    myLayoutName = "_Layout_Therapeut";
+                    return RedirectToAction("IndexTherapeut");
                     break;
+                //case GlobalVariable.Role.Unknown:
                 default:
-                    myLayoutName = "_Layout_Reinigungspersonal";
+                    return RedirectToAction("Index"/*, "Home"*/);
                     break;
             }
+            //old, and incorrect
+            //Autor: David Bismor
+            //Room model = new Room();
+            //model.timecreate = DateTime.Now;
+            //model.timemodify = DateTime.Now;
 
-            ViewResult myView = View(model);
-            myView.MasterName = myLayoutName;
-            return myView;
+            //String myLayoutName = "";
+            //switch (GlobalVariable.currentRole)
+            //{
+            //    case GlobalVariable.Role.Admin:
+            //        myLayoutName = "_Layout_Admin";
+            //        break;
+            //    case GlobalVariable.Role.Arzt:
+            //        myLayoutName = "_Layout_Arzt";
+            //        break;
+            //    case GlobalVariable.Role.Schwester:
+            //        myLayoutName = "_Layout_Schwester";
+            //        break;
+            //    case GlobalVariable.Role.Therapeut:
+            //        myLayoutName = "_Layout_Therapeut";
+            //        break;
+            //    default:
+            //        myLayoutName = "_Layout_Reinigungspersonal";
+            //        break;
+            //}
+
+            //ViewResult myView = View(model);
+            //myView.MasterName = myLayoutName;
+            //return myView;
 
             //return View(model);
         }

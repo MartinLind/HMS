@@ -127,9 +127,9 @@ namespace HMS.Controllers
                 case GlobalVariable.Role.Therapeut:
                     return RedirectToAction("IndexTherapeut");
                     break;
-                case GlobalVariable.Role.Unknown:
+                //case GlobalVariable.Role.Unknown:
                 default:
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index"/*, "Home"*/);
                     break;
             }
 
