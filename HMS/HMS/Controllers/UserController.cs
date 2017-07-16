@@ -106,14 +106,42 @@ namespace HMS.Controllers
         
         public ActionResult Create()
         {
-            //Autor: David Bismor
-            
-            User model = new User();
-            model.timecreate = DateTime.Now;
-            model.timemodify = DateTime.Now;
-           
+            // Author: Ming
+            switch (GlobalVariable.currentRole)
+            {
+                case GlobalVariable.Role.Admin:
+                    User model = new User();
+                    model.timecreate = DateTime.Now;
+                    model.timemodify = DateTime.Now;
+                    return View(model);
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    return RedirectToAction("IndexArzt");
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    return RedirectToAction("IndexPfleger");
+                    break;
+                case GlobalVariable.Role.Reinigungspersonal:
+                    return RedirectToAction("IndexReinigung");
+                    break;
+                case GlobalVariable.Role.Therapeut:
+                    return RedirectToAction("IndexTherapeut");
+                    break;
+                //case GlobalVariable.Role.Unknown:
+                default:
+                    return RedirectToAction("Index"/*, "Home"*/);
+                    break;
+            }
 
-            return View(model);
+
+            /// Old, and incorrect
+            ////Autor: David Bismor
+
+            //User model = new User();
+            //model.timecreate = DateTime.Now;
+            //model.timemodify = DateTime.Now;
+           
+            //return View(model);
         }
 
         // POST: User/Create

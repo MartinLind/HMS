@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.SqlClient;
 using HMS.Models;
 
 namespace HMS.Controllers
@@ -13,7 +14,7 @@ namespace HMS.Controllers
     public class LocalCaseController : Controller
     {
         private DBContainer db = new DBContainer();
-
+      //  object raumnummer;
         // GET: LocalCase
         public ActionResult Index()
         {
@@ -123,7 +124,7 @@ namespace HMS.Controllers
             myView.MasterName = myLayoutName;
 
             //Für Raum:
-            ViewBag.Id= new SelectList(db.Rooms, "Id", "number");
+            ViewBag.Id= new SelectList(db.Rooms.Where(x => x.vacancy != "0").ToList() , "Id", "number");
 
             //Für User
             
@@ -202,6 +203,19 @@ namespace HMS.Controllers
                 string dieidvompat = Request.Form["Pat"].ToString();
                 int patId = System.Convert.ToInt32(dieidvompat);
                 localCase.Patient.Add(db.Patients.Find(patId));
+                if(localCase.casenr == "Aufnahme")
+                {
+                    Patient pat = db.Patients.Find(patId);
+                    pat.isactive = true;
+                    Room room = db.Rooms.Find(roomId);
+                    string ausgang = room.vacancy;
+                    int vacancyUpdated = System.Convert.ToInt32(ausgang);
+                    vacancyUpdated = vacancyUpdated - 1;
+                    ausgang = System.Convert.ToString(vacancyUpdated);
+                    room.vacancy = ausgang;
+
+                }
+                
 
 
                 ViewBag.Id = new SelectList(db.Rooms, "Id", "number", localCase.Id);
@@ -282,21 +296,58 @@ namespace HMS.Controllers
             String myLayoutName = "";
             if (GlobalVariable.currentRole.Equals("Admin"))
             {
-                    myLayoutName = "_Layout_Admin";
+                myLayoutName = "_Layout_Admin";
             }
-            ViewResult myView = View(localCase);
-            myView.MasterName = myLayoutName;
+
+            //A try to get the saved Value and set it as selectedValue in the new List.. wont work..
+            // Autor DB
+            //SqlConnection connection = null;
+            //SqlConnection connection2 = null;
+
+            //String ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=HMSDB1;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+
+            //connection = new SqlConnection(ConnectionString);
+            //connection2 = new SqlConnection(ConnectionString);
+
+            //String SQLString = String.Format("SELECT dbo.ObjectSet_Room.number FROM dbo.ObjectSet_Room INNER JOIN dbo.LocalCaseRoom ON dbo.ObjectSet_Room.Id = dbo.LocalCaseRoom.Room_Id INNER JOIN dbo.ObjectSet_LocalCase ON dbo.LocalCaseRoom.LocalCase_Id = dbo.ObjectSet_LocalCase.Id", id);
+            //SqlCommand cmd = new SqlCommand(SQLString, connection);
+            //connection.Open();
+
+            //String SQLString2 = String.Format("SELECT dbo.ObjectSet_Person.surname FROM dbo.ObjectSet_Person INNER JOIN dbo.ObjectSet_User ON dbo.ObjectSet_Person.Id = dbo.ObjectSet_User.Id INNER JOIN dbo.LocalCaseUser ON dbo.ObjectSet_Person.Id = dbo.LocalCaseUser.User_Id WHERE  id = '{0}'", id);
+            //SqlCommand cmd2 = new SqlCommand(SQLString2, connection2);
+            //connection2.Open();
+
+
+            //SqlDataReader reader = cmd.ExecuteReader();
+
+            //while (reader.Read() == true)
+            //{
+            //     Raum = reader["number"];
+
+            //}
 
             //Für Raum:
             //ViewBag.Id = der Name der Liste
             //db.Rooms = Datenbank, "Id" = Attribut 
-           
-            ViewBag.IdEditAdmin = null;
-            ViewBag.IdEditAdmin = new SelectList(db.Rooms,  "Id", "number");
 
+            // ViewBag.IdEditAdmin = null;
+            //LocalCase loc = db.LocalCases.Find(id);
+            
+            //foreach (Room room in loc.Room)
+            //{
+            //    raumnummer = Convert.ToString(room.number);
+            //}
+
+            ViewBag.IdEditAdmin = new SelectList(db.Rooms, "Id", "number");
+            
             //Für User
-            ViewBag.IdUserAdmin = null;
+           // ViewBag.IdUserAdmin = null;
             ViewBag.IdUserAdmin = new SelectList(db.Users, "Id", "surname");
+
+
+
+             ViewResult myView = View(localCase);
+             myView.MasterName = myLayoutName;
 
             return myView;
         }
@@ -569,6 +620,241 @@ namespace HMS.Controllers
             return NewView;
         }
 
+        // GET: LocalCase/PatientAufnahme
+        public ActionResult PatientAufnahme()
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Admin"))
+            {
+                myLayoutName = "_Layout_Admin";
+            }
+
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+
+            //Für Raum:
+            ViewBag.Id = new SelectList(db.Rooms.Where(x => x.vacancy != "0" && x.type == "Patientenzimmer").ToList(), "Id", "number");
+
+            //Für User
+
+            ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+
+            //Für Patient
+            var url = Url.RequestContext.RouteData.Values["Id"];
+            int id = System.Convert.ToInt32(url);
+            ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(id)).ToList(), "Id", "surname");
+            return myView;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PatientAufnahme([Bind(Include = "Id,timecreate,timeclosed,casenr,diagnosis,medication,therapy,expectedtime,timemodify,isactive")] LocalCase localCase)
+        {
+            if (ModelState.IsValid)
+            {
+                localCase.timecreate = DateTime.Now;
+                localCase.timemodify = DateTime.Now;
+                localCase.isactive = true;
+                localCase.diagnosis = "offen";
+                localCase.medication = "offen";
+                localCase.therapy = "offen";
+                localCase.expectedtime = "offen";
+                //
+                //Hier wird die Beziehung Raum - Behandlung gespeichert
+                //
+                string wirbrauchendieid = Request.Form["Id"].ToString();
+                int roomId = System.Convert.ToInt32(wirbrauchendieid);
+                localCase.Room.Add(db.Rooms.Find(roomId));
+                //
+                //Hier wird die Beziehung User - Behandlung gespeichert
+                //
+                string dieidvomuser = Request.Form["IdUser"].ToString();
+                int userId = System.Convert.ToInt32(dieidvomuser);
+                localCase.User.Add(db.Users.Find(userId));
+                //
+                //Hier wird die Beziehung Patient - Behandlung gespeichert
+                //
+                string dieidvompat = Request.Form["Pat"].ToString();
+                int patId = System.Convert.ToInt32(dieidvompat);
+                localCase.Patient.Add(db.Patients.Find(patId));
+                if (localCase.casenr == "Aufnahme")
+                {
+                    Patient pat = db.Patients.Find(patId);
+                    pat.isactive = true;
+                    Room room = db.Rooms.Find(roomId);
+                    string ausgang = room.vacancy;
+                    int vacancyUpdated = System.Convert.ToInt32(ausgang);
+                    vacancyUpdated = vacancyUpdated - 1;
+                    ausgang = System.Convert.ToString(vacancyUpdated);
+                    room.vacancy = ausgang;
+
+                }
+                ViewBag.Id = new SelectList(db.Rooms, "Id", "number", localCase.Id);
+                ViewBag.IdUser = new SelectList(db.Users, "Id", "surname", localCase.Id);
+                db.LocalCases.Add(localCase);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(localCase);
+        }
+
+        // GET: LocalCase/PatientAufnahme
+        public ActionResult PatientAufnahmeArzt()
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Admin"))
+            {
+                myLayoutName = "_Layout_Admin";
+            }
+
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+
+            //Für Raum:
+            ViewBag.Id = new SelectList(db.Rooms.Where(x => x.vacancy != "0" && x.type == "Patientenzimmer").ToList(), "Id", "number");
+
+            //Für User
+
+            ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+
+            //Für Patient
+            var url = Url.RequestContext.RouteData.Values["Id"];
+            int id = System.Convert.ToInt32(url);
+            ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(id)).ToList(), "Id", "surname");
+            return myView;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PatientAufnahmeArzt([Bind(Include = "Id,timecreate,timeclosed,casenr,diagnosis,medication,therapy,expectedtime,timemodify,isactive")] LocalCase localCase)
+        {
+            if (ModelState.IsValid)
+            {
+                localCase.timecreate = DateTime.Now;
+                localCase.timemodify = DateTime.Now;
+                localCase.isactive = true;
+                localCase.diagnosis = "offen";
+                localCase.medication = "offen";
+                localCase.therapy = "offen";
+                localCase.expectedtime = "offen";
+
+                //
+                //Hier wird die Beziehung Raum - Behandlung gespeichert
+                //
+                string wirbrauchendieid = Request.Form["Id"].ToString();
+                int roomId = System.Convert.ToInt32(wirbrauchendieid);
+                localCase.Room.Add(db.Rooms.Find(roomId));
+                //
+                //Hier wird die Beziehung User - Behandlung gespeichert
+                //
+                string dieidvomuser = Request.Form["IdUser"].ToString();
+                int userId = System.Convert.ToInt32(dieidvomuser);
+                localCase.User.Add(db.Users.Find(userId));
+                //
+                //Hier wird die Beziehung Patient - Behandlung gespeichert
+                //
+                string dieidvompat = Request.Form["Pat"].ToString();
+                int patId = System.Convert.ToInt32(dieidvompat);
+                localCase.Patient.Add(db.Patients.Find(patId));
+                if (localCase.casenr == "Aufnahme")
+                {
+                    Patient pat = db.Patients.Find(patId);
+                    pat.isactive = true;
+                    Room room = db.Rooms.Find(roomId);
+                    string ausgang = room.vacancy;
+                    int vacancyUpdated = System.Convert.ToInt32(ausgang);
+                    vacancyUpdated = vacancyUpdated - 1;
+                    ausgang = System.Convert.ToString(vacancyUpdated);
+                    room.vacancy = ausgang;
+
+                }
+                ViewBag.Id = new SelectList(db.Rooms, "Id", "number", localCase.Id);
+                ViewBag.IdUser = new SelectList(db.Users, "Id", "surname", localCase.Id);
+                db.LocalCases.Add(localCase);
+                db.SaveChanges();
+                return RedirectToAction("IndexArzt");
+            }
+            return View(localCase);
+        }
+
+        // GET: LocalCase/PatientAufnahme
+        public ActionResult PatientAufnahmePflege()
+        {
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Admin"))
+            {
+                myLayoutName = "_Layout_Admin";
+            }
+
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+
+            //Für Raum:
+            ViewBag.Id = new SelectList(db.Rooms.Where(x => x.vacancy != "0" && x.type == "Patientenzimmer").ToList(), "Id", "number");
+
+            //Für User
+
+            ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+
+            //Für Patient
+            var url = Url.RequestContext.RouteData.Values["Id"];
+            int id = System.Convert.ToInt32(url);
+            ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(id)).ToList(), "Id", "surname");
+            return myView;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PatientAufnahmePflege([Bind(Include = "Id,timecreate,timeclosed,casenr,diagnosis,medication,therapy,expectedtime,timemodify,isactive")] LocalCase localCase)
+        {
+            if (ModelState.IsValid)
+            {
+                localCase.timecreate = DateTime.Now;
+                localCase.timemodify = DateTime.Now;
+                localCase.isactive = true;
+                localCase.diagnosis = "offen";
+                localCase.medication = "offen";
+                localCase.therapy = "offen";
+                localCase.expectedtime = "offen";
+
+                //
+                //Hier wird die Beziehung Raum - Behandlung gespeichert
+                //
+                string wirbrauchendieid = Request.Form["Id"].ToString();
+                int roomId = System.Convert.ToInt32(wirbrauchendieid);
+                localCase.Room.Add(db.Rooms.Find(roomId));
+                //
+                //Hier wird die Beziehung User - Behandlung gespeichert
+                //
+                string dieidvomuser = Request.Form["IdUser"].ToString();
+                int userId = System.Convert.ToInt32(dieidvomuser);
+                localCase.User.Add(db.Users.Find(userId));
+                //
+                //Hier wird die Beziehung Patient - Behandlung gespeichert
+                //
+                string dieidvompat = Request.Form["Pat"].ToString();
+                int patId = System.Convert.ToInt32(dieidvompat);
+                localCase.Patient.Add(db.Patients.Find(patId));
+                if (localCase.casenr == "Aufnahme")
+                {
+                    Patient pat = db.Patients.Find(patId);
+                    pat.isactive = true;
+                    Room room = db.Rooms.Find(roomId);
+                    string ausgang = room.vacancy;
+                    int vacancyUpdated = System.Convert.ToInt32(ausgang);
+                    vacancyUpdated = vacancyUpdated - 1;
+                    ausgang = System.Convert.ToString(vacancyUpdated);
+                    room.vacancy = ausgang;
+
+                }
+                ViewBag.Id = new SelectList(db.Rooms, "Id", "number", localCase.Id);
+                ViewBag.IdUser = new SelectList(db.Users, "Id", "surname", localCase.Id);
+                db.LocalCases.Add(localCase);
+                db.SaveChanges();
+                return RedirectToAction("IndexPfleger");
+            }
+            return View(localCase);
+        }
 
 
 
@@ -623,9 +909,17 @@ namespace HMS.Controllers
                 timeclosed = DateTime.Now.AddHours(4),
                 Id = 2
             });
-
-
-
+            //Mit mit for each die Termine reinballern aber nur für den jeweiligen Arzt
+            //Dazu brauchen wir ne globale Variable amkkkkkk
+            //LocalCase loc = db.LocalCases.Find(24);
+            //termine.Add(new LocalCase()
+            //{
+            //    casenr = loc.casenr,
+            //    timecreate = loc.timecreate,
+            //    timeclosed = loc.timeclosed,
+            //    Id = loc.Id
+            //});
+            
 
 
             return Json(termine, JsonRequestBehavior.AllowGet);
@@ -683,6 +977,7 @@ namespace HMS.Controllers
 
             return Json(termine, JsonRequestBehavior.AllowGet);
         }
+
 
     }
 }

@@ -257,29 +257,62 @@ namespace HMS.Controllers
 
         public ActionResult Create()
         {
-            String myLayoutName = "";
+            // Author: Ming
             switch (GlobalVariable.currentRole)
             {
                 case GlobalVariable.Role.Admin:
-                    myLayoutName = "_Layout_Admin";
+                    Patient model0 = new Patient();
+                    model0.timecreate = DateTime.Now;
+                    model0.timemodify = DateTime.Now;
+                    return View(model0);
                     break;
                 case GlobalVariable.Role.Arzt:
-                    myLayoutName = "_Layout_Arzt";
+                    Patient model1 = new Patient();
+                    model1.timecreate = DateTime.Now;
+                    model1.timemodify = DateTime.Now;
+                    return View(model1);
                     break;
                 case GlobalVariable.Role.Schwester:
-                    myLayoutName = "_Layout_Schwester";
+                    Patient model2 = new Patient();
+                    model2.timecreate = DateTime.Now;
+                    model2.timemodify = DateTime.Now;
+                    return View(model2);
                     break;
+                case GlobalVariable.Role.Reinigungspersonal:
+                    return RedirectToAction("IndexReinigung");
+                    break;
+                case GlobalVariable.Role.Therapeut:
+                    return RedirectToAction("IndexTherapeut");
+                    break;
+                //case GlobalVariable.Role.Unknown:
                 default:
-                    myLayoutName = "_Layout_Reinigungspersonal";
+                    return RedirectToAction("Index"/*, "Home"*/);
                     break;
             }
-            Patient model = new Patient();
-            model.timecreate = DateTime.Now;
-            model.timemodify = DateTime.Now;
+            // old code
+            //String myLayoutName = "";
+            //switch (GlobalVariable.currentRole)
+            //{
+            //    case GlobalVariable.Role.Admin:
+            //        myLayoutName = "_Layout_Admin";
+            //        break;
+            //    case GlobalVariable.Role.Arzt:
+            //        myLayoutName = "_Layout_Arzt";
+            //        break;
+            //    case GlobalVariable.Role.Schwester:
+            //        myLayoutName = "_Layout_Schwester";
+            //        break;
+            //    default:
+            //        myLayoutName = "_Layout_Reinigungspersonal";
+            //        break;
+            //}
+            //Patient model = new Patient();
+            //model.timecreate = DateTime.Now;
+            //model.timemodify = DateTime.Now;
 
-            ViewResult myView = View(model);
-            myView.MasterName = myLayoutName;
-            return myView;
+            //ViewResult myView = View(model);
+            //myView.MasterName = myLayoutName;
+            //return myView;
         }
 
         public ActionResult CreateArzt()
@@ -675,8 +708,23 @@ namespace HMS.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Patient patient = db.Patients.Find(id);
-            //db.Patients.Remove(patient);
             patient.isactive = false;
+            foreach ( LocalCase item in patient.LocalCase)
+            {
+                if(item.casenr == "Aufnahme")
+                {
+                    item.casenr = "Abgeschlossen";
+                    item.isactive = false;
+                    foreach (Room room in item.Room)
+                    {
+                        string vorher = room.vacancy;
+                        int nachher = System.Convert.ToInt32(vorher);
+                        nachher = nachher + 1;
+                        vorher = System.Convert.ToString(nachher);
+                        room.vacancy = vorher;
+                    }
+                }
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -686,8 +734,23 @@ namespace HMS.Controllers
         public ActionResult DeleteConfirmedArzt(int id)
         {
             Patient patient = db.Patients.Find(id);
-            //db.Patients.Remove(patient);
             patient.isactive = false;
+            foreach (LocalCase item in patient.LocalCase)
+            {
+                if (item.casenr == "Aufnahme")
+                {
+                    item.casenr = "Abgeschlossen";
+                    item.isactive = false;
+                    foreach (Room room in item.Room)
+                    {
+                        string vorher = room.vacancy;
+                        int nachher = System.Convert.ToInt32(vorher);
+                        nachher = nachher + 1;
+                        vorher = System.Convert.ToString(nachher);
+                        room.vacancy = vorher;
+                    }
+                }
+            }
             db.SaveChanges();
             return RedirectToAction("IndexArzt");
         }
@@ -697,8 +760,23 @@ namespace HMS.Controllers
         public ActionResult DeleteConfirmedPfleger(int id)
         {
             Patient patient = db.Patients.Find(id);
-            //db.Patients.Remove(patient);
             patient.isactive = false;
+            foreach (LocalCase item in patient.LocalCase)
+            {
+                if (item.casenr == "Aufnahme")
+                {
+                    item.casenr = "Abgeschlossen";
+                    item.isactive = false;
+                    foreach (Room room in item.Room)
+                    {
+                        string vorher = room.vacancy;
+                        int nachher = System.Convert.ToInt32(vorher);
+                        nachher = nachher + 1;
+                        vorher = System.Convert.ToString(nachher);
+                        room.vacancy = vorher;
+                    }
+                }
+            }
             db.SaveChanges();
             return RedirectToAction("IndexPfleger");
         }
@@ -711,81 +789,7 @@ namespace HMS.Controllers
             }
             base.Dispose(disposing);
         }
-
-        public ActionResult PatientActive(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Patient patient = db.Patients.Find(id);
-            if (patient == null)
-            {
-                return HttpNotFound();
-            }
-            String myLayoutName = "";
-            if (GlobalVariable.currentRole.Equals("Admin"))
-            {
-
-                myLayoutName = "_Layout_Admin";
-
-            }
-            patient.isactive = true;
-            db.SaveChanges();
-            ViewResult myView = View(patient);
-            myView.MasterName = myLayoutName;
-            return myView;
-        }
-
-        public ActionResult PatientActiveArzt(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Patient patient = db.Patients.Find(id);
-            if (patient == null)
-            {
-                return HttpNotFound();
-            }
-            String myLayoutName = "";
-            if (GlobalVariable.currentRole.Equals("Arzt"))
-            {
-
-                myLayoutName = "_Layout_Arzt";
-
-            }
-            patient.isactive = true;
-            db.SaveChanges();
-            ViewResult myView = View(patient);
-            myView.MasterName = myLayoutName;
-            return myView;
-        }
-
-        public ActionResult PatientActivePfleger(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Patient patient = db.Patients.Find(id);
-            if (patient == null)
-            {
-                return HttpNotFound();
-            }
-            String myLayoutName = "";
-            if (GlobalVariable.currentRole.Equals("Schwester"))
-            {
-
-                myLayoutName = "_Layout_Schwester";
-
-            }
-            patient.isactive = true;
-            db.SaveChanges();
-            ViewResult myView = View(patient);
-            myView.MasterName = myLayoutName;
-            return myView;
-        }
+        
 
         
         

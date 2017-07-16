@@ -1,8 +1,8 @@
 ﻿@model HMS.Models.LocalCase
 
 @{
-    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
-    ViewBag.Title = "Behandlung";
+    Layout = "~/Views/Shared/_Layout_Arzt.cshtml";
+    ViewBag.Title = "Aufnahme";
 }
 
 <h2>Eine neue Behandlung anlegen..</h2>
@@ -43,21 +43,18 @@
             @Html.LabelFor(model => model.casenr, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                  @Html.DropDownListFor(model => model.casenr, new List<SelectListItem>
-    {                   new SelectListItem() {Text = "", Value="empty", Selected = true},
-                        new SelectListItem() {Text = "Medikamenteneinnahme", Value="Medikamenteneinnahme"},
-                        new SelectListItem() {Text = "Untersuchung", Value="Untersuchung"},  
-                        new SelectListItem() {Text = "Physiotherapie", Value="Physiotherapie"},   
+    {                   
+                        new SelectListItem() {Text = "Aufnahme", Value="Aufnahme"}
     }, new {@class="form-control"}) 
                 @Html.ValidationMessageFor(model => model.casenr, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group", style="display:none">
             @Html.LabelFor(model => model.diagnosis, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.diagnosis, new List<SelectListItem>
-    {                   new SelectListItem() {Text = "", Value="empty", Selected = true},
-                        new SelectListItem() {Text = "C16 - Magenkrebs", Value="C16 - Magenkrebs"},
+    {                   new SelectListItem() {Text = "C16 - Magenkrebs", Value="C16 - Magenkrebs", Selected = true},
                         new SelectListItem() {Text = "C34 - Lungenkrebs", Value="C34 - Lungenkrebs"},
                         new SelectListItem() {Text = "C18 - Dickdarmkrebs", Value="C18 - Dickdarmkrebs"},
                         new SelectListItem() {Text = "E02 - Schilddrüsenunterfunktion", Value="E02 - Schilddrüsenunterfunktion"},
@@ -81,26 +78,26 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group", style="display:none">
             @Html.LabelFor(model => model.medication, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.medication, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.medication, new { htmlAttributes = new { @class = "form-control", @Value = "Fuck you" } })
                 @Html.ValidationMessageFor(model => model.medication, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group", style="display:none">
             @Html.LabelFor(model => model.therapy, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.therapy, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.therapy, new { htmlAttributes = new { @class = "form-control", @Value = "Fuck you" } })
                 @Html.ValidationMessageFor(model => model.therapy, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" , style="display:none">
             @Html.LabelFor(model => model.expectedtime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.expectedtime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.expectedtime, new { htmlAttributes = new { @class = "form-control", @Value = "Fuck you" } })
                 @Html.ValidationMessageFor(model => model.expectedtime, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -113,7 +110,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group", style="display:none">
             @Html.LabelFor(model => model.isactive, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
@@ -129,7 +126,7 @@
                 <!-- Id ist der Name von der Liste aus dem Controller, 3 Variable (String sagt was default angezeigt wird -->
                @Html.DropDownList("Id",null,  " ",  htmlAttributes: new { @class = "form-control" })
             </div>
-        </div>
+        </div> 
 
         <div class="form-group">
             @Html.LabelFor(model => model.User, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -144,7 +141,7 @@
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Anlegen" class="btn btn-default" style="width:90px"/> 
                  <input id="BackToIndex" type="button" value="Abbrechen" class="btn btn-default" style="width:90px"
-        onclick="@("window.location.href='" + @Url.Action("Index", "LocalCase") + "'");" />
+        onclick="@("window.location.href='" + @Url.Action("IndexArzt", "Patient") + "'");" />
             </div>
         </div>
     </div>

@@ -5,10 +5,13 @@ using System.Web;
 
 namespace HMS.Controllers
 {
+    // Author: Ming
     public class GlobalVariable
     {
         public enum Role
         {
+            Unknown,
+
             Admin,
             Arzt,
             Schwester,
@@ -16,6 +19,6 @@ namespace HMS.Controllers
             Therapeut
         }
 
-        public static Role currentRole = Role.Admin;
+        public static Role currentRole = Role.Unknown;
     }
 }
