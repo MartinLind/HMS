@@ -732,6 +732,11 @@ namespace HMS.Controllers
             {
                 localCase.timecreate = DateTime.Now;
                 localCase.timemodify = DateTime.Now;
+                localCase.isactive = true;
+                localCase.diagnosis = "offen";
+                localCase.medication = "offen";
+                localCase.therapy = "offen";
+                localCase.expectedtime = "offen";
 
                 //
                 //Hier wird die Beziehung Raum - Behandlung gespeichert
@@ -767,7 +772,7 @@ namespace HMS.Controllers
                 ViewBag.IdUser = new SelectList(db.Users, "Id", "surname", localCase.Id);
                 db.LocalCases.Add(localCase);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexArzt");
             }
             return View(localCase);
         }
@@ -806,6 +811,11 @@ namespace HMS.Controllers
             {
                 localCase.timecreate = DateTime.Now;
                 localCase.timemodify = DateTime.Now;
+                localCase.isactive = true;
+                localCase.diagnosis = "offen";
+                localCase.medication = "offen";
+                localCase.therapy = "offen";
+                localCase.expectedtime = "offen";
 
                 //
                 //Hier wird die Beziehung Raum - Behandlung gespeichert
@@ -841,7 +851,7 @@ namespace HMS.Controllers
                 ViewBag.IdUser = new SelectList(db.Users, "Id", "surname", localCase.Id);
                 db.LocalCases.Add(localCase);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexPfleger");
             }
             return View(localCase);
         }
