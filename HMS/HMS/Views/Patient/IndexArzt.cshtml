@@ -135,18 +135,18 @@
             }
         </td>
         <td>
-             <input id="GoCreatePatient" type="button" value="Bearbeiten" class="btn btn-default"   style="width:90px"
+             <input id="GoCreatePatient" type="button" value="Bearbeiten" class="btn btn-default"   style="width:140px"
         onclick="@("window.location.href='" + @Url.Action("EditArzt", "Patient",  new {id=item.Id} )+ "'");" />
             <br />
-             <input id="GoCreatePatient" type="button" value="Details" class="btn btn-default"  style="width:90px"
+             <input id="GoCreatePatient" type="button" value="Details" class="btn btn-default"  style="width:140px"
         onclick="@("window.location.href='" + @Url.Action("DetailsArzt", "Patient",  new {id=item.Id} ) + "'");" />
             <br />
              @if (item.isactive == false){
-            <input id="GoCreatePatient" type="button" value="Patient aufnehmen" class="btn btn-default"   style="width:auto"
+            <input id="GoCreatePatient" type="button" value="Patient aufnehmen" class="btn btn-default"   style="width:140px"
         onclick="@("window.location.href='" + @Url.Action("PatientAufnahmeArzt", "LocalCase",  new {id=item.Id} )+ "'");" />
             }
             @if (item.isactive == true){
-            <input id="GoCreatePatient" type="button" value="Entlassen" class="btn btn-default" style="width:90px"
+            <input id="GoCreatePatient" type="button" value="Entlassen" class="btn btn-default" style="width:140px"
         onclick="@("window.location.href='" + @Url.Action("DeleteArzt", "Patient",  new {id=item.Id} )+ "'" );" />
             }
          

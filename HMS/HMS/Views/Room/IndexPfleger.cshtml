@@ -36,29 +36,60 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.number)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.space)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.vacancy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isactive)
-        </td>
-        <td>
-            <input id="GoIndexRoom" type="button" value="Bitte reinigen" class="btn btn-default"   style="width:120px"
-        onclick="@("window.location.href='" + @Url.Action("IndexPfleger", "Room",  new {id=item.Id} )+ "'");alert('Der Raum wird geputzt!'); return true" />
-            <br />
-        </td>
-    </tr>
+@foreach (var item in Model)
+{
+    if (item.type.Equals("OP") && item.isactive.Equals(false))
+    { // backgorund color red
+
+        <tr style="background-color:orangered">
+            <td>
+                @Html.DisplayFor(modelItem => item.number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.space)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vacancy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isactive)
+            </td>
+            <td>
+                <input id="GoIndexRoom" type="button" value="Bitte reinigen" class="btn btn-default" style="width:120px"
+                       onclick="@("window.location.href='" + @Url.Action("IndexPfleger", "Room", new { id = item.Id }) + "'");alert('Der Raum wird geputzt!'); return true" />
+                <br />
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.space)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vacancy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isactive)
+            </td>
+            <td>
+                <input id="GoIndexRoom" type="button" value="Bitte reinigen" class="btn btn-default" style="width:120px"
+                       onclick=" @("window.location.href='" + @Url.Action("IndexArzt", "Room",  new {id=item.Id} )+ "'" ); + alert('Der Raum wird geputzt!'); return true" />
+
+                <br />
+            </td>
+        </tr>
+    }
 }
 
 </table>

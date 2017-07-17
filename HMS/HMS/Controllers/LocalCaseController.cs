@@ -461,7 +461,7 @@ namespace HMS.Controllers
 
                 db.Entry(localCase).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexArzt");
             }
             return View(localCase);
         }
