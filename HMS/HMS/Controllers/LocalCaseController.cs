@@ -712,7 +712,21 @@ namespace HMS.Controllers
 
             //Für Raum:
             ViewBag.Id = new SelectList(db.Rooms.Where(x => x.vacancy != "0" && x.type == "Patientenzimmer").ToList(), "Id", "number");
+            //try {
+            //    string test = System.Convert.ToString(ViewBag.Id);
+            //string newString = db.Rooms.Find(test).type;
+            //ViewBag.idType = newString;  }
 
+            //catch (SystemException) { }
+            //try { 
+            //foreach (var item in db.Rooms.Where(x => x.vacancy != "0" && x.type == "Patientenzimmer").ToList())
+            //{
+            //    //string item2 = System.Convert.ToString(item);
+            //    string test2 = db.Rooms.Find(item).type;
+            //    ViewBag.idType = test2;
+            //}}
+            //catch (SystemException) { }
+           
             //Für User
 
             ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");

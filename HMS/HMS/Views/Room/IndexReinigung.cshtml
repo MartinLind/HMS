@@ -87,7 +87,7 @@
             </td>
             <td>
                 <input id="GoIndexRoom" type="button" value="Bitte reinigen" class="btn btn-default" style="width:120px"
-                       onclick=" @("window.location.href='" + @Url.Action("IndexArzt", "Room",  new {id=item.Id} )+ "'" ); + alert('Der Raum wird geputzt!'); return true" />
+                       onclick=" @("window.location.href='" + @Url.Action("IndexReinigung", "Room",  new {id=item.Id} )+ "'" ); + alert('Der Raum wird geputzt!'); return true" />
 
                 <br />
             </td>

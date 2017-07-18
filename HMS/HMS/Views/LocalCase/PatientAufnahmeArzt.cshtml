@@ -128,11 +128,19 @@
             </div>
         </div> 
 
+        @*<div class="form-group">
+            @Html.Label("Raumtyp",null, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("newTest", (string)ViewBag.idType, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>*@
+        
+
         <div class="form-group">
             @Html.LabelFor(model => model.User, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <!--Martin Wichary: IdUser ist der Name von der Liste aus dem Controller, 3 Variable (String sagt was default angezeigt wird -->
-                <!--David Bismor: Abgeänderung der Überladung -->
+                <!--David Bismor: Abänderung der Überladung -->
                @Html.DropDownList("IdUser", null, null, htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
