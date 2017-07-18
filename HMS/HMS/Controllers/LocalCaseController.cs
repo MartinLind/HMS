@@ -930,8 +930,28 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                localCase.timecreate = DateTime.Now;
-                localCase.timemodify = DateTime.Now;
+                string stunde = Request.Form["UhrHHStart"].ToString();
+                int std = System.Convert.ToInt32(stunde);
+                string minute = Request.Form["UhrMMStart"].ToString();
+                int min = System.Convert.ToInt32(minute);
+
+
+                System.DateTime start = new System.DateTime(localCase.timecreate.Year, localCase.timecreate.Month, 
+                    localCase.timecreate.Day, std, min, 0);
+                localCase.timecreate = start;
+
+                string stunde2 = Request.Form["UhrHHEnde"].ToString();
+                int std2 = System.Convert.ToInt32(stunde2);
+                string minute2 = Request.Form["UhrMMEnde"].ToString();
+                int min2 = System.Convert.ToInt32(minute2);
+
+
+                System.DateTime ende = new System.DateTime(localCase.timeclosed.Year, localCase.timeclosed.Month,
+                    localCase.timeclosed.Day, std2, min2, 0);
+                localCase.timeclosed = ende;
+
+                //localCase.timecreate = DateTime.Now;
+                //localCase.timemodify = DateTime.Now;
                 localCase.isactive = true;
                 localCase.diagnosis = "offen";
                 localCase.medication = "offen";
