@@ -1848,7 +1848,7 @@ namespace HMS.Controllers
                     {
                         foreach (User user in loc.User)
                         {
-                            if (user.rolename == "Pfleger")
+                            if (user.rolename == "Pflegepersonal")
                             {
                                 termine.Add(new LocalCase()
                                 {
