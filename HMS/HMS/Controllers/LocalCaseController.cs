@@ -237,9 +237,10 @@ namespace HMS.Controllers
                     TimeMMListStart.Add(new SelectListItem { Text = "15", Value = "15" });
                     TimeMMListStart.Add(new SelectListItem { Text = "16", Value = "16" });
                     TimeMMListStart.Add(new SelectListItem { Text = "17", Value = "17" });
-                    TimeMMListStart.Add(new SelectListItem { Text = "19", Value = "18" });
-                    TimeMMListStart.Add(new SelectListItem { Text = "20", Value = "19" });
-                    TimeMMListStart.Add(new SelectListItem { Text = "21", Value = "20" });
+                    TimeMMListStart.Add(new SelectListItem { Text = "18", Value = "18" });
+                    TimeMMListStart.Add(new SelectListItem { Text = "19", Value = "19" });
+                    TimeMMListStart.Add(new SelectListItem { Text = "20", Value = "20" });
+                    TimeMMListStart.Add(new SelectListItem { Text = "21", Value = "21" });
                     TimeMMListStart.Add(new SelectListItem { Text = "22", Value = "22" });
                     TimeMMListStart.Add(new SelectListItem { Text = "23", Value = "23" });
                     TimeMMListStart.Add(new SelectListItem() { Text = "24", Value = "24" });
@@ -329,9 +330,10 @@ namespace HMS.Controllers
                     TimeMMListEnde.Add(new SelectListItem { Text = "15", Value = "15" });
                     TimeMMListEnde.Add(new SelectListItem { Text = "16", Value = "16" });
                     TimeMMListEnde.Add(new SelectListItem { Text = "17", Value = "17" });
-                    TimeMMListEnde.Add(new SelectListItem { Text = "19", Value = "18" });
-                    TimeMMListEnde.Add(new SelectListItem { Text = "20", Value = "19" });
-                    TimeMMListEnde.Add(new SelectListItem { Text = "21", Value = "20" });
+                    TimeMMListEnde.Add(new SelectListItem { Text = "18", Value = "18" });
+                    TimeMMListEnde.Add(new SelectListItem { Text = "19", Value = "19" });
+                    TimeMMListEnde.Add(new SelectListItem { Text = "20", Value = "20" });
+                    TimeMMListEnde.Add(new SelectListItem { Text = "21", Value = "21" });
                     TimeMMListEnde.Add(new SelectListItem { Text = "22", Value = "22" });
                     TimeMMListEnde.Add(new SelectListItem { Text = "23", Value = "23" });
                     TimeMMListEnde.Add(new SelectListItem() { Text = "24", Value = "24" });
@@ -958,9 +960,10 @@ namespace HMS.Controllers
             TimeMMListStart.Add(new SelectListItem { Text = "15", Value = "15" });
             TimeMMListStart.Add(new SelectListItem { Text = "16", Value = "16" });
             TimeMMListStart.Add(new SelectListItem { Text = "17", Value = "17" });
-            TimeMMListStart.Add(new SelectListItem { Text = "19", Value = "18" });
-            TimeMMListStart.Add(new SelectListItem { Text = "20", Value = "19" });
-            TimeMMListStart.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeMMListStart.Add(new SelectListItem { Text = "18", Value = "18" });
+            TimeMMListStart.Add(new SelectListItem { Text = "19", Value = "19" });
+            TimeMMListStart.Add(new SelectListItem { Text = "20", Value = "20" });
+            TimeMMListStart.Add(new SelectListItem { Text = "21", Value = "21" });
             TimeMMListStart.Add(new SelectListItem { Text = "22", Value = "22" });
             TimeMMListStart.Add(new SelectListItem { Text = "23", Value = "23" });
             TimeMMListStart.Add(new SelectListItem() { Text = "24", Value = "24" });
@@ -1022,9 +1025,10 @@ namespace HMS.Controllers
             TimeHHListEnde.Add(new SelectListItem { Text = "15", Value = "15" });
             TimeHHListEnde.Add(new SelectListItem { Text = "16", Value = "16" });
             TimeHHListEnde.Add(new SelectListItem { Text = "17", Value = "17" });
-            TimeHHListEnde.Add(new SelectListItem { Text = "19", Value = "18" });
-            TimeHHListEnde.Add(new SelectListItem { Text = "20", Value = "19" });
-            TimeHHListEnde.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "18", Value = "18" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "19", Value = "19" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "20", Value = "20" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "21", Value = "21" });
             TimeHHListEnde.Add(new SelectListItem { Text = "22", Value = "22" });
             TimeHHListEnde.Add(new SelectListItem { Text = "23", Value = "23" });
 
@@ -1049,9 +1053,10 @@ namespace HMS.Controllers
             TimeMMListEnde.Add(new SelectListItem { Text = "15", Value = "15" });
             TimeMMListEnde.Add(new SelectListItem { Text = "16", Value = "16" });
             TimeMMListEnde.Add(new SelectListItem { Text = "17", Value = "17" });
-            TimeMMListEnde.Add(new SelectListItem { Text = "19", Value = "18" });
-            TimeMMListEnde.Add(new SelectListItem { Text = "20", Value = "19" });
-            TimeMMListEnde.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "18", Value = "18" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "19", Value = "19" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "20", Value = "20" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "21", Value = "21" });
             TimeMMListEnde.Add(new SelectListItem { Text = "22", Value = "22" });
             TimeMMListEnde.Add(new SelectListItem { Text = "23", Value = "23" });
             TimeMMListEnde.Add(new SelectListItem() { Text = "24", Value = "24" });
@@ -1213,9 +1218,10 @@ namespace HMS.Controllers
             TimeHHListStart.Add(new SelectListItem { Text = "15", Value = "15" });
             TimeHHListStart.Add(new SelectListItem { Text = "16", Value = "16" });
             TimeHHListStart.Add(new SelectListItem { Text = "17", Value = "17" });
-            TimeHHListStart.Add(new SelectListItem { Text = "19", Value = "18" });
-            TimeHHListStart.Add(new SelectListItem { Text = "20", Value = "19" });
-            TimeHHListStart.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeHHListStart.Add(new SelectListItem { Text = "18", Value = "18" });
+            TimeHHListStart.Add(new SelectListItem { Text = "19", Value = "19" });
+            TimeHHListStart.Add(new SelectListItem { Text = "20", Value = "20" });
+            TimeHHListStart.Add(new SelectListItem { Text = "21", Value = "21" });
             TimeHHListStart.Add(new SelectListItem { Text = "22", Value = "22" });
             TimeHHListStart.Add(new SelectListItem { Text = "23", Value = "23" });
 
@@ -1240,9 +1246,10 @@ namespace HMS.Controllers
             TimeMMListStart.Add(new SelectListItem { Text = "15", Value = "15" });
             TimeMMListStart.Add(new SelectListItem { Text = "16", Value = "16" });
             TimeMMListStart.Add(new SelectListItem { Text = "17", Value = "17" });
-            TimeMMListStart.Add(new SelectListItem { Text = "19", Value = "18" });
-            TimeMMListStart.Add(new SelectListItem { Text = "20", Value = "19" });
-            TimeMMListStart.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeMMListStart.Add(new SelectListItem { Text = "18", Value = "18" });
+            TimeMMListStart.Add(new SelectListItem { Text = "19", Value = "19" });
+            TimeMMListStart.Add(new SelectListItem { Text = "20", Value = "20" });
+            TimeMMListStart.Add(new SelectListItem { Text = "21", Value = "21" });
             TimeMMListStart.Add(new SelectListItem { Text = "22", Value = "22" });
             TimeMMListStart.Add(new SelectListItem { Text = "23", Value = "23" });
             TimeMMListStart.Add(new SelectListItem() { Text = "24", Value = "24" });
@@ -1304,9 +1311,10 @@ namespace HMS.Controllers
             TimeHHListEnde.Add(new SelectListItem { Text = "15", Value = "15" });
             TimeHHListEnde.Add(new SelectListItem { Text = "16", Value = "16" });
             TimeHHListEnde.Add(new SelectListItem { Text = "17", Value = "17" });
-            TimeHHListEnde.Add(new SelectListItem { Text = "19", Value = "18" });
-            TimeHHListEnde.Add(new SelectListItem { Text = "20", Value = "19" });
-            TimeHHListEnde.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "18", Value = "18" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "19", Value = "19" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "20", Value = "20" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "21", Value = "21" });
             TimeHHListEnde.Add(new SelectListItem { Text = "22", Value = "22" });
             TimeHHListEnde.Add(new SelectListItem { Text = "23", Value = "23" });
 
@@ -1331,9 +1339,10 @@ namespace HMS.Controllers
             TimeMMListEnde.Add(new SelectListItem { Text = "15", Value = "15" });
             TimeMMListEnde.Add(new SelectListItem { Text = "16", Value = "16" });
             TimeMMListEnde.Add(new SelectListItem { Text = "17", Value = "17" });
-            TimeMMListEnde.Add(new SelectListItem { Text = "19", Value = "18" });
-            TimeMMListEnde.Add(new SelectListItem { Text = "20", Value = "19" });
-            TimeMMListEnde.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "18", Value = "18" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "19", Value = "19" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "20", Value = "20" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "21", Value = "21" });
             TimeMMListEnde.Add(new SelectListItem { Text = "22", Value = "22" });
             TimeMMListEnde.Add(new SelectListItem { Text = "23", Value = "23" });
             TimeMMListEnde.Add(new SelectListItem() { Text = "24", Value = "24" });
@@ -1497,9 +1506,10 @@ namespace HMS.Controllers
             TimeHHListStart.Add(new SelectListItem { Text = "15", Value = "15" });
             TimeHHListStart.Add(new SelectListItem { Text = "16", Value = "16" });
             TimeHHListStart.Add(new SelectListItem { Text = "17", Value = "17" });
-            TimeHHListStart.Add(new SelectListItem { Text = "19", Value = "18" });
-            TimeHHListStart.Add(new SelectListItem { Text = "20", Value = "19" });
-            TimeHHListStart.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeHHListStart.Add(new SelectListItem { Text = "18", Value = "18" });
+            TimeHHListStart.Add(new SelectListItem { Text = "19", Value = "19" });
+            TimeHHListStart.Add(new SelectListItem { Text = "20", Value = "20" });
+            TimeHHListStart.Add(new SelectListItem { Text = "21", Value = "21" });
             TimeHHListStart.Add(new SelectListItem { Text = "22", Value = "22" });
             TimeHHListStart.Add(new SelectListItem { Text = "23", Value = "23" });
 
@@ -1524,9 +1534,10 @@ namespace HMS.Controllers
             TimeMMListStart.Add(new SelectListItem { Text = "15", Value = "15" });
             TimeMMListStart.Add(new SelectListItem { Text = "16", Value = "16" });
             TimeMMListStart.Add(new SelectListItem { Text = "17", Value = "17" });
-            TimeMMListStart.Add(new SelectListItem { Text = "19", Value = "18" });
-            TimeMMListStart.Add(new SelectListItem { Text = "20", Value = "19" });
-            TimeMMListStart.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeMMListStart.Add(new SelectListItem { Text = "18", Value = "18" });
+            TimeMMListStart.Add(new SelectListItem { Text = "19", Value = "19" });
+            TimeMMListStart.Add(new SelectListItem { Text = "20", Value = "20" });
+            TimeMMListStart.Add(new SelectListItem { Text = "21", Value = "21" });
             TimeMMListStart.Add(new SelectListItem { Text = "22", Value = "22" });
             TimeMMListStart.Add(new SelectListItem { Text = "23", Value = "23" });
             TimeMMListStart.Add(new SelectListItem() { Text = "24", Value = "24" });
@@ -1588,9 +1599,10 @@ namespace HMS.Controllers
             TimeHHListEnde.Add(new SelectListItem { Text = "15", Value = "15" });
             TimeHHListEnde.Add(new SelectListItem { Text = "16", Value = "16" });
             TimeHHListEnde.Add(new SelectListItem { Text = "17", Value = "17" });
-            TimeHHListEnde.Add(new SelectListItem { Text = "19", Value = "18" });
-            TimeHHListEnde.Add(new SelectListItem { Text = "20", Value = "19" });
-            TimeHHListEnde.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "18", Value = "18" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "19", Value = "19" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "20", Value = "20" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "21", Value = "21" });
             TimeHHListEnde.Add(new SelectListItem { Text = "22", Value = "22" });
             TimeHHListEnde.Add(new SelectListItem { Text = "23", Value = "23" });
 
@@ -1615,9 +1627,10 @@ namespace HMS.Controllers
             TimeMMListEnde.Add(new SelectListItem { Text = "15", Value = "15" });
             TimeMMListEnde.Add(new SelectListItem { Text = "16", Value = "16" });
             TimeMMListEnde.Add(new SelectListItem { Text = "17", Value = "17" });
-            TimeMMListEnde.Add(new SelectListItem { Text = "19", Value = "18" });
-            TimeMMListEnde.Add(new SelectListItem { Text = "20", Value = "19" });
-            TimeMMListEnde.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "18", Value = "18" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "19", Value = "19" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "20", Value = "20" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "21", Value = "21" });
             TimeMMListEnde.Add(new SelectListItem { Text = "22", Value = "22" });
             TimeMMListEnde.Add(new SelectListItem { Text = "23", Value = "23" });
             TimeMMListEnde.Add(new SelectListItem() { Text = "24", Value = "24" });
