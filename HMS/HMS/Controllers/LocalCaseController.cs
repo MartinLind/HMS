@@ -112,54 +112,127 @@ namespace HMS.Controllers
         // GET: LocalCase/Create
         public ActionResult Create()
         {
-            String myLayoutName = "";
-            if (GlobalVariable.currentRole.Equals("Admin"))
+            switch (GlobalVariable.currentRole)
             {
-                    myLayoutName = "_Layout_Admin";
-                   
-              
-            }
+                case GlobalVariable.Role.Admin:
+                    return RedirectToAction("Index");
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    LocalCase model = new LocalCase();
+                    model.timecreate = DateTime.Now;
+                    model.timemodify = DateTime.Now;
+                    ViewBag.Id = new SelectList(db.Rooms.Where(x => x.vacancy != "0").ToList(), "Id", "number");
 
-            ViewResult myView = View();
-            myView.MasterName = myLayoutName;
+                    //Für User
+
+                    ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+
+                    //Für Patient
+                    var url = Url.RequestContext.RouteData.Values["Id"];
+                    int id = System.Convert.ToInt32(url);
+                    ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(id)).ToList(), "Id", "surname");
+                   
+        
+                    return View(model);
+                  
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    return RedirectToAction("IndexPfleger");
+                    break;
+                case GlobalVariable.Role.Reinigungspersonal:
+                    return RedirectToAction("Index","Room");
+                    break;
+                case GlobalVariable.Role.Therapeut:
+                    return RedirectToAction("IndexTherapeut");
+                    break;
+                //case GlobalVariable.Role.Unknown:
+                default:
+                    return RedirectToAction("Index"/*, "Home"*/);
+                    break;
+            }
+            //    String myLayoutName = "";
+            //    if (GlobalVariable.currentRole.Equals("Admin"))
+            //    {
+            //            myLayoutName = "_Layout_Admin";
+
+
+            //    }
+
+            //    ViewResult myView = View();
+            //    myView.MasterName = myLayoutName;
 
             //Für Raum:
-            ViewBag.Id= new SelectList(db.Rooms.Where(x => x.vacancy != "0").ToList() , "Id", "number");
+            //ViewBag.Id= new SelectList(db.Rooms.Where(x => x.vacancy != "0").ToList() , "Id", "number");
 
-            //Für User
+            ////Für User
             
-            ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+            //ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
 
-            //Für Patient
-            var url = Url.RequestContext.RouteData.Values["Id"];
-            int id = System.Convert.ToInt32(url);
-            ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(id)).ToList(), "Id", "surname");
-            return myView;
+            ////Für Patient
+            //var url = Url.RequestContext.RouteData.Values["Id"];
+            //int id = System.Convert.ToInt32(url);
+            //ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(id)).ToList(), "Id", "surname");
+            //return myView;
         }
 
         public ActionResult CreateArzt()
         {
-            String myLayoutName = "";
-            if (GlobalVariable.currentRole.Equals("Arzt"))
+
+            switch (GlobalVariable.currentRole)
             {
-                myLayoutName = "_Layout_Arzt";
-            }
-            ViewResult NewView = View();
-          
+                case GlobalVariable.Role.Admin:
+                    return RedirectToAction("Index");
+                    break;
+                case GlobalVariable.Role.Arzt:
+                    LocalCase model = new LocalCase();
+                    model.timecreate = DateTime.Now;
+                    model.timemodify = DateTime.Now;
+                    ViewBag.Id = new SelectList(db.Rooms, "Id", "number");
+
+                    //Für User
+                    ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+
+                    //Für Patient
+                    var url = Url.RequestContext.RouteData.Values["Id"];
+                    int id = System.Convert.ToInt32(url);
+                    ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(id)).ToList(), "Id", "surname");
+                    
+                    return View(model);
+                    break;
+                case GlobalVariable.Role.Schwester:
+                    return RedirectToAction("IndexPfleger");
+                    break;
+                case GlobalVariable.Role.Reinigungspersonal:
+                    return RedirectToAction("Index", "Room");
+                    break;
+                case GlobalVariable.Role.Therapeut:
+                    return RedirectToAction("IndexTherapeut");
+                    break;
+                //case GlobalVariable.Role.Unknown:
+                default:
+                    return RedirectToAction("Index"/*, "Home"*/);
+                    break;
+            }//String myLayoutName = "";
+             //if (GlobalVariable.currentRole.Equals("Arzt"))
+             //{
+             //    myLayoutName = "_Layout_Arzt";
+             //}
+             //ViewResult NewView = View();
+
 
             //Für Raum:
-            ViewBag.Id = new SelectList(db.Rooms, "Id", "number");
+            //ViewBag.Id = new SelectList(db.Rooms, "Id", "number");
 
-            //Für User
-            ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+            ////Für User
+            //ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
 
-            //Für Patient
-            var url = Url.RequestContext.RouteData.Values["Id"];
-            int id = System.Convert.ToInt32(url);
-            ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(id)).ToList(), "Id", "surname");
+            ////Für Patient
+            //var url = Url.RequestContext.RouteData.Values["Id"];
+            //int id = System.Convert.ToInt32(url);
+            //ViewBag.Pat = new SelectList(db.Patients.Where(x => x.Id.Equals(id)).ToList(), "Id", "surname");
 
-            NewView.MasterName = myLayoutName;
-            return NewView;
+            //NewView.MasterName = myLayoutName;
+            //return NewView;
         }
 
 
