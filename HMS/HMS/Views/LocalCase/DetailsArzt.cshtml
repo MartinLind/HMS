@@ -119,8 +119,15 @@
     </dl>
 </div>
 <p>
-    @*<input id="EditThis" type="button" value="Bearbeiten" class="btn btn-default" style="width: 100px"
-           onclick="@("window.location.href='" + @Url.Action("EditArzt", "LocalCase", new {id = Model.Id}) + "'");" />*@
-    <input id="BackToList" type="button" value="Zurück" class="btn btn-default" style="width: 100px"
-           onclick="@("window.location.href='" + @Url.Action("IndexArzt", "LocalCase") + "'");" />
+    @if (Model.casenr.Equals("Aufnahme"))
+    {    <input id="BackToList" type="button" value="Zurück" class="btn btn-default" style="width: 100px"
+                onclick="@("window.location.href='" + @Url.Action("IndexArzt", "LocalCase") + "'");" /> }
+    else
+    {
+        <input id="EditThis" type="button" value="Bearbeiten" class="btn btn-default" style="width: 100px"
+               onclick="@("window.location.href='" + @Url.Action("EditArzt", "LocalCase", new {id = Model.Id}) + "'");" />
+        <input id="BackToList" type="button" value="Zurück" class="btn btn-default" style="width: 100px"
+               onclick="@("window.location.href='" + @Url.Action("IndexArzt", "LocalCase") + "'");" />
+    }
+  
 </p>
