@@ -102,9 +102,9 @@
             } 
         </td>
         <td>
-                <input id="GoCreatePatient" type="button" value="Bearbeiten" class="btn btn-default"   style="width:90px"
+                @*<input id="GoCreatePatient" type="button" value="Bearbeiten" class="btn btn-default"   style="width:90px"
         onclick="@("window.location.href='" + @Url.Action("Edit", "LocalCase",  new {id=item.Id} )+ "'");" />
-            <br />
+            <br />*@
              <input id="GoCreatePatient" type="button" value="Details" class="btn btn-default"  style="width:90px"
         onclick="@("window.location.href='" + @Url.Action("Details", "LocalCase",  new {id=item.Id} ) + "'");" />
             <br />

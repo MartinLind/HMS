@@ -124,8 +124,9 @@ namespace HMS.Controllers
                     ViewBag.Id = new SelectList(db.Rooms.Where(x => x.vacancy != "0").ToList(), "Id", "number");
 
                     //Für User
+                    
+                    ViewBag.IdUser = new SelectList(db.Users.Where(x => x.rolename.Equals("Arzt") | x.rolename.Equals("Therapeut") | x.rolename.Equals("Pflegepersonal")), "Id", "surname");
 
-                    ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
 
                     //Für Patient
                     var url = Url.RequestContext.RouteData.Values["Id"];
@@ -381,7 +382,8 @@ namespace HMS.Controllers
                     ViewBag.Id = new SelectList(db.Rooms.Where(x => x.vacancy != "0").ToList(), "Id", "number");
 
                     //Für User
-                    ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+                    ViewBag.IdUser = new SelectList(db.Users.Where(x => x.rolename.Equals("Arzt") | x.rolename.Equals("Therapeut") | x.rolename.Equals("Pflegepersonal")), "Id", "surname");
+
 
                     //Für Patient
                     var url = Url.RequestContext.RouteData.Values["Id"];
@@ -620,11 +622,11 @@ namespace HMS.Controllers
             
             //Für User
            // ViewBag.IdUserAdmin = null;
-            ViewBag.IdUserAdmin = new SelectList(db.Users, "Id", "surname");
+            ViewBag.IdUserAdmin = new SelectList(db.Users.Where(x => x.rolename.Equals("Arzt") | x.rolename.Equals("Therapeut") | x.rolename.Equals("Pflegepersonal")), "Id", "surname");
 
 
 
-             ViewResult myView = View(localCase);
+            ViewResult myView = View(localCase);
              myView.MasterName = myLayoutName;
 
             return myView;
@@ -651,12 +653,11 @@ namespace HMS.Controllers
             myView.MasterName = myLayoutName;
 
             //Für Raum
-            ViewBag.IdEditArzt = null;
             ViewBag.IdEditArzt = new SelectList(db.Rooms, "Id", "number");
 
             //Für User
-            ViewBag.IdUserArzt = null;
-            ViewBag.IdUserArzt = new SelectList(db.Users, "Id", "surname");
+            ViewBag.IdUserArzt = new SelectList(db.Users.Where(x => x.rolename.Equals("Arzt") | x.rolename.Equals("Therapeut") | x.rolename.Equals("Pflegepersonal")), "Id", "surname");
+
 
             return myView;
         }
@@ -1104,7 +1105,7 @@ namespace HMS.Controllers
             ViewBag.Id = new SelectList(db.Rooms.Where(x => x.vacancy != "0" && x.type == "Patientenzimmer").ToList(), "Id", "number");
 
             //Für User
-            ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+            ViewBag.IdUser = new SelectList(db.Users.Where(x => x.rolename.Equals("Arzt") | x.rolename.Equals("Therapeut") | x.rolename.Equals("Pflegepersonal")), "Id", "surname");
 
             //Für Patient
             var url = Url.RequestContext.RouteData.Values["Id"];
@@ -1199,6 +1200,8 @@ namespace HMS.Controllers
             myView.MasterName = myLayoutName;
 
             //Für Uhrzeit:
+            // Autor für alle Listen und deren verknüpfung zur View:
+            //Martin Wichary und David Bismor
             var TimeHHListStart = new List<SelectListItem>();
             TimeHHListStart.Add (new SelectListItem { Text = "00", Value = "00" });
             TimeHHListStart.Add(new SelectListItem { Text = "01", Value = "01" });
@@ -1390,7 +1393,8 @@ namespace HMS.Controllers
             ViewBag.Id = new SelectList(db.Rooms.Where(x => x.vacancy != "0" && x.type == "Patientenzimmer").ToList(), "Id", "number");
 
             //Für User
-            ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+            ViewBag.IdUser = new SelectList(db.Users.Where(x => x.rolename.Equals("Arzt") | x.rolename.Equals("Therapeut") | x.rolename.Equals("Pflegepersonal")), "Id", "surname");
+
 
             //Für Patient
             var url = Url.RequestContext.RouteData.Values["Id"];
@@ -1677,7 +1681,7 @@ namespace HMS.Controllers
 
             //Für User
 
-            ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
+            ViewBag.IdUser = new SelectList(db.Users.Where(x => x.rolename.Equals("Arzt") | x.rolename.Equals("Therapeut") | x.rolename.Equals("Pflegepersonal")), "Id", "surname");
 
             //Für Patient
             var url = Url.RequestContext.RouteData.Values["Id"];
