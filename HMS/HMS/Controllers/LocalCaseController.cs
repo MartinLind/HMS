@@ -1766,16 +1766,37 @@ namespace HMS.Controllers
 
         public ActionResult Schichten()
         {
-            return View();
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Arzt"))
+            {
+                myLayoutName = "_Layout_Arzt";
+            }
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+            return myView;
         }
 
         public ActionResult SchichtenPfleger()
         {
-            return View();
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Pflegepersonal"))
+            {
+                myLayoutName = "_Layout_Schwester";
+            }
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+            return myView;
         }
         public ActionResult SchichtenTherapeut()
         {
-            return View();
+            String myLayoutName = "";
+            if (GlobalVariable.currentRole.Equals("Therapeut"))
+            {
+                myLayoutName = "_Layout_Therapeut";
+            }
+            ViewResult myView = View();
+            myView.MasterName = myLayoutName;
+            return myView;
         }
 
         // GET: LocalCase/GetSchichten
