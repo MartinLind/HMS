@@ -1795,32 +1795,7 @@ namespace HMS.Controllers
             //start und ende und eine eindeutige id zusammensuchen. habe bei euch im model leider kein passenderen Controller, Model hierfür gefunden.
 
             List<LocalCase> termine = new List<LocalCase>();
-
-            //termine.Add(new LocalCase()
-            //{
-            //    casenr = "test",
-            //    timecreate = DateTime.Now,
-            //    timeclosed = DateTime.Now.AddHours(2),
-            //    Id = 1
-            //});
-
-            //termine.Add(new LocalCase()
-            //{
-            //    casenr = "Adrian",
-            //    timecreate = DateTime.Now.AddHours(3),
-            //    timeclosed = DateTime.Now.AddHours(4),
-            //    Id = 2
-            //});
-            //Mit mit for each die Termine reinballern aber nur für den jeweiligen Arzt
-            //Dazu brauchen wir ne globale Variable amkkkkkk
-            //LocalCase loc = db.LocalCases.Find(35);
-            //termine.Add(new LocalCase()
-            //{
-            //    casenr = loc.casenr,
-            //    timecreate = loc.timecreate,
-            //    timeclosed = loc.timeclosed,
-            //    Id = loc.Id
-            //});
+            
 
             for (int? i = 1; i < 80; i++)
             {
@@ -1829,13 +1804,19 @@ namespace HMS.Controllers
                     LocalCase loc = db.LocalCases.Find(i);
                     if (loc.isactive == true)
                     {
-                        termine.Add(new LocalCase()
+                        foreach (User user in loc.User)
                         {
-                            casenr = loc.casenr,
-                            timecreate = loc.timecreate,
-                            timeclosed = loc.timeclosed,
-                            Id = loc.Id
-                        });
+                            if (user.rolename == "Arzt")
+                            {
+                                termine.Add(new LocalCase()
+                                {
+                                    casenr = loc.casenr,
+                                    timecreate = loc.timecreate,
+                                    timeclosed = loc.timeclosed,
+                                    Id = loc.Id
+                                });
+                            }
+                        }
                     }
                 }
                 catch (NullReferenceException)
@@ -1858,22 +1839,6 @@ namespace HMS.Controllers
         public JsonResult GetSchichtenPfleger()
         {
             List<LocalCase> termine = new List<LocalCase>();
-
-            //termine.Add(new LocalCase()
-            //{
-            //    casenr = "test",
-            //    timecreate = DateTime.Now,
-            //    timeclosed = DateTime.Now.AddHours(2),
-            //    Id = 1
-            //});
-
-            //termine.Add(new LocalCase()
-            //{
-            //    casenr = "Jonas",
-            //    timecreate = DateTime.Now.AddHours(3),
-            //    timeclosed = DateTime.Now.AddHours(4),
-            //    Id = 2
-            //});
             for (int? i = 1; i < 80; i++)
             {
                 try
@@ -1881,13 +1846,19 @@ namespace HMS.Controllers
                     LocalCase loc = db.LocalCases.Find(i);
                     if (loc.isactive == true)
                     {
-                        termine.Add(new LocalCase()
+                        foreach (User user in loc.User)
                         {
-                            casenr = loc.casenr,
-                            timecreate = loc.timecreate,
-                            timeclosed = loc.timeclosed,
-                            Id = loc.Id
-                        });
+                            if (user.rolename == "Pfleger")
+                            {
+                                termine.Add(new LocalCase()
+                                {
+                                    casenr = loc.casenr,
+                                    timecreate = loc.timecreate,
+                                    timeclosed = loc.timeclosed,
+                                    Id = loc.Id
+                                });
+                            }
+                        }
                     }
                 }
                 catch (NullReferenceException)
@@ -1909,22 +1880,6 @@ namespace HMS.Controllers
         public JsonResult GetSchichtenTherapeut()
         {
             List<LocalCase> termine = new List<LocalCase>();
-
-            //termine.Add(new LocalCase()
-            //{
-            //    casenr = "test",
-            //    timecreate = DateTime.Now,
-            //    timeclosed = DateTime.Now.AddHours(2),
-            //    Id = 1
-            //});
-
-            //termine.Add(new LocalCase()
-            //{
-            //    casenr = "Martin",
-            //    timecreate = DateTime.Now.AddHours(3),
-            //    timeclosed = DateTime.Now.AddHours(4),
-            //    Id = 2
-            //});
             for (int? i = 1; i < 80; i++)
             {
                 try
@@ -1932,13 +1887,20 @@ namespace HMS.Controllers
                     LocalCase loc = db.LocalCases.Find(i);
                     if (loc.isactive == true)
                     {
-                        termine.Add(new LocalCase()
+                        foreach (User user in loc.User)
                         {
-                            casenr = loc.casenr,
-                            timecreate = loc.timecreate,
-                            timeclosed = loc.timeclosed,
-                            Id = loc.Id
-                        });
+                            if (user.rolename == "Therapeut")
+                            {
+                                termine.Add(new LocalCase()
+                                {
+                                    casenr = loc.casenr,
+                                    timecreate = loc.timecreate,
+                                    timeclosed = loc.timeclosed,
+                                    Id = loc.Id
+                                });
+                            }
+                        }
+                        
                     }
                 }
                 catch (NullReferenceException)
