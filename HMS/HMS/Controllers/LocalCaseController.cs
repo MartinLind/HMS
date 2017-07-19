@@ -701,15 +701,200 @@ namespace HMS.Controllers
             {
                 myLayoutName = "_Layout_Admin";
             }
-
-            ViewResult myView = View();
+            LocalCase loc = new LocalCase();
+            loc.timecreate = DateTime.Now;
+            loc.timemodify = DateTime.Now;
+            ViewResult myView = View(loc);
             myView.MasterName = myLayoutName;
+
+            //Für Uhrzeit:
+            var TimeHHListStart = new List<SelectListItem>();
+            TimeHHListStart.Add(new SelectListItem { Text = "00", Value = "00" });
+            TimeHHListStart.Add(new SelectListItem { Text = "01", Value = "01" });
+            TimeHHListStart.Add(new SelectListItem { Text = "02", Value = "02" });
+            TimeHHListStart.Add(new SelectListItem { Text = "03", Value = "03" });
+            TimeHHListStart.Add(new SelectListItem { Text = "04", Value = "04" });
+            TimeHHListStart.Add(new SelectListItem { Text = "05", Value = "05" });
+            TimeHHListStart.Add(new SelectListItem { Text = "06", Value = "06" });
+            TimeHHListStart.Add(new SelectListItem { Text = "07", Value = "07" });
+            TimeHHListStart.Add(new SelectListItem { Text = "08", Value = "08" });
+            TimeHHListStart.Add(new SelectListItem { Text = "09", Value = "09" });
+            TimeHHListStart.Add(new SelectListItem { Text = "10", Value = "10" });
+            TimeHHListStart.Add(new SelectListItem { Text = "11", Value = "11" });
+            TimeHHListStart.Add(new SelectListItem { Text = "12", Value = "12" });
+            TimeHHListStart.Add(new SelectListItem { Text = "13", Value = "13" });
+            TimeHHListStart.Add(new SelectListItem { Text = "14", Value = "14" });
+            TimeHHListStart.Add(new SelectListItem { Text = "15", Value = "15" });
+            TimeHHListStart.Add(new SelectListItem { Text = "16", Value = "16" });
+            TimeHHListStart.Add(new SelectListItem { Text = "17", Value = "17" });
+            TimeHHListStart.Add(new SelectListItem { Text = "19", Value = "18" });
+            TimeHHListStart.Add(new SelectListItem { Text = "20", Value = "19" });
+            TimeHHListStart.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeHHListStart.Add(new SelectListItem { Text = "22", Value = "22" });
+            TimeHHListStart.Add(new SelectListItem { Text = "23", Value = "23" });
+
+            ViewBag.UhrHHStart = TimeHHListStart;
+
+            var TimeMMListStart = new List<SelectListItem>();
+            TimeMMListStart.Add(new SelectListItem { Text = "00", Value = "00" });
+            TimeMMListStart.Add(new SelectListItem { Text = "01", Value = "01" });
+            TimeMMListStart.Add(new SelectListItem { Text = "02", Value = "02" });
+            TimeMMListStart.Add(new SelectListItem { Text = "03", Value = "03" });
+            TimeMMListStart.Add(new SelectListItem { Text = "04", Value = "04" });
+            TimeMMListStart.Add(new SelectListItem { Text = "05", Value = "05" });
+            TimeMMListStart.Add(new SelectListItem { Text = "06", Value = "06" });
+            TimeMMListStart.Add(new SelectListItem { Text = "07", Value = "07" });
+            TimeMMListStart.Add(new SelectListItem { Text = "08", Value = "08" });
+            TimeMMListStart.Add(new SelectListItem { Text = "09", Value = "09" });
+            TimeMMListStart.Add(new SelectListItem { Text = "10", Value = "10" });
+            TimeMMListStart.Add(new SelectListItem { Text = "11", Value = "11" });
+            TimeMMListStart.Add(new SelectListItem { Text = "12", Value = "12" });
+            TimeMMListStart.Add(new SelectListItem { Text = "13", Value = "13" });
+            TimeMMListStart.Add(new SelectListItem { Text = "14", Value = "14" });
+            TimeMMListStart.Add(new SelectListItem { Text = "15", Value = "15" });
+            TimeMMListStart.Add(new SelectListItem { Text = "16", Value = "16" });
+            TimeMMListStart.Add(new SelectListItem { Text = "17", Value = "17" });
+            TimeMMListStart.Add(new SelectListItem { Text = "19", Value = "18" });
+            TimeMMListStart.Add(new SelectListItem { Text = "20", Value = "19" });
+            TimeMMListStart.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeMMListStart.Add(new SelectListItem { Text = "22", Value = "22" });
+            TimeMMListStart.Add(new SelectListItem { Text = "23", Value = "23" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "24", Value = "24" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "25", Value = "25" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "26", Value = "26" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "27", Value = "27" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "28", Value = "28" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "29", Value = "29" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "30", Value = "30" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "31", Value = "31" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "32", Value = "32" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "33", Value = "33" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "34", Value = "34" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "35", Value = "35" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "36", Value = "36" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "37", Value = "37" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "38", Value = "38" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "39", Value = "39" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "40", Value = "40" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "41", Value = "41" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "42", Value = "42" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "43", Value = "43" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "44", Value = "44" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "45", Value = "45" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "46", Value = "46" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "47", Value = "47" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "48", Value = "48" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "49", Value = "49" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "50", Value = "50" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "51", Value = "51" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "52", Value = "52" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "53", Value = "53" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "54", Value = "54" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "55", Value = "55" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "56", Value = "56" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "57", Value = "57" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "58", Value = "58" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "59", Value = "59" });
+
+            ViewBag.UhrMMStart = TimeMMListStart;
+            //Ende
+
+            var TimeHHListEnde = new List<SelectListItem>();
+            TimeHHListEnde.Add(new SelectListItem { Text = "00", Value = "00" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "01", Value = "01" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "02", Value = "02" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "03", Value = "03" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "04", Value = "04" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "05", Value = "05" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "06", Value = "06" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "07", Value = "07" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "08", Value = "08" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "09", Value = "09" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "10", Value = "10" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "11", Value = "11" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "12", Value = "12" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "13", Value = "13" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "14", Value = "14" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "15", Value = "15" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "16", Value = "16" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "17", Value = "17" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "19", Value = "18" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "20", Value = "19" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "22", Value = "22" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "23", Value = "23" });
+
+            ViewBag.UhrHHEnde = TimeHHListEnde;
+
+            var TimeMMListEnde = new List<SelectListItem>();
+            TimeMMListEnde.Add(new SelectListItem { Text = "00", Value = "00" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "01", Value = "01" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "02", Value = "02" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "03", Value = "03" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "04", Value = "04" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "05", Value = "05" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "06", Value = "06" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "07", Value = "07" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "08", Value = "08" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "09", Value = "09" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "10", Value = "10" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "11", Value = "11" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "12", Value = "12" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "13", Value = "13" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "14", Value = "14" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "15", Value = "15" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "16", Value = "16" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "17", Value = "17" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "19", Value = "18" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "20", Value = "19" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "22", Value = "22" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "23", Value = "23" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "24", Value = "24" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "25", Value = "25" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "26", Value = "26" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "27", Value = "27" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "28", Value = "28" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "29", Value = "29" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "30", Value = "30" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "31", Value = "31" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "32", Value = "32" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "33", Value = "33" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "34", Value = "34" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "35", Value = "35" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "36", Value = "36" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "37", Value = "37" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "38", Value = "38" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "39", Value = "39" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "40", Value = "40" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "41", Value = "41" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "42", Value = "42" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "43", Value = "43" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "44", Value = "44" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "45", Value = "45" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "46", Value = "46" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "47", Value = "47" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "48", Value = "48" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "49", Value = "49" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "50", Value = "50" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "51", Value = "51" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "52", Value = "52" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "53", Value = "53" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "54", Value = "54" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "55", Value = "55" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "56", Value = "56" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "57", Value = "57" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "58", Value = "58" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "59", Value = "59" });
+
+            ViewBag.UhrMMEnde = TimeMMListEnde;
+
+
 
             //Für Raum:
             ViewBag.Id = new SelectList(db.Rooms.Where(x => x.vacancy != "0" && x.type == "Patientenzimmer").ToList(), "Id", "number");
 
             //Für User
-
             ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
 
             //Für Patient
@@ -725,13 +910,32 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                localCase.timecreate = DateTime.Now;
-                localCase.timemodify = DateTime.Now;
+                string stunde = Request.Form["UhrHHStart"].ToString();
+                int std = System.Convert.ToInt32(stunde);
+                string minute = Request.Form["UhrMMStart"].ToString();
+                int min = System.Convert.ToInt32(minute);
+
+
+                System.DateTime start = new System.DateTime(localCase.timecreate.Year, localCase.timecreate.Month,
+                    localCase.timecreate.Day, std, min, 0);
+                localCase.timecreate = start;
+
+                string stunde2 = Request.Form["UhrHHEnde"].ToString();
+                int std2 = System.Convert.ToInt32(stunde2);
+                string minute2 = Request.Form["UhrMMEnde"].ToString();
+                int min2 = System.Convert.ToInt32(minute2);
+
+
+                System.DateTime ende = new System.DateTime(localCase.timeclosed.Year, localCase.timeclosed.Month,
+                    localCase.timeclosed.Day, std2, min2, 0);
+
+                localCase.timeclosed = ende;
                 localCase.isactive = true;
                 localCase.diagnosis = "offen";
                 localCase.medication = "offen";
                 localCase.therapy = "offen";
                 localCase.expectedtime = "offen";
+                localCase.timemodify = DateTime.Now;
                 //
                 //Hier wird die Beziehung Raum - Behandlung gespeichert
                 //
@@ -971,23 +1175,8 @@ namespace HMS.Controllers
 
             //Für Raum:
             ViewBag.Id = new SelectList(db.Rooms.Where(x => x.vacancy != "0" && x.type == "Patientenzimmer").ToList(), "Id", "number");
-            //try {
-            //    string test = System.Convert.ToString(ViewBag.Id);
-            //string newString = db.Rooms.Find(test).type;
-            //ViewBag.idType = newString;  }
 
-            //catch (SystemException) { }
-            //try { 
-            //foreach (var item in db.Rooms.Where(x => x.vacancy != "0" && x.type == "Patientenzimmer").ToList())
-            //{
-            //    //string item2 = System.Convert.ToString(item);
-            //    string test2 = db.Rooms.Find(item).type;
-            //    ViewBag.idType = test2;
-            //}}
-            //catch (SystemException) { }
-           
             //Für User
-
             ViewBag.IdUser = new SelectList(db.Users, "Id", "surname");
 
             //Für Patient
@@ -1021,15 +1210,14 @@ namespace HMS.Controllers
 
                 System.DateTime ende = new System.DateTime(localCase.timeclosed.Year, localCase.timeclosed.Month,
                     localCase.timeclosed.Day, std2, min2, 0);
-                localCase.timeclosed = ende;
 
-                //localCase.timecreate = DateTime.Now;
-                //localCase.timemodify = DateTime.Now;
+                localCase.timeclosed = ende;
                 localCase.isactive = true;
                 localCase.diagnosis = "offen";
                 localCase.medication = "offen";
                 localCase.therapy = "offen";
                 localCase.expectedtime = "offen";
+                localCase.timemodify = DateTime.Now;
 
                 //
                 //Hier wird die Beziehung Raum - Behandlung gespeichert
@@ -1079,8 +1267,193 @@ namespace HMS.Controllers
                 myLayoutName = "_Layout_Schwester";
             }
 
-            ViewResult myView = View();
+            LocalCase loc = new LocalCase();
+            loc.timecreate = DateTime.Now;
+            loc.timemodify = DateTime.Now;
+            ViewResult myView = View(loc);
             myView.MasterName = myLayoutName;
+
+            //Für Uhrzeit:
+            var TimeHHListStart = new List<SelectListItem>();
+            TimeHHListStart.Add(new SelectListItem { Text = "00", Value = "00" });
+            TimeHHListStart.Add(new SelectListItem { Text = "01", Value = "01" });
+            TimeHHListStart.Add(new SelectListItem { Text = "02", Value = "02" });
+            TimeHHListStart.Add(new SelectListItem { Text = "03", Value = "03" });
+            TimeHHListStart.Add(new SelectListItem { Text = "04", Value = "04" });
+            TimeHHListStart.Add(new SelectListItem { Text = "05", Value = "05" });
+            TimeHHListStart.Add(new SelectListItem { Text = "06", Value = "06" });
+            TimeHHListStart.Add(new SelectListItem { Text = "07", Value = "07" });
+            TimeHHListStart.Add(new SelectListItem { Text = "08", Value = "08" });
+            TimeHHListStart.Add(new SelectListItem { Text = "09", Value = "09" });
+            TimeHHListStart.Add(new SelectListItem { Text = "10", Value = "10" });
+            TimeHHListStart.Add(new SelectListItem { Text = "11", Value = "11" });
+            TimeHHListStart.Add(new SelectListItem { Text = "12", Value = "12" });
+            TimeHHListStart.Add(new SelectListItem { Text = "13", Value = "13" });
+            TimeHHListStart.Add(new SelectListItem { Text = "14", Value = "14" });
+            TimeHHListStart.Add(new SelectListItem { Text = "15", Value = "15" });
+            TimeHHListStart.Add(new SelectListItem { Text = "16", Value = "16" });
+            TimeHHListStart.Add(new SelectListItem { Text = "17", Value = "17" });
+            TimeHHListStart.Add(new SelectListItem { Text = "19", Value = "18" });
+            TimeHHListStart.Add(new SelectListItem { Text = "20", Value = "19" });
+            TimeHHListStart.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeHHListStart.Add(new SelectListItem { Text = "22", Value = "22" });
+            TimeHHListStart.Add(new SelectListItem { Text = "23", Value = "23" });
+
+            ViewBag.UhrHHStart = TimeHHListStart;
+
+            var TimeMMListStart = new List<SelectListItem>();
+            TimeMMListStart.Add(new SelectListItem { Text = "00", Value = "00" });
+            TimeMMListStart.Add(new SelectListItem { Text = "01", Value = "01" });
+            TimeMMListStart.Add(new SelectListItem { Text = "02", Value = "02" });
+            TimeMMListStart.Add(new SelectListItem { Text = "03", Value = "03" });
+            TimeMMListStart.Add(new SelectListItem { Text = "04", Value = "04" });
+            TimeMMListStart.Add(new SelectListItem { Text = "05", Value = "05" });
+            TimeMMListStart.Add(new SelectListItem { Text = "06", Value = "06" });
+            TimeMMListStart.Add(new SelectListItem { Text = "07", Value = "07" });
+            TimeMMListStart.Add(new SelectListItem { Text = "08", Value = "08" });
+            TimeMMListStart.Add(new SelectListItem { Text = "09", Value = "09" });
+            TimeMMListStart.Add(new SelectListItem { Text = "10", Value = "10" });
+            TimeMMListStart.Add(new SelectListItem { Text = "11", Value = "11" });
+            TimeMMListStart.Add(new SelectListItem { Text = "12", Value = "12" });
+            TimeMMListStart.Add(new SelectListItem { Text = "13", Value = "13" });
+            TimeMMListStart.Add(new SelectListItem { Text = "14", Value = "14" });
+            TimeMMListStart.Add(new SelectListItem { Text = "15", Value = "15" });
+            TimeMMListStart.Add(new SelectListItem { Text = "16", Value = "16" });
+            TimeMMListStart.Add(new SelectListItem { Text = "17", Value = "17" });
+            TimeMMListStart.Add(new SelectListItem { Text = "19", Value = "18" });
+            TimeMMListStart.Add(new SelectListItem { Text = "20", Value = "19" });
+            TimeMMListStart.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeMMListStart.Add(new SelectListItem { Text = "22", Value = "22" });
+            TimeMMListStart.Add(new SelectListItem { Text = "23", Value = "23" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "24", Value = "24" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "25", Value = "25" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "26", Value = "26" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "27", Value = "27" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "28", Value = "28" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "29", Value = "29" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "30", Value = "30" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "31", Value = "31" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "32", Value = "32" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "33", Value = "33" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "34", Value = "34" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "35", Value = "35" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "36", Value = "36" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "37", Value = "37" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "38", Value = "38" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "39", Value = "39" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "40", Value = "40" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "41", Value = "41" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "42", Value = "42" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "43", Value = "43" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "44", Value = "44" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "45", Value = "45" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "46", Value = "46" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "47", Value = "47" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "48", Value = "48" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "49", Value = "49" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "50", Value = "50" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "51", Value = "51" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "52", Value = "52" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "53", Value = "53" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "54", Value = "54" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "55", Value = "55" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "56", Value = "56" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "57", Value = "57" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "58", Value = "58" });
+            TimeMMListStart.Add(new SelectListItem() { Text = "59", Value = "59" });
+
+            ViewBag.UhrMMStart = TimeMMListStart;
+            //Ende
+
+            var TimeHHListEnde = new List<SelectListItem>();
+            TimeHHListEnde.Add(new SelectListItem { Text = "00", Value = "00" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "01", Value = "01" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "02", Value = "02" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "03", Value = "03" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "04", Value = "04" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "05", Value = "05" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "06", Value = "06" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "07", Value = "07" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "08", Value = "08" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "09", Value = "09" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "10", Value = "10" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "11", Value = "11" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "12", Value = "12" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "13", Value = "13" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "14", Value = "14" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "15", Value = "15" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "16", Value = "16" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "17", Value = "17" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "19", Value = "18" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "20", Value = "19" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "22", Value = "22" });
+            TimeHHListEnde.Add(new SelectListItem { Text = "23", Value = "23" });
+
+            ViewBag.UhrHHEnde = TimeHHListEnde;
+
+            var TimeMMListEnde = new List<SelectListItem>();
+            TimeMMListEnde.Add(new SelectListItem { Text = "00", Value = "00" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "01", Value = "01" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "02", Value = "02" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "03", Value = "03" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "04", Value = "04" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "05", Value = "05" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "06", Value = "06" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "07", Value = "07" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "08", Value = "08" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "09", Value = "09" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "10", Value = "10" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "11", Value = "11" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "12", Value = "12" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "13", Value = "13" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "14", Value = "14" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "15", Value = "15" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "16", Value = "16" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "17", Value = "17" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "19", Value = "18" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "20", Value = "19" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "21", Value = "20" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "22", Value = "22" });
+            TimeMMListEnde.Add(new SelectListItem { Text = "23", Value = "23" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "24", Value = "24" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "25", Value = "25" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "26", Value = "26" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "27", Value = "27" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "28", Value = "28" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "29", Value = "29" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "30", Value = "30" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "31", Value = "31" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "32", Value = "32" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "33", Value = "33" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "34", Value = "34" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "35", Value = "35" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "36", Value = "36" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "37", Value = "37" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "38", Value = "38" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "39", Value = "39" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "40", Value = "40" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "41", Value = "41" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "42", Value = "42" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "43", Value = "43" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "44", Value = "44" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "45", Value = "45" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "46", Value = "46" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "47", Value = "47" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "48", Value = "48" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "49", Value = "49" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "50", Value = "50" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "51", Value = "51" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "52", Value = "52" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "53", Value = "53" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "54", Value = "54" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "55", Value = "55" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "56", Value = "56" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "57", Value = "57" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "58", Value = "58" });
+            TimeMMListEnde.Add(new SelectListItem() { Text = "59", Value = "59" });
+
+            ViewBag.UhrMMEnde = TimeMMListEnde;
 
             //Für Raum:
             ViewBag.Id = new SelectList(db.Rooms.Where(x => x.vacancy != "0" && x.type == "Patientenzimmer").ToList(), "Id", "number");
@@ -1102,13 +1475,32 @@ namespace HMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                localCase.timecreate = DateTime.Now;
-                localCase.timemodify = DateTime.Now;
+                string stunde = Request.Form["UhrHHStart"].ToString();
+                int std = System.Convert.ToInt32(stunde);
+                string minute = Request.Form["UhrMMStart"].ToString();
+                int min = System.Convert.ToInt32(minute);
+
+
+                System.DateTime start = new System.DateTime(localCase.timecreate.Year, localCase.timecreate.Month,
+                    localCase.timecreate.Day, std, min, 0);
+                localCase.timecreate = start;
+
+                string stunde2 = Request.Form["UhrHHEnde"].ToString();
+                int std2 = System.Convert.ToInt32(stunde2);
+                string minute2 = Request.Form["UhrMMEnde"].ToString();
+                int min2 = System.Convert.ToInt32(minute2);
+
+
+                System.DateTime ende = new System.DateTime(localCase.timeclosed.Year, localCase.timeclosed.Month,
+                    localCase.timeclosed.Day, std2, min2, 0);
+
+                localCase.timeclosed = ende;
                 localCase.isactive = true;
                 localCase.diagnosis = "offen";
                 localCase.medication = "offen";
                 localCase.therapy = "offen";
                 localCase.expectedtime = "offen";
+                localCase.timemodify = DateTime.Now;
 
                 //
                 //Hier wird die Beziehung Raum - Behandlung gespeichert

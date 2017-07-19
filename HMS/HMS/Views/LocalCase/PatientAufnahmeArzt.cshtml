@@ -36,10 +36,10 @@
         <div class="form-group">
             @Html.Label("Startzeitpunkt:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10" style="width:auto">
-                @Html.DropDownList("UhrHHStart", null, "14", new { @class = "form-control" })
+                @Html.DropDownList("UhrHHStart", null, new { @class = "form-control" })
             </div>
             <div class="col-md-10" style="width:auto">
-                @Html.DropDownList("UhrMMStart", null, "00", new { @class = "form-control" })
+                @Html.DropDownList("UhrMMStart", null, new { @class = "form-control" })
             </div>
                 @*<div class="col-md-10" style="width:auto">
                         @Html.DropDownListFor(Model => Model.timecreate, new List<SelectListItem>
@@ -144,10 +144,10 @@
         <div class="form-group">
             @Html.Label("Endzeitpunkt:", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10" style="width:auto">
-               @Html.DropDownList("UhrHHEnde", null,"14",new { @class = "form-control" })
+               @Html.DropDownList("UhrHHEnde", null, new { @class = "form-control" })
             </div>
             <div class="col-md-10" style="width:auto">
-                @Html.DropDownList("UhrMMEnde", null, "30", new { @class = "form-control" })
+                @Html.DropDownList("UhrMMEnde", null, new { @class = "form-control" })
             </div>
 
         </div>
