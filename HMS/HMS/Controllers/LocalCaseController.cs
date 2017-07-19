@@ -1825,13 +1825,23 @@ namespace HMS.Controllers
                     LocalCase loc = db.LocalCases.Find(i);
                     if (loc.isactive == true)
                     {
+                        String patname = "leer";
+                        String raumnr = "leer";
+                        foreach (Patient pat in loc.Patient)
+                        {
+                            patname = pat.surname;
+                        }
+                        foreach (Room room in loc.Room)
+                        {
+                            raumnr = room.number;
+                        }
                         foreach (User user in loc.User)
                         {
                             if (user.rolename == "Arzt")
                             {
                                 termine.Add(new LocalCase()
                                 {
-                                    casenr = loc.casenr,
+                                    casenr = loc.casenr + " " + patname + " in Raum: " + raumnr,
                                     timecreate = loc.timecreate,
                                     timeclosed = loc.timeclosed,
                                     Id = loc.Id
@@ -1867,13 +1877,23 @@ namespace HMS.Controllers
                     LocalCase loc = db.LocalCases.Find(i);
                     if (loc.isactive == true)
                     {
+                        String patname = "leer";
+                        String raumnr = "leer";
+                        foreach (Patient pat in loc.Patient)
+                        {
+                            patname = pat.surname;
+                        }
+                        foreach (Room room in loc.Room)
+                        {
+                            raumnr = room.number;
+                        }
                         foreach (User user in loc.User)
                         {
                             if (user.rolename == "Pflegepersonal")
                             {
                                 termine.Add(new LocalCase()
                                 {
-                                    casenr = loc.casenr,
+                                    casenr = loc.casenr + " " + patname + " in Raum: " + raumnr,
                                     timecreate = loc.timecreate,
                                     timeclosed = loc.timeclosed,
                                     Id = loc.Id
@@ -1908,13 +1928,23 @@ namespace HMS.Controllers
                     LocalCase loc = db.LocalCases.Find(i);
                     if (loc.isactive == true)
                     {
+                        String patname = "leer";
+                        String raumnr = "leer";
+                        foreach (Patient pat in loc.Patient)
+                        {
+                            patname = pat.surname;
+                        }
+                        foreach (Room room in loc.Room)
+                        {
+                            raumnr = room.number;
+                        }
                         foreach (User user in loc.User)
                         {
                             if (user.rolename == "Therapeut")
                             {
                                 termine.Add(new LocalCase()
                                 {
-                                    casenr = loc.casenr,
+                                    casenr = loc.casenr + " " + patname + " in Raum: " + raumnr,
                                     timecreate = loc.timecreate,
                                     timeclosed = loc.timeclosed,
                                     Id = loc.Id
