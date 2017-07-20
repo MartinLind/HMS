@@ -28,7 +28,7 @@
     }
     @using(Html.BeginForm("IndexArzt", "Patient", FormMethod.Get))
     {
-    <input type = "submit", name = "submit", value = "Alle anzeigen", class="form-control",style="width:auto" onclick="@("window.location.href='" + @Url.Action("IndexArzt", "Patient") + "'");" />
+    <input type = "submit", name = "submit", value = "Aktive Patienten anzeigen", class="form-control",style="width:auto" onclick="@("window.location.href='" + @Url.Action("IndexArzt", "Patient") + "'");" />
     }
 <br />
 <table class="table" style="width:auto">
