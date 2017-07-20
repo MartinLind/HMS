@@ -31,7 +31,7 @@ namespace HMS.Controllers
         public ActionResult Index(String username, String password)
         {
            
-            if (db.Users.Count() < 1) {
+            if (db.Users.Where(x => x.rolename.Equals("Admin")).Count() < 1) {
                 if (username == "Admin" && password == "admin")
                 {
                     return View("Home", "_Layout_Admin");
