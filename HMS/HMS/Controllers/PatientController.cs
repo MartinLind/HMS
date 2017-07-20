@@ -726,6 +726,10 @@ namespace HMS.Controllers
                     }
                 }
             }
+            foreach (LocalCase all in patient.LocalCase)
+            {
+                all.isactive = false;
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -752,6 +756,10 @@ namespace HMS.Controllers
                     }
                 }
             }
+            foreach (LocalCase all in patient.LocalCase)
+            {
+                all.isactive = false;
+            }
             db.SaveChanges();
             return RedirectToAction("IndexArzt");
         }
@@ -777,6 +785,10 @@ namespace HMS.Controllers
                         room.vacancy = vorher;
                     }
                 }
+            }
+            foreach (LocalCase all in patient.LocalCase)
+            {
+                all.isactive = false;
             }
             db.SaveChanges();
             return RedirectToAction("IndexPfleger");
