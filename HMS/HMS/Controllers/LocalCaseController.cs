@@ -859,7 +859,8 @@ namespace HMS.Controllers
             TimeMMListEnde.Add(new SelectListItem() { Text = "59", Value = "59" });
 
             ViewBag.UhrMMEnde = TimeMMListEnde;
-
+            localCase.timecreate = DateTime.Now;
+            localCase.timeclosed = DateTime.Now;
             ViewResult myView = View(localCase);
             myView.MasterName = myLayoutName;
 
