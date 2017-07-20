@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Data.Entity;
 using System.Data;
 using System.Data.SqlClient;
 using HMS.Models;
+using System.Net;
 
 namespace HMS.Controllers
 {
     public class HomeController : Controller
     {
+        private DBContainer db = new DBContainer();
         // Author: Ming
 
         public ActionResult Index()
@@ -21,16 +23,24 @@ namespace HMS.Controllers
         }
         //public ActionResult LoginPage()
         //{
-
+        
         //    return View();
         //}
 
         [HttpPost]
         public ActionResult Index(String username, String password)
         {
-           if(username == "Admin" && password == "admin")
+           
+            if (db.Users.Count() < 1) {
+                if (username == "Admin" && password == "admin")
+                {
+                    return View("Home", "_Layout_Admin");
+                }
+            }
+            else
             {
-                return View("Home", "_Layout_Admin");
+
+              
             }
             //if (FunctionLogin(username, password) == true)
             //{
