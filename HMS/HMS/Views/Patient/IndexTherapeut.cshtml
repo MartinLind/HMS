@@ -29,11 +29,11 @@
     @Html.RadioButton("option", "Name", true) <text> Name </text> 
     @Html.RadioButton("option", "Geburtsdatum") <text> Geburtsdatum </text>  <br />
     @Html.TextBox("search",null,  new {@class="form-control"})
-    <input type = "submit", name = "submit", value = "Suche", class="form-control",style="width:auto" onclick="@("window.location.href='" + @Url.Action("Index", "Patient") + "'");" />
+    <input type = "submit", name = "submit", value = "Suche", class="form-control",style="width:auto" onclick="@("window.location.href='" + @Url.Action("IndexTherapeut", "Patient") + "'");" />
     }
     @using(Html.BeginForm("IndexTherapeut", "Patient", FormMethod.Get))
     {
-    <input type = "submit", name = "submit", value = "Aktive Patienten anzeigen", class="form-control",style="width:auto" onclick="@("window.location.href='" + @Url.Action("Index", "Patient") + "'");" />
+    <input type = "submit", name = "submit", value = "Aktive Patienten anzeigen", class="form-control",style="width:auto" onclick="@("window.location.href='" + @Url.Action("IndexTherapeut", "Patient") + "'");" />
     }
 <br />
 <table class="table" style="width:auto">
