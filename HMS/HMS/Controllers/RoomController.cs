@@ -56,6 +56,17 @@ namespace HMS.Controllers
             //Raum wurde gereinigt
             if (id == null)
             {
+                foreach (Room item in db.Rooms)
+                {
+                    TimeSpan ts = DateTime.Now - item.timemodify;
+                    int differenceindays = ts.Days;
+                    if (differenceindays >= 2)
+                    {
+                        item.isactive = true;
+                        
+                    }
+                }
+                db.SaveChanges();
                 ViewResult myView1 = View(db.Rooms.Where(x => x.isactive.Equals(true)));
                 myView1.MasterName = myLayoutName;
                 return myView1;
@@ -68,6 +79,7 @@ namespace HMS.Controllers
                 return myView2;
             }
             room.isactive = false;
+            room.timemodify = DateTime.Now;
             db.SaveChanges();
 
 
@@ -86,6 +98,17 @@ namespace HMS.Controllers
             }
             if (id == null)
             {
+                foreach (Room item in db.Rooms)
+                {
+                    TimeSpan ts = DateTime.Now - item.timemodify;
+                    int differenceindays = ts.Days;
+                    if (differenceindays >= 2)
+                    {
+                        item.isactive = true;
+
+                    }
+                }
+                db.SaveChanges();
                 ViewResult myView1 = View(db.Rooms.ToList());
                 myView1.MasterName = myLayoutName;
                 return myView1;
@@ -98,6 +121,7 @@ namespace HMS.Controllers
                 return myView2;
             }
             room.isactive = true;
+            room.timemodify = DateTime.Now;
             db.SaveChanges();
 
             ViewResult myView = View(db.Rooms.ToList());
@@ -119,6 +143,17 @@ namespace HMS.Controllers
             }
             if (id == null)
             {
+                foreach (Room item in db.Rooms)
+                {
+                    TimeSpan ts = DateTime.Now - item.timemodify;
+                    int differenceindays = ts.Days;
+                    if (differenceindays >= 2)
+                    {
+                        item.isactive = true;
+
+                    }
+                }
+                db.SaveChanges();
                 ViewResult myView1 = View(db.Rooms.ToList());
                 myView1.MasterName = myLayoutName;
                 return myView1;
@@ -131,6 +166,7 @@ namespace HMS.Controllers
                 return myView2;
             }
             room.isactive = true;
+            room.timemodify = DateTime.Now;
             db.SaveChanges();
 
             ViewResult myView = View(db.Rooms.ToList());
@@ -152,6 +188,17 @@ namespace HMS.Controllers
             }
             if (id == null)
             {
+                foreach (Room item in db.Rooms)
+                {
+                    TimeSpan ts = DateTime.Now - item.timemodify;
+                    int differenceindays = ts.Days;
+                    if (differenceindays >= 2)
+                    {
+                        item.isactive = true;
+
+                    }
+                }
+                db.SaveChanges();
                 ViewResult myView1 = View(db.Rooms.ToList());
                 myView1.MasterName = myLayoutName;
                 return myView1;
@@ -164,6 +211,7 @@ namespace HMS.Controllers
                 return myView2;
             }
             room.isactive = true;
+            room.timemodify = DateTime.Now;
             db.SaveChanges();
             ViewResult myView = View(db.Rooms.ToList());
             myView.MasterName = myLayoutName;
