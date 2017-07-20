@@ -50,34 +50,34 @@ namespace HMS.Controllers
             {
                 case FunctionLoginStatus.SUCCESS_Admin:
                     result = View("Home", "_Layout_Admin");
-                    ViewBag.Logged = "Welcome " + username;
+                    ViewBag.Logged = "Willkommen " + username;
                     GlobalVariable.currentRole = GlobalVariable.Role.Admin;
                     break;
                 case FunctionLoginStatus.SUCCESS_Arzt:
                     result = View("Home", "_Layout_Arzt");
-                    ViewBag.logged = "Welcome " + username;
+                    ViewBag.logged = "Willkommen " + username;
                     GlobalVariable.currentRole = GlobalVariable.Role.Arzt;
                     break;
                 case FunctionLoginStatus.SUCCESS_Schwester:
                     result = View("Home", "_Layout_Schwester");
-                    ViewBag.Logged = "Welcome " + username;
+                    ViewBag.Logged = "Willkommen " + username;
                     GlobalVariable.currentRole = GlobalVariable.Role.Schwester;
                     break;
                 case FunctionLoginStatus.SUCCESS_Reinigungspersonal:
                     result = View("Home", "_Layout_Reinigungspersonal");
-                    ViewBag.Logged = "Welcome " + username;
+                    ViewBag.Logged = "Willkommen " + username;
                     GlobalVariable.currentRole = GlobalVariable.Role.Reinigungspersonal;
                     break;
                 case FunctionLoginStatus.SUCCESS_Therapeut:
                     result = View("Home", "_Layout_Therapeut");
-                    ViewBag.Logged = "Welcome " + username;
+                    ViewBag.Logged = "Willkommen " + username;
                     GlobalVariable.currentRole = GlobalVariable.Role.Therapeut;
                     break;
                 case FunctionLoginStatus.FAIL:
-                    ViewBag.LoginMessage = "Something wrong! Try Again!";
+                    ViewBag.LoginMessage = "Etwas ist schief gelaufen, versuchen Sie es erneut!";
                     break;
                 case FunctionLoginStatus.FIRED:
-                    ViewBag.LoginMessage = "You are fired or retired! Contact your boss!";
+                    ViewBag.LoginMessage = "Sie haben keinen Zugang mehr, bitte kontaktieren Sie ihren Vorgesetzten!";
                     break;
                 //case FunctionLoginStatus.RETIRE:
                 //    ViewBag.LoginMessage = "You are retired! goodbye!";
