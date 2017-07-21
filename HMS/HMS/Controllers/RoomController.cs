@@ -544,6 +544,9 @@ namespace HMS.Controllers
             Room room = db.Rooms.Find(id);
             //db.Rooms.Remove(room);
             room.isactive = false;
+            room.vacancy = "0";
+            room.space = "0";
+            //room.type = "Alter Raum";
             db.SaveChanges();
             return RedirectToAction("Index");
         }
