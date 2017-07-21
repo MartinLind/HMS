@@ -541,7 +541,8 @@ namespace HMS.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Room room = db.Rooms.Find(id);
-            db.Rooms.Remove(room);
+            //db.Rooms.Remove(room);
+            room.isactive = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
