@@ -18,7 +18,7 @@ namespace HMS.Controllers
 
         public ActionResult Index()
         {
-            GlobalVariable.currentRole = GlobalVariable.Role.Admin;
+            GlobalVariable.currentRole = GlobalVariable.Role.Unknown;
             return View();
         }
         //public ActionResult LoginPage()
@@ -92,9 +92,10 @@ namespace HMS.Controllers
                 //case FunctionLoginStatus.RETIRE:
                 //    ViewBag.LoginMessage = "You are retired! goodbye!";
                 //    break;
-                //default:
-                //    GlobalVariable.currentRole = GlobalVariable.Role.Unknown;
-                //    break;
+                case FunctionLoginStatus.Unknown:
+                    result = View("Index","_Layout_Login");
+                    GlobalVariable.currentRole = GlobalVariable.Role.Unknown;
+                    break;
             }
 
             return result;
@@ -109,7 +110,8 @@ namespace HMS.Controllers
             SUCCESS_Therapeut,
             FAIL,
             FIRED,
-            RETIRE
+            RETIRE,
+            Unknown
         }
 
         public FunctionLoginStatus FunctionLogin(String username, String password)
