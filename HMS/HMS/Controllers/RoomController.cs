@@ -443,7 +443,7 @@ namespace HMS.Controllers
         {
             SqlConnection connection = null;
 
-            String ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=HMSDB;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
+            String ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=HMSDB1;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework";
 
             connection = new SqlConnection(ConnectionString);
 
@@ -477,7 +477,7 @@ namespace HMS.Controllers
                 //return RedirectToAction("Index");
             }
 
-            if (dbroomnumber == null)
+            if (dbroomnumber == room.number)
             {
                 /// success
                 room.timemodify = DateTime.Now;
