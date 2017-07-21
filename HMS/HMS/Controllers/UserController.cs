@@ -232,7 +232,8 @@ namespace HMS.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             User user = db.Users.Find(id);
-            db.Users.Remove(user);
+            //db.Users.Remove(user);
+            user.isactive = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
